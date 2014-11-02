@@ -608,7 +608,7 @@
                     <g:message code="ASSET_BOOK.IS_ACTIVE.label" default="Active" />
 
                 </label>
-                <g:checkBox name="IS_ACTIVE" value="${ASSET_BOOKInstance?.IS_ACTIVE}" />
+                <g:checkBox checked="true" name="IS_ACTIVE" value="${ASSET_BOOKInstance?.IS_ACTIVE}" />
             </div>
         </div>
     </div>

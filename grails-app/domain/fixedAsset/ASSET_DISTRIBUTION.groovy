@@ -7,6 +7,7 @@ class ASSET_DISTRIBUTION {
         ID(updateable: false,insertable: false)
     }
     Long ID
+    String IDENTIFICATION_ID
     STAKEHOLDER STAKEHOLDER_ID
     ASSET_BOOK ASSET_BOOK_ID
     String DESCRIPTION
@@ -26,6 +27,7 @@ class ASSET_DISTRIBUTION {
         CREATED_BY(nullable: true)
         CREATED_DATE(nullable: true)
         file_url_(nullable: true)
+        IDENTIFICATION_ID(nullable: true,unique: true)
     }
     String toString(){
         return DESCRIPTION

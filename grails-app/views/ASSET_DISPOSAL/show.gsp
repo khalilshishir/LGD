@@ -278,6 +278,24 @@
                     </div>
                 </div>
 
+                <g:if test="${ASSET_DISPOSALInstance?.file_url_}">
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <div class="fieldcontain ${hasErrors(bean: ASSET_DISPOSALInstance, field: 'file_url_', 'error')} ">
+                                <label for="file_url_">
+                                    <g:message code="ASSET_DISPOSALInstance.file_url_.label" default="Download :"/>
+
+                                </label>
+                                <g:form>
+                                    <input type="hidden" name="file_url_" id="file_url_" value="${ASSET_DISPOSALInstance?.file_url_}"/>
+                                    <g:actionSubmit class="btn btn-success" action="downloadFile" value="${message(code: 'default.button.download.label', default: 'Download')}"  />
+                                </g:form>
+                            </div>
+                        </div>
+                    </div>
+                </g:if>
+
 
 
 

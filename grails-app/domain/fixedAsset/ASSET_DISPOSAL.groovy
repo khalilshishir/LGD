@@ -23,6 +23,8 @@ class ASSET_DISPOSAL {
     Long CREATED_BY
     Date CREATED_DATE=new Date()
     AllLookup REASON
+    String file_url_
+
     static constraints = {
         COMITY_ID(nullable: true)
         NAME(nullable: true)
@@ -35,6 +37,8 @@ class ASSET_DISPOSAL {
         CREATED_DATE(nullable: true)
         REMARKS(nullable: true)
         AUCTION_AMOUNT(nullable: true)
+        file_url_(nullable: true)
+
     }
     String toString(){
         return NAME

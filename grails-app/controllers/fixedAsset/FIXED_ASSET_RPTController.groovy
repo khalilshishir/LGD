@@ -30,20 +30,11 @@ class FIXED_ASSET_RPTController {
         def locationId=params.LOCATION_ID
         def majorCatId=params.ASSET_MAJOR_CATEGORY_ID
         def minorCatId=params.ASSET_MINOR_CATEGORY_ID
-
-        if (reportNamel.equals("fixedAssetList"))
+        def stakeholderId=params.STAKEHOLDER_ID
+        if (reportNamel.equals("Fixed asset list"))
         {
             report_name="fixedAssetList.jasper"
             report_name1="fixedAssetList"
-
-        }
-
-        else if (reportNamel.equals("Report name"))
-        {
-            report_name="genarate_ready_student_list.jasper"
-            report_name1="genarate_ready_student_list"
-//            parameters.put("p_sector", instituteId)
-//            parameters.put("p_occupation", fName)
 
         }
         else if (reportNamel.equals("Category Wise Asset List"))
@@ -63,7 +54,15 @@ class FIXED_ASSET_RPTController {
         {
             report_name="locationWiseAssetList.jasper"
             report_name1="locationWiseAssetList"
-//            parameters.put("LocationId",locationId)
+            parameters.put("LocationId",locationId.id)
+//            parameters.put("p_occupation", fName)
+
+        }
+        else if (reportNamel.equals("Assigned Person wise Asset List"))
+        {
+            report_name="assignPersonWiseAssetList.jasper"
+            report_name1="assignPersonWiseAssetList"
+            parameters.put("StakeholderId",stakeholderId)
 //            parameters.put("p_occupation", fName)
 
         }

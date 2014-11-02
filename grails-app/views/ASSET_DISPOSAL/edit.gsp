@@ -54,7 +54,7 @@
 			</ul>
 			</g:hasErrors>
             <div class="panel-body">
-			<g:form method="post" >
+			<g:form method="post" enctype="multipart/form-data" >
 				<g:hiddenField name="id" value="${ASSET_DISPOSALInstance?.id}" />
 				<g:hiddenField name="version" value="${ASSET_DISPOSALInstance?.version}" />
 				<fieldset class="form">

@@ -1,5 +1,17 @@
 <%@ page import="fixedAsset.ASSET_DISTRIBUTION" %>
 
+<div class="col-xs-6">
+    <div class="form-group">
+
+        <div class="fieldcontain ${hasErrors(bean: ASSET_DISTRIBUTIONInstance, field: 'IDENTIFICATION_ID', 'error')} ">
+            <label for="IDENTIFICATION_ID">
+                <g:message code="ASSET_DISTRIBUTION.IDENTIFICATION_ID.label" default="Identification Id"/>
+
+            </label>
+            <g:textField required="" name="IDENTIFICATION_ID" value="${ASSET_DISTRIBUTIONInstance?.IDENTIFICATION_ID}" class="form-control"/>
+        </div>
+    </div>
+</div>
 
 <div class="col-xs-6">
     <div class="form-group">

@@ -46,6 +46,42 @@ class ASSET_DISTRIBUTIONController {
         }
         /*image processing end*/
         def ASSET_DISTRIBUTIONInstance = new ASSET_DISTRIBUTION(params)
+
+//        auto identification id generation start
+
+
+        def firstCode=params.IDENTIFICATION_ID
+        Sql db = new Sql(dataSource)
+        def lastCodee = db.rows("select (max(substr (IDENTIFICATION_ID,-3)) +1) from FA_ASSET_DISTRIBUTION where IDENTIFICATION_ID like '%"+firstCode+"%' ")
+        def identificationId
+        if (lastCodee[0][0]==null){
+            String str = "1";
+            StringBuilder sb = new StringBuilder();
+            for (int toPrepend=3-str.length(); toPrepend>0; toPrepend--) {
+                sb.append('0');
+            }
+            sb.append(str);
+            String lastCode = sb.toString();
+            identificationId=firstCode+lastCode
+            ASSET_DISTRIBUTIONInstance.IDENTIFICATION_ID=identificationId
+        }
+        else {
+            String str = lastCodee[0][0].toString();
+            StringBuilder sb = new StringBuilder();
+            for (int toPrepend=3-str.length(); toPrepend>0; toPrepend--) {
+                sb.append('0');
+            }
+            sb.append(str);
+            String lastCode = sb.toString();
+            identificationId=firstCode+lastCode
+            ASSET_DISTRIBUTIONInstance.IDENTIFICATION_ID=identificationId
+
+        }
+
+//        auto identification id generation end
+
+
+
         if (!ASSET_DISTRIBUTIONInstance.save(flush: true)) {
             render(view: "create", model: [ASSET_DISTRIBUTIONInstance: ASSET_DISTRIBUTIONInstance])
             return

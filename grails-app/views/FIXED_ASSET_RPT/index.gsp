@@ -30,7 +30,7 @@
                     </label>
                         <g:select name="reportName" id="reportName"
                                   from="${['Fixed asset list',
-                                          'List of Fixed Asset',
+//                                          'List of Fixed Asset',
                                           'Category Wise Asset List',
                                           'Assigned Person wise Asset List',
                                           'Location wise Asset List'
@@ -43,8 +43,8 @@
                 $("#reportName").change(function () {
                     var report_name = $(this).val();
                     if (report_name == 'Fixed asset list') {
-                        $("#location").show();
-                        $("#LOCATION_ID").removeAttr("disabled");
+                        $("#location").hide();
+                        $("#LOCATION_ID").prop('disabled', true);
 
                         $("#major").hide();
                         $("#ASSET_MAJOR_CATEGORY_ID").prop('disabled', true);
@@ -69,19 +69,7 @@
                         $("#STAKEHOLDER_ID").prop('disabled', true);
 
                     }
-                    else if (report_name == 'List of Fixed Asset') {
-                        $("#location").hide();
-                        $("#LOCATION_ID").prop('disabled', true);
 
-                        $("#major").hide();
-                        $("#ASSET_MAJOR_CATEGORY_ID").prop('disabled', true);
-
-                        $("#minor").hide();
-                        $("#ASSET_MINOR_CATEGORY_ID").prop('disabled', true);
-
-                        $("#stakeholder").hide();
-                        $("#STAKEHOLDER_ID").prop('disabled', true);
-                    }
 
                     else if (report_name == 'Assigned Person wise Asset List') {
                         $("#location").hide();
@@ -131,8 +119,8 @@
                         <g:message code="ASSET_BOOK.LOCATION_ID.label" default="Location" />
 
                     </label>
-                    <g:select disabled=""  id="LOCATION_ID" name="LOCATION_ID" from="${fixedAsset.LOCATION.list()}"
-                              value=""
+                    <g:select disabled=""  id="LOCATION_ID" name="LOCATION_ID.id" from="${fixedAsset.LOCATION.list()}"
+                              value="" optionKey="id"
                               class="form-control" noSelection="['': '--Select--']"/>
                 </div>
             </div>
