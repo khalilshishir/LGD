@@ -35,6 +35,7 @@
             <label for="lookup_name"><g:message code="allLookup.lookup_name.label" default="Lookup Name" /></label>
             <g:textField class="form-control" name="lookup_name" value="${allLookupInstance?.lookup_name}"/>
         </div>
+
     </div>
 
     <div class="col-xs-6">
