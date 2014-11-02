@@ -13,7 +13,7 @@
             document.getElementById(totalAmountField).value = totalAmount;
     }
 
-    var childCount = ${upDirectProcurementInstance?.upDirectProcDetails?.size()} + 0;
+    var childCount = ${upRfqProcurementInstance?.upRfqProcurementDetails?.size()} + 0;
     $('.delButton').live('click', function() {
 //find the parent div
         var prnt = $(this).parents(".detail-div");
@@ -26,7 +26,7 @@
     function addChild() {
 //debugger;
         var clone = $("#detail_clone").clone();
-        var htmlId = 'upDirectProcDetails[' + childCount + '].';
+        var htmlId = 'upRfqProcurementDetails[' + childCount + '].';
 
         clone.find("input[id$=id]").attr('id', htmlId + 'id').attr('name', htmlId + 'id');
         clone.find("input[id$=deleted]").attr('id', htmlId + 'deleted').attr('name', htmlId + 'deleted');
@@ -48,12 +48,12 @@
     }
 </script>
 <div class="" style="border: solid 1px;border-radius: 5px">
-    <table  style=" border-radius:5px; table-layout: fixed" id="detailList" class="table table-bordered table-striped table-hover table-condensed">
+    <table  style=" border-radius:5px;table-layout: fixed" id="detailList" class="table table-bordered table-striped table-hover table-condensed">
         %{--<table id="example" class="dataListTable table table-bordered table-striped table-hover table-condensed">--}%
-        <tr><th>আইটেম আইডি</th><th>আইটেম নাম</th><th>আইটেম বর্ণনা</th><th>দর</th><th>পরিমান</th><th>মোট পরিমান</th><th width="44px">মুছে দিন</th></tr>
+        <tr><th>আইটেম আইডি</th><th>আইটেম নাম</th><th>আইটেম বর্ণনা</th><th>দর</th><th>পরিমান</th><th>মোট পরিমান</th><th width="44px">কর্ম</th></tr>
         <g:render template='detail' model="['result':null,'i':'_clone','hidden':true]"/>
-        <g:each var="upDirectProcDetails" in="${upDirectProcurementInstance.upDirectProcDetails}" status="i" >
-            <g:render template='detail' model="['upDirectProcDetails':upDirectProcDetails,'i':i]"/>
+        <g:each var="upRfqProcurementDetails" in="${upRfqProcurementInstance.upRfqProcurementDetails}" status="i" >
+            <g:render template='detail' model="['upRfqProcurementDetails':upRfqProcurementDetails,'i':i]"/>
         </g:each>
     </table>
     <input type="button"  style="border: 2px solid" class="btn btn-info btn-md save" value="Add Detail" onclick="addChild();"/>

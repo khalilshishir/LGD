@@ -5,17 +5,22 @@
 		<meta name="layout" content="upprocurement">
 		<g:set var="entityName" value="${message(code: 'upDirectProcurement.label', default: 'UpDirectProcurement')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+        <style>
+            #schemeTypeGrantedAmounIsLabourAppointed{
+                width: 792px;
+            }
+        </style>
+
         <script type="text/javascript">
             function setValueOnSchemeChange(schemeInfoId){
-                if(schemeInfoId <=0 || schemeInfoId==null){
-
-                }else{
                 setSchemeTypeGrantedAmountIsLabourAppointedOnSchemeChange(schemeInfoId);
-                }
+
             }
 
             function setSchemeTypeGrantedAmountIsLabourAppointedOnSchemeChange(schemeInfoId) {
+
                 <g:remoteFunction controller="common" action="loadSchemeInfo" update="schemeTypeGrantedAmounIsLabourAppointed" params="'schemeInfoId='+schemeInfoId" />
+
             }
         </script>
 	</head>

@@ -15,11 +15,11 @@
 </div>
 
 <div class="col-xs-12 detail-list ${hasErrors(bean: upDirectProcurementInstance, field: 'upDirectProcDetails', 'error')} ">
-    <div class="form-group">
-        <ul class="one-to-many">
-            <fieldset>
-                <li><g:render template="details"/></li>
-            </fieldset>
-        </ul>
-    </div>
+    %{--<div class="form-group">--}%
+        %{--<ul class="one-to-many">--}%
+            %{--<fieldset>--}%
+               <g:render template="details"/>
+            %{--</fieldset>--}%
+        %{--</ul>--}%
+    %{--</div>--}%
 </div>
