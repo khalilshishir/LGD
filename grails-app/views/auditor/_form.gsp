@@ -12,7 +12,7 @@
 
 <div class="col-xs-4">
     <div class="form-group">
-        <label for="AUDITOR_ID"><g:message code="auditor.AUDITOR_ID.label" default="Auditor ID" /></label>
+        <label for="AUDITOR_ID"><g:message code="auditor.AUDITOR_ID.label" default="AuditorID" /></label>
         <g:textField class="form-control" name="AUDITOR_ID" value="${auditorInstance?.AUDITOR_ID}"/>
     </div>
 </div>
