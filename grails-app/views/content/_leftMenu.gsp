@@ -37,9 +37,12 @@
         $("#ASSET_BOOK_DISPOSAL_LIST").toggle();
         $("#ASSET_BOOK_DISPOSAL_LIST_ALL").toggle();
         $("#reports").toggle();
+        $("#ASSET_BOOK_STOCK_LIST").toggle();
+        $("#ASSET_BOOK_HISTORY").toggle();
 
         $("#INSPECTION").toggle();
 
+        $("#pmu_proc_master").toggle();
 
         $("#UpOTMProcurement").toggle();
         $("#TCAF_Committee").toggle();
@@ -67,31 +70,31 @@
 
         $("#pmu_proc").toggle();
 
-         $("#performanceHead").toggle();
-         $("#PerformanceIndicator").toggle();
-         $("#performanceMeasureCategory").toggle();
-         $("#performanceMeasure").toggle();
-         $("#markDstribution").toggle();
-         $("#unionPorishod2PerformanceEntry").toggle();
-         $("#performanceOrgType").toggle();
-         $("#unionPorishodPerformanceEntry").toggle();
-         $("#zillaPorishodPerformanceEntry").toggle();
-         $("#fiscalYear").toggle();
-         $("#committeeType").toggle();
-         $("#committeeLevel").toggle();
-         $("#ccommittee").toggle();
-         $("#meeting").toggle();
-         $("#meetingLevel").toggle();
-         $("#memberDesignation").toggle();
-         $("#schemeCategory").toggle();
-         $("#schemeType").toggle();
-         $("#sschemeInfo").toggle();
-         $("#courtType").toggle();
-         $("#caseInformation").toggle();
-         $("#lawBranchTwo").toggle();
-         $("#lgedOffice").toggle();
-         $("#lgedAuditInfo").toggle();
-         $("#projectInfo").toggle();
+        $("#performanceHead").toggle();
+        $("#PerformanceIndicator").toggle();
+        $("#performanceMeasureCategory").toggle();
+        $("#performanceMeasure").toggle();
+        $("#markDstribution").toggle();
+        $("#unionPorishod2PerformanceEntry").toggle();
+        $("#performanceOrgType").toggle();
+        $("#unionPorishodPerformanceEntry").toggle();
+        $("#zillaPorishodPerformanceEntry").toggle();
+        $("#fiscalYear").toggle();
+        $("#committeeType").toggle();
+        $("#committeeLevel").toggle();
+        $("#ccommittee").toggle();
+        $("#meeting").toggle();
+        $("#meetingLevel").toggle();
+        $("#memberDesignation").toggle();
+        $("#schemeCategory").toggle();
+        $("#schemeType").toggle();
+        $("#sschemeInfo").toggle();
+        $("#courtType").toggle();
+        $("#caseInformation").toggle();
+        $("#lawBranchTwo").toggle();
+        $("#lgedOffice").toggle();
+        $("#lgedAuditInfo").toggle();
+        $("#projectInfo").toggle();
         $("#allocateAmount").toggle();
         $("#distributeBBGAmount").toggle();
 //            $("#dp").toggle();
@@ -113,6 +116,8 @@
             $("#ASSET_BOOK_DISPOSAL_LIST").toggle();
             $("#ASSET_BOOK_DISPOSAL_LIST_ALL").toggle();
             $("#reports").toggle();
+            $("#ASSET_BOOK_STOCK_LIST").toggle();
+            $("#ASSET_BOOK_HISTORY").toggle();
 
         });
 
@@ -201,7 +206,7 @@
             $("#zillaPorishodPerformanceEntry").toggle();
             $("#allocateAmount").toggle();
             $("#distributeBBGAmount").toggle();
-});
+        });
 
         $("#Planning").click(function(){       //otherStakeHolder
             $("#fiscalYear").toggle();
@@ -245,10 +250,31 @@
         <a href="${g.createLink(controller: "Lookup")}" id="wc" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>LookUp Type</a>
         <a href="${g.createLink(controller: "AllLookup")}" id="sic" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>All LookUp</a>
 
-      <a href="#" id="proc" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-log-out"></span> &nbsp &nbsp <strong>Procurement </strong> </a><!-- this is header -->
+        <a href="#" id="FIXED_ASSET" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-upload"></span> &nbsp &nbsp <strong>Fixed Asset (PMU)</strong></a><!-- this is header -->
+        <a href="${g.createLink(controller: "LOCATION")}"  id="LOCATION" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Location</a>
+        <a href="${g.createLink(controller: "ASSET_MAJOR_CATEGORY")}" id="ASSET_MAJOR_CATEGORY"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Major Category</a>
+        <a href="${g.createLink(controller: "ASSET_MINOR_CATEGORY")}" id="ASSET_MINOR_CATEGORY"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Minor Category</a>
+        <a href="${g.createLink(controller: "ASSET_BOOK")}" id="ASSET_BOOK"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Book</a>
+        <a href="${g.createLink(controller: "ASSET_BOOK_HISTORY")}" id="ASSET_BOOK_HISTORY"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Book Update History</a>
+        <a href="${g.createLink(controller: "ASSET_BOOK",action: "list_stock")}" id="ASSET_BOOK_STOCK_LIST"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Stock Asset List</a>
+        <a href="${g.createLink(controller: "STAKEHOLDER")}" id="STAKEHOLDER"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Stakeholder</a>
+        <a href="${g.createLink(controller: "ASSET_DISTRIBUTION")}" id="ASSET_DISTRIBUTION"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Distribution</a>
+        <a href="${g.createLink(controller: "ASSET_DISTRIBUTION",action: "assetMovementList")}" id="ASSET_DISTRIBUTION_MOVEMENT"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Movement</a>
+        <a href="${g.createLink(controller: "ASSET_MOVEMENT_HISTORY")}" id="ASSET_MOVEMENT_HISTORY"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Movement History</a>
+        <a href="${g.createLink(controller: "COMITY")}" id="COMITY"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Committee</a>
+        <a href="${g.createLink(controller: "ASSET_DISPOSAL")}" id="ASSET_DISPOSAL"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Disposal</a>
+        <a href="${g.createLink(controller: "ASSET_BOOK",action: "list_disposed")}" id="ASSET_BOOK_DISPOSAL_LIST"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Disposed Asset List</a>
+        <a href="${g.createLink(controller: "ASSET_BOOK",action: "list_all")}" id="ASSET_BOOK_DISPOSAL_LIST_ALL"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>List of all Asset</a>
+        <a href="${g.createLink(controller: "FIXED_ASSET_RPT",action: "index")}" id="reports"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Reports</a>
+
+        <a href="#" id="MONITORING" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-upload"></span> &nbsp &nbsp <strong>Monitoring</strong></a><!-- this is header -->
+        <a href="${g.createLink(controller: "INSPECTION")}"  id="INSPECTION" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Inspection</a>
+
+
+        <a href="#" id="proc" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-log-out"></span> &nbsp &nbsp <strong>Procurement </strong> </a><!-- this is header -->
         <a href="${g.createLink(controller: "Up_Proc_Master")}"  id="proc_master" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Union Parishad Procurement</a>
 
-    <a href="#" id="pmu_proc_" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-log-out"></span> &nbsp &nbsp <strong>PMU Procurement  </strong> </a><!-- this is header -->
+        <a href="#" id="pmu_proc_" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-log-out"></span> &nbsp &nbsp <strong>PMU Procurement  </strong> </a><!-- this is header -->
         <a href="${g.createLink(controller: "pmuProcPlan")}"  id="pmu_proc_master" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>PMU Procurement Plan</a>
 
         <a href="#" id="proc_direct" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-log-out"></span> &nbsp &nbsp <strong>Direct Procurement </strong> </a><!-- this is header -->
@@ -281,23 +307,6 @@
         <a href="${g.createLink(controller: "upRFQProcWorkOrder")}" id="otm-work-order"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> UP OTM Procurement Work Order</a>
         <a href="${g.createLink(controller: "advanceAdjustment")}" id="otm-bill-pay"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Up OTM Bill Payment</a>
 
-        <a href="#" id="FIXED_ASSET" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-upload"></span> &nbsp &nbsp <strong>Fixed Asset (PMU)</strong></a><!-- this is header -->
-        <a href="${g.createLink(controller: "LOCATION")}"  id="LOCATION" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Location</a>
-        <a href="${g.createLink(controller: "ASSET_MAJOR_CATEGORY")}" id="ASSET_MAJOR_CATEGORY"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Major Category</a>
-        <a href="${g.createLink(controller: "ASSET_MINOR_CATEGORY")}" id="ASSET_MINOR_CATEGORY"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Minor Category</a>
-        <a href="${g.createLink(controller: "ASSET_BOOK")}" id="ASSET_BOOK"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Book</a>
-        <a href="${g.createLink(controller: "STAKEHOLDER")}" id="STAKEHOLDER"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Stakeholder</a>
-        <a href="${g.createLink(controller: "ASSET_DISTRIBUTION")}" id="ASSET_DISTRIBUTION"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Distribution</a>
-        <a href="${g.createLink(controller: "ASSET_DISTRIBUTION",action: "assetMovementList")}" id="ASSET_DISTRIBUTION_MOVEMENT"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Movement</a>
-        <a href="${g.createLink(controller: "ASSET_MOVEMENT_HISTORY")}" id="ASSET_MOVEMENT_HISTORY"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Movement History</a>
-        <a href="${g.createLink(controller: "COMITY")}" id="COMITY"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Committee</a>
-        <a href="${g.createLink(controller: "ASSET_DISPOSAL")}" id="ASSET_DISPOSAL"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Disposal</a>
-        <a href="${g.createLink(controller: "ASSET_BOOK",action: "list_disposed")}" id="ASSET_BOOK_DISPOSAL_LIST"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Disposed Asset List</a>
-        <a href="${g.createLink(controller: "ASSET_BOOK",action: "list_all")}" id="ASSET_BOOK_DISPOSAL_LIST_ALL"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>List of all Asset</a>
-        <a href="${g.createLink(controller: "FIXED_ASSET_RPT",action: "index")}" id="reports"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Reports</a>
-
-        <a href="#" id="MONITORING" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-upload"></span> &nbsp &nbsp <strong>Monitoring</strong></a><!-- this is header -->
-        <a href="${g.createLink(controller: "INSPECTION")}"  id="INSPECTION" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Inspection</a>
 
 
         <a href="#" id="Planning" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-upload"></span> &nbsp &nbsp <strong>UP Planning</strong></a>
