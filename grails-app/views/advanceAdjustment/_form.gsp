@@ -89,7 +89,7 @@
 
 <div class="col-xs-4">
     <div class="form-group">
-        <label for="ADJUSTMENT_AMOUNT"><g:message code="advanceAdjustment.ADJUSTMENT_AMOUNT.label" default="সমন্বয় মূল্য" /></label>
+        <label for="ADJUSTMENT_AMOUNT"><g:message code="advanceAdjustment.ADJUSTMENT_AMOUNT.label" default="অগ্রিম সমন্বয়" /></label>
         <g:field type="text" class="form-control" name="ADJUSTMENT_AMOUNT" value="${fieldValue(bean: advanceAdjustmentInstance, field: 'ADJUSTMENT_AMOUNT')}" required=""/>
     </div>
 </div>
@@ -102,7 +102,7 @@
 </div>
 
 %{--Check No--}%
-<div class="col-xs-6">
+<div class="col-xs-4">
     <div class="form-group">
         <label for="ADJUSTMENT_AMOUNT"><g:message code="advanceAdjustment.ADJUSTMENT_AMOUNT.label" default="চেক নাম্বার" /></label>
         <g:textField class="form-control" name="CHECK_NO" value="${advanceAdjustmentInstance?.CHECK_NO}" required=""/>
@@ -110,13 +110,13 @@
 </div>
 
 %{--<div class="col-xs-6">--}%
-    %{--<div class="form-group">--}%
-        %{--<label for="PAYMENT_DATE"><g:message code="advanceAdjustment.PAYMENT_DATE.label" default="Payment Date" /></label>--}%
-        %{--<div class="bfh-datepicker"   data-date="${formatDate(format:'MM/dd/yyyy',date:advanceAdjustmentInstance?.PAYMENT_DATE)}" data-close="true" data-name="PAYMENT_DATE" id="PAYMENT_DATE"></div>--}%
-    %{--</div>--}%
+%{--<div class="form-group">--}%
+%{--<label for="PAYMENT_DATE"><g:message code="advanceAdjustment.PAYMENT_DATE.label" default="Payment Date" /></label>--}%
+%{--<div class="bfh-datepicker"   data-date="${formatDate(format:'MM/dd/yyyy',date:advanceAdjustmentInstance?.PAYMENT_DATE)}" data-close="true" data-name="PAYMENT_DATE" id="PAYMENT_DATE"></div>--}%
+%{--</div>--}%
 %{--</div>--}%
 
-<div class="col-xs-6 ${hasErrors(bean: advanceAdjustmentInstance, field: 'PAYMENT_DATE', 'error')} ">
+<div class="col-xs-4 ${hasErrors(bean: advanceAdjustmentInstance, field: 'PAYMENT_DATE', 'error')} ">
 
     <div class="form-group">
         <label for="PAYMENT_DATE">প্রদানের তারিখ</label>
