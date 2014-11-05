@@ -2,6 +2,7 @@ package procurement.up.rfqprocurement
 
 import comonclass.UpProcType
 import org.springframework.dao.DataIntegrityViolationException
+import procurement.pmu.Supplier
 import procurement.up.Procurement_Type
 import procurement.up.Up_Proc_Master
 
@@ -172,6 +173,14 @@ class UpRfqOpeningSheetController {
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'upRfqOpeningSheet.label', default: 'UpOtmOpeningSheet'), id])
             redirect(action: "show", id: id)
+        }
+    }
+
+    def removeCurrentSupplierFromList(){
+        if(params.supplierId != null && params.supplierId != "" && params.supplierId != "null"){
+            def supplier = Supplier.get(Long.parseLong(params.supplierId))
+            supplier.onOff = false
+            supplier.save()
         }
     }
 }
