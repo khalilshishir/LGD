@@ -198,6 +198,6 @@ class LabourAppoinmentInfoController {
             def schemeInfo = SchemeInfo.get(upProcMaster?.SCHEME_INFO?.id)
             grantedAmount = schemeInfo.GRANTED_AMOUNT
         }
-       render (template: 'grantedAmount', model: [grantedAmount: grantedAmount])
+        render (template: 'grantedAmount', model: [grantedAmount: grantedAmount])
     }
 }

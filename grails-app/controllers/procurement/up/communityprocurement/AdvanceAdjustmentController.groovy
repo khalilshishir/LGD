@@ -5,11 +5,13 @@ import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 import procurement.pmu.PmuProcPlan
 import procurement.pmu.PmuProcPlanWbs
+import procurement.up.Procurement_Type.CommonService
 import procurement.up.Up_Proc_Master
 
 import java.text.SimpleDateFormat
 
 class AdvanceAdjustmentController {
+    CommonService commonService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -98,8 +100,8 @@ class AdvanceAdjustmentController {
         if (version != null) {
             if (advanceAdjustmentInstance.version > version) {
                 advanceAdjustmentInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'advanceAdjustment.label', default: 'AdvanceAdjustment')] as Object[],
-                          "Another user has updated this AdvanceAdjustment while you were editing")
+                        [message(code: 'advanceAdjustment.label', default: 'AdvanceAdjustment')] as Object[],
+                        "Another user has updated this AdvanceAdjustment while you were editing")
                 render(view: "edit", model: [advanceAdjustmentInstance: advanceAdjustmentInstance])
                 return
             }
@@ -141,13 +143,23 @@ class AdvanceAdjustmentController {
         String outPut
         def upProcMaster = Up_Proc_Master.get(Long.parseLong(params.id))
 //        def advanceAdjustment=AdvanceAdjustment.read(upProcMaster.id)
-        def advanceAdjustment=AdvanceAdjustment.findByUpProcMaster(upProcMaster)
+//        def advanceAdjustmentList=commonService.getAllPreviousAdvanceAdjustmentByUpProcMaster(upProcMaster)
+        def advanceAdjustmentList=AdvanceAdjustment.findAllByUpProcMaster(upProcMaster)
+//        def advanceAdjustment=AdvanceAdjustment.findByUpProcMaster(upProcMaster)
 //        def wbsList= PmuProcPlanWbs.findAllByPmuProcurPlan(advanceAdjustment)
 
         List dataReturn=new ArrayList()
-        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-        String payment_date = DATE_FORMAT.format(advanceAdjustment.PAYMENT_DATE);
-        dataReturn.add([id: advanceAdjustment.id,adjustment_amount: advanceAdjustment.ADJUSTMENT_AMOUNT,payment_date: payment_date])
+        advanceAdjustmentList.each {
+            SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+            String payment_date = DATE_FORMAT.format(it.PAYMENT_DATE);
+//            it.PAYMENT_DATE = payment_date
+            dataReturn.add([id: it.id,adjustment_amount: it.ADJUSTMENT_AMOUNT,payment_date: payment_date])
+        }
+
+
+//        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+//        String payment_date = DATE_FORMAT.format(advanceAdjustment.PAYMENT_DATE);
+//        dataReturn.add([id: advanceAdjustment.id,adjustment_amount: advanceAdjustment.ADJUSTMENT_AMOUNT,payment_date: payment_date])
         int dataCount=0
 //        wbsList.each {
 //            PmuProcPlanWbs pmuProcurPlanWbs ->
@@ -164,8 +176,8 @@ class AdvanceAdjustmentController {
 //        }
 
         result.put('isError',false)
-        result.put('advanceAdjustment',advanceAdjustment)
-        result.put('obj',advanceAdjustment)
+        result.put('advanceAdjustment',advanceAdjustmentList)
+        result.put('obj',advanceAdjustmentList)
         result.put('dataReturn',dataReturn)
         outPut = result as JSON
         render outPut
