@@ -31,6 +31,8 @@ class FIXED_ASSET_RPTController {
         def majorCatId=params.ASSET_MAJOR_CATEGORY_ID
         def minorCatId=params.ASSET_MINOR_CATEGORY_ID
         def stakeholderId=params.STAKEHOLDER_ID
+        def startDate=params.START_DATE
+        def endDate=params.END_DATE
         if (reportNamel.equals("Fixed asset list"))
         {
             report_name="fixedAssetList.jasper"
@@ -65,6 +67,21 @@ class FIXED_ASSET_RPTController {
             parameters.put("StakeholderId",stakeholderId)
 //            parameters.put("p_occupation", fName)
 
+        }
+        else if (reportNamel.equals("Stock Asset List"))
+        {
+            report_name="stockAssetList.jasper"
+            report_name1="stockAssetList"
+            parameters.put("Location",locationId.id)
+            parameters.put("P_STDATE",startDate)
+            parameters.put("P_ENDATE",endDate)
+        }
+        else if (reportNamel.equals("Warranty Period wise Asset List"))
+        {
+            report_name="warrantyPeriodWiseAssetList.jasper"
+            report_name1="warrantyPeriodWiseAssetList"
+            parameters.put("P_STDATE",startDate)
+            parameters.put("P_ENDATE",endDate)
         }
 
         String subReportDir = Util.getReportDirectory()
