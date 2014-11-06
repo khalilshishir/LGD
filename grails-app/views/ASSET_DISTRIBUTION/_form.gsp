@@ -34,7 +34,10 @@
                 <g:message code="ASSET_DISTRIBUTION.ASSET_BOOK_ID.label" default="Asset Name"/>
 
             </label>
-            <g:select required="" id="ASSET_BOOK_ID" name="ASSET_BOOK_ID.id" from="${fixedAsset.ASSET_BOOK.list()}" optionKey="id"
+            %{--<g:select required="" id="ASSET_BOOK_ID" name="ASSET_BOOK_ID.id" from="${fixedAsset.ASSET_BOOK.list()}" optionKey="id"
+                      value="${ASSET_DISTRIBUTIONInstance?.ASSET_BOOK_ID?.id}" class="many-to-one form-control"
+                      noSelection="['': '-Select-']"/>--}%
+            <g:select required="" id="ASSET_BOOK_ID" name="ASSET_BOOK_ID.id" from="${fixedAsset.ASSET_BOOK.executeQuery("from ASSET_BOOK where IS_ACTIVE=1")}" optionKey="id"
                       value="${ASSET_DISTRIBUTIONInstance?.ASSET_BOOK_ID?.id}" class="many-to-one form-control"
                       noSelection="['': '-Select-']"/>
         </div>

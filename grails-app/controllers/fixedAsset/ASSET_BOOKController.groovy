@@ -16,7 +16,8 @@ class ASSET_BOOKController {
     def list(Integer max) {
 //        params.max = Math.min(max ?: 10, 100)
 //        [ASSET_BOOKInstanceList: ASSET_BOOK.list(params), ASSET_BOOKInstanceTotal: ASSET_BOOK.count()]
-        String MainQQ="from ASSET_BOOK where IS_ACTIVE=1"
+        String MainQQ="from ASSET_BOOK where IS_ACTIVE=1 and IS_MAINTENANCE=0"
+        //IS_MAINTENANCE=0 means this asset now is in maintanance jone
         def lst=ASSET_BOOK.executeQuery(MainQQ)
 
         def totalCount = ASSET_BOOK.executeQuery(MainQQ).size()

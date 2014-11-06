@@ -39,6 +39,9 @@
         $("#reports").toggle();
         $("#ASSET_BOOK_STOCK_LIST").toggle();
         $("#ASSET_BOOK_HISTORY").toggle();
+        $("#ASSET_MAINTENANCE_LIST").toggle();
+        $("#ASSET_MAINTENANCE_LIST_RELEASE").toggle();
+
 
         $("#INSPECTION").toggle();
 
@@ -118,7 +121,8 @@
             $("#reports").toggle();
             $("#ASSET_BOOK_STOCK_LIST").toggle();
             $("#ASSET_BOOK_HISTORY").toggle();
-
+            $("#ASSET_MAINTENANCE_LIST").toggle();
+            $("#ASSET_MAINTENANCE_LIST_RELEASE").toggle();
         });
 
         $("#MONITORING").click(function(){
@@ -257,6 +261,13 @@
         <a href="${g.createLink(controller: "ASSET_BOOK")}" id="ASSET_BOOK"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Book</a>
         <a href="${g.createLink(controller: "ASSET_BOOK_HISTORY")}" id="ASSET_BOOK_HISTORY"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Book Update History</a>
         <a href="${g.createLink(controller: "ASSET_BOOK",action: "list_stock")}" id="ASSET_BOOK_STOCK_LIST"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Stock Asset List</a>
+
+        <a href="${g.createLink(controller: "ASSET_MAINTENANCE",action: "list")}" id="ASSET_MAINTENANCE_LIST"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Maintenance</a>
+        <a href="${g.createLink(controller: "ASSET_MAINTENANCE",action: "listRelease")}" id="ASSET_MAINTENANCE_LIST_RELEASE"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Release Asset from Maintenance</a>
+
+
+
+
         <a href="${g.createLink(controller: "STAKEHOLDER")}" id="STAKEHOLDER"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Stakeholder</a>
         <a href="${g.createLink(controller: "ASSET_DISTRIBUTION")}" id="ASSET_DISTRIBUTION"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Distribution</a>
         <a href="${g.createLink(controller: "ASSET_DISTRIBUTION",action: "assetMovementList")}" id="ASSET_DISTRIBUTION_MOVEMENT"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Asset Movement</a>
