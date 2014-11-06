@@ -83,8 +83,10 @@ class CommonService {
 
         try {
             String query = """
-                                 SELECT OSD.VENDOR_NAME,OSD.PRICE,ROWNUM,SI.GRANTED_AMOUNT
+                                 SELECT SUP.SUPP_NAME AS VENDOR_NAME,OSD.PRICE,ROWNUM,SI.GRANTED_AMOUNT
                                         FROM UP_RFQ_OPENING_SHEET_DETAILS OSD
+                                        INNER JOIN PROC_PMU_SUPPLIER SUP
+                                         ON (OSD.VENDOR_ID = SUP.ID)
                                         INNER JOIN UP_RFQ_OPENING_SHEET OS
                                          ON (OSD.UP_RFQ_OPENING_SHEET_ID = OS.ID)
                                         INNER JOIN UP_PROC_MASTER UPM

@@ -192,7 +192,7 @@ class UpRfqEvaluationController {
         if(params.procurementMasterId != null && params.procurementMasterId != "" && params.procurementMasterId != "null"){
             rfqOpeningSheetDetailsByProcurementMaster = commonService.getRfqOpeningSheetDetailsValueByProcurementMaster(Long.parseLong(params.procurementMasterId))
         }
-            int rowCount = rfqOpeningSheetDetailsByProcurementMaster.size()
+        int rowCount = rfqOpeningSheetDetailsByProcurementMaster.size()
         render (template: 'rowWithValues', model: [rfqOpeningSheetDetailsByProcurementMaster: rfqOpeningSheetDetailsByProcurementMaster,rowCount: rowCount])
     }
 
