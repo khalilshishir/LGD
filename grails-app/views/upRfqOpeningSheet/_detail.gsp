@@ -6,7 +6,7 @@
     <g:hiddenField name='upRfqOpeningSheetDetails[${i}].new' value="${upRfqOpeningSheetDetails?.id == null?'true':'false'}"/>
     %{--<td><g:textField size="25px" name='upRfqOpeningSheetDetails[${i}].VENDOR_NAME' value='${upRfqOpeningSheetDetails?.VENDOR_NAME}' class='detail-txt form-control'/></td>--}%
     %{--<td><g:select name='upRfqOpeningSheetDetails[${i}].VENDOR_NAME' from="${Supplier.list()}" optionKey="id" optionValue="SUPP_NAME" value="${upRfqOpeningSheetDetails?.VENDOR?.id}" class="form-control"/></td>--}%
-    <td><g:select name='upRfqOpeningSheetDetails[${i}].VENDOR_NAME' from="${Supplier.findAllByOnOff(true)}" optionKey="id" optionValue="SUPP_NAME" value="${upRfqOpeningSheetDetails?.VENDOR?.id}" class="form-control" onchange="removeCurrentSupplierFromList(this.value)"/></td>
+    <td><g:select name='upRfqOpeningSheetDetails[${i}].VENDOR' from="${Supplier.findAllByOnOff(true)}" optionKey="id" optionValue="SUPP_NAME" value="${upRfqOpeningSheetDetails?.VENDOR?.id}" class="form-control" onchange="removeCurrentSupplierFromList(this.value)"/></td>
     <td><g:textField size="25px" name='upRfqOpeningSheetDetails[${i}].PRICE' value='${upRfqOpeningSheetDetails?.PRICE}' class='detail-txt form-control'/></td>
     <td><g:textField size="25px" name='upRfqOpeningSheetDetails[${i}].COMMENTS' value='${upRfqOpeningSheetDetails?.COMMENTS}' class='detail-txt form-control'/></td>
 
@@ -17,6 +17,7 @@
 
 <script>
     function removeCurrentSupplierFromList(supplierId){
-        <g:remoteFunction action="removeCurrentSupplierFromList"  params="'supplierId='+supplierId" update="supplier"/>
+//        alert(supplierId)
+        <g:remoteFunction action="removeCurrentSupplierFromList"  params="'supplierId='+supplierId"/>
     }
 </script>

@@ -1,12 +1,14 @@
 package procurement.up.rfqprocurement
 
+import procurement.pmu.Supplier
+
 class UpRfqOpeningSheetDetails {
     static mapping = {
         table('UP_RFQ_OPENING_SHEET_DETAILS')
         version(false)
     }
     long id
-    String VENDOR_NAME
+    Supplier VENDOR
     double PRICE
     String COMMENTS
 
@@ -17,7 +19,7 @@ class UpRfqOpeningSheetDetails {
     long UPDATED_BY=0
     Date UPDATED_DATE=new Date()
     static constraints = {
-        VENDOR_NAME(nullable: false)
+        VENDOR(nullable: false)
         PRICE(nullable: false)
         COMMENTS(nullable: false)
         upRfqOpeningSheet(nullable: false)
