@@ -3,10 +3,10 @@
 <div class="col-xs-3"></div>
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="schemeInfo"><g:message code="upCommuniProcurement.schemeInfo.label" default="স্কীম সমূহ" />
+        <label for="schemeInfo"><g:message code="upCommuniProcurement.schemeInfo.label" default="কমিউনিটি প্রকিয়াই ক্রয়কৃত  স্কীম সমূহ" /></label>
             <span class="required-indicator">*</span>
         </label>
-        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.list()}" optionKey="id"  onchange="setValueOnSchemeChange(this.value)" noSelection="['': 'Select One']" optionValue="NAME" required="" value="${upCommuniProcurementInstance?.schemeInfo?.id}" class="form-control"/>
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'Community Procurement')}" optionKey="id"  onchange="setValueOnSchemeChange(this.value)" noSelection="['': 'Select One']" optionValue="NAME" required="" value="${upCommuniProcurementInstance?.schemeInfo?.id}" class="form-control"/>
 
     </div>
 </div>

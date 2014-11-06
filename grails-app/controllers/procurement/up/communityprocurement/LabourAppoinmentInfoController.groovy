@@ -21,9 +21,7 @@ class LabourAppoinmentInfoController {
     }
 
     def create() {
-        def upProcMasterListByProcurement = Up_Proc_Master.findAllByProcurementType(UpProcType?.COMMUNITY_PROCUREMENT?.toString())
-
-        [labourAppoinmentInfoInstance: new LabourAppoinmentInfo(params), upProcMasterList: upProcMasterListByProcurement]
+        [labourAppoinmentInfoInstance: new LabourAppoinmentInfo(params)]
     }
 
     def save() {
@@ -31,7 +29,7 @@ class LabourAppoinmentInfoController {
         println(params);
         def labourAppoinmentInfoInstance = new LabourAppoinmentInfo()
 
-        labourAppoinmentInfoInstance.properties["id","UP_PROCUREMENT_MASTER"] = params
+        labourAppoinmentInfoInstance.properties["id","schemeInfo"] = params
 
 
         int i = 0, grantAmountCounter = 0
@@ -58,8 +56,7 @@ class LabourAppoinmentInfoController {
         if(grantAmountCounter > grantedAmount){
 //            flash.message = "Total Amount Can't be Exceed Granted Amount For The Scheme."
             flash.message = "শ্রমদিবস বাবদ মোট খরচ স্কীমের অনুমোদিত মূল্য হতে অধিক হতে পারবে না ।"
-            def upProcMasterListByProcurement = Up_Proc_Master.findAllByProcurementType(UpProcType?.COMMUNITY_PROCUREMENT?.toString())
-            render(view: "create", model: [labourAppoinmentInfoInstance: labourAppoinmentInfoInstance, upProcMasterList: upProcMasterListByProcurement, grantedAmount: grantedAmount])
+            render(view: "create", model: [labourAppoinmentInfoInstance: labourAppoinmentInfoInstance])
             return
         }
 
@@ -87,12 +84,11 @@ class LabourAppoinmentInfoController {
 
     def edit(Long id) {
         def labourAppoinmentInfoInstance = LabourAppoinmentInfo.get(id)
-        def upProcMaster = Up_Proc_Master.get(labourAppoinmentInfoInstance?.UP_PROCUREMENT_MASTER?.id)
-        def schemeInfo = SchemeInfo.get(upProcMaster?.SCHEME_INFO?.id)
+       def schemeInfo = SchemeInfo.get(labourAppoinmentInfoInstance.schemeInfoId)
         String grantedAmount = schemeInfo.GRANTED_AMOUNT
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+        def upProcMasterListByProcurement = SchemeInfo.createCriteria();
         def results = upProcMasterListByProcurement.list {
-            inList('id',upProcMaster.id)
+            inList('id',schemeInfo.id)
         }
         if (!labourAppoinmentInfoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'labourAppoinmentInfo.label', default: 'LabourAppoinmentInfo'), id])
@@ -120,7 +116,7 @@ class LabourAppoinmentInfoController {
                 return
             }
         }
-        labourAppoinmentInfoInstance.properties["id", "UP_PROCUREMENT_MASTER"] = params
+        labourAppoinmentInfoInstance.properties["id", "schemeInfo"] = params
         int i = 0, grantAmountCounter = 0
         while (params["labourAppoinmentInfoDetails[" + i + "].WORK_RATE"] != null && params["labourAppoinmentInfoDetails[" + i + "].WORK_RATE"] != "") {
             def studentDetail
@@ -155,10 +151,10 @@ class LabourAppoinmentInfoController {
 
         if(grantAmountCounter > grantedAmount){
             flash.message = "শ্রমদিবস বাবদ মোট খরচ স্কীমের অনুমোদিত মূল্য হতে অধিক হতে পারবে না ।"
-            def upProcMaster = Up_Proc_Master.get(labourAppoinmentInfoInstance?.UP_PROCUREMENT_MASTER?.id)
-            def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+            def schemeInfo=SchemeInfo.get(labourAppoinmentInfoInstance?.schemeInfo?.id)
+            def upProcMasterListByProcurement = SchemeInfo.createCriteria();
             def results = upProcMasterListByProcurement.list {
-                inList('id',upProcMaster.id)
+                inList('id',schemeInfo.id)
             }
             render(view: "edit", model: [labourAppoinmentInfoInstance: labourAppoinmentInfoInstance, upProcMasterList: results, grantedAmount: grantedAmount])
             return
@@ -192,10 +188,12 @@ class LabourAppoinmentInfoController {
     }
 
     def setValueForGrantedAmount(){
+       println(params)
+
         String grantedAmount = ""
-        if(params.procurementMasterId != null && params.procurementMasterId != "" && params.procurementMasterId != "null"){
-            def upProcMaster = Up_Proc_Master.get(params.procurementMasterId?.toLong())
-            def schemeInfo = SchemeInfo.get(upProcMaster?.SCHEME_INFO?.id)
+
+        if(params.schemeInfo != null && params.schemeInfo != "" && params.schemeInfo != "null"){
+            def schemeInfo = SchemeInfo.get(params.schemeInfo)
             grantedAmount = schemeInfo.GRANTED_AMOUNT
         }
         render (template: 'grantedAmount', model: [grantedAmount: grantedAmount])

@@ -27,11 +27,11 @@
         <div class="panel-body">
             <ol class="property-list labourAppoinmentInfo">
 
-                <g:if test="${labourAppoinmentInfoInstance?.UP_PROCUREMENT_MASTER}">
+                <g:if test="${labourAppoinmentInfoInstance?.schemeInfo}">
                     <li class="fieldcontain">
-                        <span id="UP_PROCUREMENT_MASTER-label" class="property-label"><g:message code="labourAppoinmentInfo.UP_PROCUREMENT_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয় : " /></span>
+                        <span id="schemeInfo-label" class="property-label"><g:message code="labourAppoinmentInfo.schemeInfo.label" default="ইউনিয়ন পরিষদ ক্রয় : " /></span>
 
-                        <span class="property-value" aria-labelledby="UP_PROCUREMENT_MASTER-label"><g:fieldValue bean="${labourAppoinmentInfoInstance}" field="UP_PROCUREMENT_MASTER.SCHEME_INFO"/></span>
+                        <span class="property-value" aria-labelledby="schemeInfo-label"><g:fieldValue bean="${labourAppoinmentInfoInstance}" field="schemeInfo"/></span>
                     </li>
                 </g:if>
             </ol>

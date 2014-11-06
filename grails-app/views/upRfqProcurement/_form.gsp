@@ -7,7 +7,7 @@
         <label for="schemeInfo"><g:message code="UpRfqProcurement.schemeInfo.label" default="স্কীম সমূহ" />
             <span class="required-indicator">*</span>
         </label>
-        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.list()}" optionKey="id"  onchange="setValueOnSchemeChange(this.value)" noSelection="['': 'Select One']" optionValue="NAME" required="" value="${upRfqProcurementInstance?.schemeInfo?.id}" class="form-control"/>
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'RFQ Procurement')}" optionKey="id"  onchange="setValueOnSchemeChange(this.value)" noSelection="['': 'Select One']" optionValue="NAME" required="" value="${upRfqProcurementInstance?.schemeInfo?.id}" class="form-control"/>
 
     </div>
 </div>

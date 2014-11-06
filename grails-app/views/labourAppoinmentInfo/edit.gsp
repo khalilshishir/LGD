@@ -3,22 +3,22 @@
 <html>
 <head>
     <meta name="layout" content="upprocurement">
-    <g:set var="entityName" value="${message(code: 'labourAppoinmentInfo.label', default: 'লেবার অ্যাপয়েন্টমেন্ট ইনফো')}" />
+    <g:set var="entityName" value="${message(code: 'labourAppoinmentInfo.label', default: 'স্থানীয় শ্রমিক নিয়োগ ')}" />
     <title><g:message code="default.edit.label/" default="এডিট" args="[entityName]" /></title>
 </head>
 <body>
 <p align="right" style="color:#666; font-size: 11px; padding-right: 5px; margin-top: 10px;">
     <a style="color:#666; font-size: 11px;" class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label/" default="হোম"/></a>
     |
-    <a style="color:#666; font-size: 11px;" href="#"><g:link class="list" action="list"><g:message code="default.list.label/" default="লেবার অ্যাপয়েন্টমেন্ট ইনফো লিস্ট" args="[entityName]" /></g:link></a>
+    <a style="color:#666; font-size: 11px;" href="#"><g:link class="list" action="list"><g:message code="default.list.label/" default="স্থানীয় শ্রমিক নিয়োগ লিস্ট" args="[entityName]" /></g:link></a>
     |
-    <a style="color:#666; font-size: 11px;" href="#"><g:link class="create" action="create"><g:message code="default.new.label/" default="নতুন লেবার অ্যাপয়েন্টমেন্ট ইনফো" args="[entityName]" /></g:link></a>
+    <a style="color:#666; font-size: 11px;" href="#"><g:link class="create" action="create"><g:message code="default.new.label/" default="স্থানীয় শ্রমিক নিয়োগ" args="[entityName]" /></g:link></a>
 
 </p>
 <div id="edit-division" class="content scaffold-edit" role="main">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title"><g:message code="default.edit.label/" default="এডিট - লেবার অ্যাপয়েন্টমেন্ট ইনফো" args="[entityName]" /></h3>
+            <h3 class="panel-title"><g:message code="default.edit.label/" default="এডিট -স্থানীয় শ্রমিক নিয়োগ " args="[entityName]" /></h3>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
