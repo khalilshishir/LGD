@@ -2,8 +2,10 @@ package procurement.up.rfqprocurement
 
 import comonclass.UpProcType
 import org.springframework.dao.DataIntegrityViolationException
+import procurement.pmu.Supplier
 import procurement.up.Procurement_Type
 import procurement.up.Up_Proc_Master
+import settings.SchemeInfo
 
 class UpRfqOpeningSheetController {
 
@@ -29,17 +31,17 @@ class UpRfqOpeningSheetController {
     }
 
     def save() {
-        println(params);
+        println(params)
         def upRfqOpeningSheetInstance = new UpRfqOpeningSheet()
 
         upRfqOpeningSheetInstance.properties["id", "UP_PROC_MASTER","INVITATION_DATE","SUB_LAST_DATE","OPENING_DATE"] = params
 
 
         int i = 0
-        while (params["upRfqOpeningSheetDetails[" + i + "].VENDOR_NAME"] != null && params["upRfqOpeningSheetDetails[" + i + "].VENDOR_NAME"] != "") {
+        while (params["upRfqOpeningSheetDetails[" + i + "].VENDOR"] != null && params["upRfqOpeningSheetDetails[" + i + "].VENDOR"] != "") {
             def upRfqOpeningSheetDetails = new UpRfqOpeningSheetDetails()
 
-            upRfqOpeningSheetDetails.properties['VENDOR_NAME']=params["upRfqOpeningSheetDetails[" + i + "].VENDOR_NAME"]
+            upRfqOpeningSheetDetails.properties['VENDOR']=Supplier.get(Long.parseLong(params["upRfqOpeningSheetDetails[" + i + "].VENDOR"]))
             upRfqOpeningSheetDetails.properties['PRICE']=Double.parseDouble(params["upRfqOpeningSheetDetails[" + i + "].PRICE"])
             upRfqOpeningSheetDetails.properties['COMMENTS']=params["upRfqOpeningSheetDetails[" + i + "].COMMENTS"]
 
@@ -51,6 +53,12 @@ class UpRfqOpeningSheetController {
         if (!upRfqOpeningSheetInstance.save(flush: true)) {
             render(view: "create", model: [upRfqOpeningSheetInstance: upRfqOpeningSheetInstance])
             return
+        }
+
+        def suppliers = Supplier.getAll()
+        suppliers.each {
+            it.onOff = true
+            it.save()
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'upRfqOpeningSheet.label', default: 'UpOtmOpeningSheet'), upRfqOpeningSheetInstance.id])
@@ -109,7 +117,7 @@ class UpRfqOpeningSheetController {
 
 
 
-        while (params["upRfqOpeningSheetDetails[" + i + "].VENDOR_NAME"] != null && params["upRfqOpeningSheetDetails[" + i + "].VENDOR_NAME"] !="") {
+        while (params["upRfqOpeningSheetDetails[" + i + "].VENDOR"] != null && params["upRfqOpeningSheetDetails[" + i + "].VENDOR"] !="") {
 
 
             def studentDetail
@@ -133,7 +141,7 @@ class UpRfqOpeningSheetController {
                 studentDetail = UpRfqOpeningSheetDetails.get(Long.valueOf(params["upRfqOpeningSheetDetails[" + i + "].id"]))
             }
 
-            studentDetail.properties['VENDOR_NAME']=params["upRfqOpeningSheetDetails[" + i + "].VENDOR_NAME"]
+            studentDetail.properties['VENDOR']=Supplier.get(Long.parseLong(params["upRfqOpeningSheetDetails[" + i + "].VENDOR"]))
             studentDetail.properties['PRICE']=Double.parseDouble(params["upRfqOpeningSheetDetails[" + i + "].PRICE"])
             studentDetail.properties['COMMENTS']=params["upRfqOpeningSheetDetails[" + i + "].COMMENTS"]
 
@@ -150,6 +158,12 @@ class UpRfqOpeningSheetController {
         if (!upRfqOpeningSheetInstance.save(flush: true)) {
             render(view: "edit", model: [upRfqOpeningSheetInstance: upRfqOpeningSheetInstance])
             return
+        }
+
+        def suppliers = Supplier.getAll()
+        suppliers.each {
+            it.onOff = true
+            it.save()
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'upRfqOpeningSheet.label', default: 'UpOtmOpeningSheet'), upRfqOpeningSheetInstance.id])
@@ -172,6 +186,25 @@ class UpRfqOpeningSheetController {
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'upRfqOpeningSheet.label', default: 'UpOtmOpeningSheet'), id])
             redirect(action: "show", id: id)
+        }
+    }
+
+    def setValueForEstimatedAmount(){
+        String estimatedAmount = ""
+        if(params.procurementMasterId != null && params.procurementMasterId != "" && params.procurementMasterId != "null"){
+            def upProcMaster = Up_Proc_Master.get(params.procurementMasterId?.toLong())
+            def schemeInfo = SchemeInfo.get(upProcMaster?.SCHEME_INFO?.id)
+            estimatedAmount = schemeInfo.GRANTED_AMOUNT
+        }
+        render (template: 'estimatedAmount', model: [estimatedAmount: estimatedAmount])
+    }
+
+
+    def removeCurrentSupplierFromList(){
+        if(params.supplierId != null && params.supplierId != "" && params.supplierId != "null"){
+            def supplier = Supplier.get(Long.parseLong(params.supplierId))
+            supplier.onOff = false
+            supplier.save()
         }
     }
 }

@@ -48,9 +48,9 @@
     }
 </script>
 <div class="" style="border: solid 1px;border-radius: 5px">
-    <table  style=" border-radius:5px;table-layout: fixed" id="detailList" class="table table-bordered table-striped table-hover table-condensed">
+    <table  style=" border-radius:5px; table-layout: fixed" id="detailList" class="table table-bordered table-striped table-hover table-condensed">
         %{--<table id="example" class="dataListTable table table-bordered table-striped table-hover table-condensed">--}%
-        <tr><th>আইটেম আইডি</th><th>আইটেম নাম</th><th>আইটেম বর্ণনা</th><th>দর</th><th>পরিমান</th><th>মোট পরিমান</th><th width="44px">কর্ম</th></tr>
+        <tr><th>আইটেম আইডি</th><th>আইটেম নাম</th><th>আইটেম বর্ণনা</th><th>দর</th><th>পরিমান</th><th>মোট পরিমান</th><th width="44px">মুছে দিন</th></tr>
         <g:render template='detail' model="['result':null,'i':'_clone','hidden':true]"/>
         <g:each var="upDirectProcDetails" in="${upDirectProcurementInstance.upDirectProcDetails}" status="i" >
             <g:render template='detail' model="['upDirectProcDetails':upDirectProcDetails,'i':i]"/>

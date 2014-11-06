@@ -41,21 +41,21 @@
 
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="INVITATION_DATE"><g:message code="upRfqEvaluation.INVITATION_DATE.label" default="আহ্বান তারিখ" /></label>
+        <label for="INVITATION_DATE"><g:message code="upRfqEvaluation.INVITATION_DATE.label" default="দরপত্র আহ্বান তারিখ" /></label>
         <g:textField name="INVITATION_DATE" class="form-control" readonly=""/>
     </div>
 </div>
 
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="OPENING_DATE"><g:message code="upRfqEvaluation.OPENING_DATE.label" default="খোলার তারিখ" /></label>
+        <label for="OPENING_DATE"><g:message code="upRfqEvaluation.OPENING_DATE.label" default="দরপত্র খোলার তারিখ" /></label>
         <g:textField name="OPENING_DATE" class="form-control" readonly=""/>
     </div>
 </div>
 
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="EVALUATION_DATE"><g:message code="upRfqEvaluation.EVALUATION_DATE.label" default="মূল্যায়ন তারিখ" /></label>
+        <label for="EVALUATION_DATE"><g:message code="upRfqEvaluation.EVALUATION_DATE.label" default="দরপত্র মূল্যায়ন তারিখ" /></label>
         <div class="bfh-datepicker"   id="EVALUATION_DATE" data-date="${formatDate(format:'MM/dd/yyyy',date:upRfqEvaluationInstance?.EVALUATION_DATE)}" data-close="true" data-name="EVALUATION_DATE"></div>
     </div>
 </div>

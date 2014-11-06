@@ -10,6 +10,7 @@ class Supplier {
     String SUPP_NAME
     String SUPP_ADDRESS
     String FILE_UPLOAD
+    boolean onOff = true
     Date CREATEDATE=new Date()
     Boolean ISACTIVE
     String CREATEBY

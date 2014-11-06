@@ -10,7 +10,8 @@
 
 <div class="col-xs-4">
     <div class="form-group">
-        <label for="AUDIT_FIRM_NAME"><g:message code="auditFirm.AUDIT_FIRM_NAME.label" default="AUDIT FIRM NAME" /></label>
+        <label for="AUDIT_FIRM_NAME"><g:message code="auditFirm.AUDIT_FIRM_NAME.label" default="AUDIT FIRM NAME
+        " /></label>
         <g:textField class="form-control" name="AUDIT_FIRM_NAME" value="${auditFirmInstance?.AUDIT_FIRM_NAME}"/>
     </div>
 </div>
