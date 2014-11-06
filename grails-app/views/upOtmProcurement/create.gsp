@@ -5,6 +5,11 @@
 		<meta name="layout" content="upprocurement">
 		<g:set var="entityName" value="${message(code: 'upOtmProcurement.label', default: 'UpOtmProcurement')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+        <style>
+        #schemeTypeGrantedAmounIsLabourAppointed{
+            width: 792px;
+        }
+        </style>
         <script type="text/javascript">
             function setValueOnSchemeChange(schemeInfoId){
 //                alert(schemeInfoId);

@@ -14,7 +14,7 @@
 </div>
 <div class="col-xs-3"></div>
 
-<div id="schemeTypeGrantedAmounIsLabourAppointed" class="col-xs-12" style="background-color:#e7e7e7;padding: 5px;">
+<div id="schemeTypeGrantedAmounIsLabourAppointed" class="col-xs-12" style="background-color:#e7e7e7;padding: 5px ">
 </div>
 
 <div class="col-xs-12 detail-list ${hasErrors(bean: upOtmProcurementInstance, field: 'upDirectProcDetails', 'error')} ">

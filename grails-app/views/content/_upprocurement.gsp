@@ -20,6 +20,7 @@
         $("#evaluationDetails").toggle();
         $("#workorder").toggle();
         $("#billpayment").toggle();
+        $("#otm-tender").toggle();
 
 
 
@@ -70,6 +71,7 @@
             $("#otm-te").toggle();
             $("#otm-work-order").toggle();
             $("#otm-bill-pay").toggle();
+            $("#otm-tender").toggle();
         });
     });
 </script>
@@ -85,34 +87,33 @@
         <a href="${g.createLink(controller: "upDirectProcurement",action: "create")}"  id="dir-proc-report" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>রিপোর্ট </a>
 
         <a href="#" id="cp" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-log-out"></span> &nbsp &nbsp <strong>কমিউনিটি ক্রয়- পদ্ধতি </strong> </a><!-- this is header -->
-        %{--<a href="${g.createLink(controller: "Up_Proc_Master")}"  id="proc_master_com" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>মালামালের বিবরণ তৈরী  করুন</a>--}%
+    %{--<a href="${g.createLink(controller: "Up_Proc_Master")}"  id="proc_master_com" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>মালামালের বিবরণ তৈরী  করুন</a>--}%
         <a href="${g.createLink(controller: "upCommuniProcurement",action: 'create')}"  id="proc_master_com" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>মালামালের বিবরণ তৈরী  করুন</a>
-        <a href="${g.createLink(controller: "labourAppoinmentInfo")}" id="lai" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Labour Appointment Info</a>
-        <a href="${g.createLink(controller: "MasterRoleSalary")}" id="mrs" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Master Role Salary</a>
-        <a href="${g.createLink(controller: "AdvanceAdjustment")}" id="ada" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Advance Adjustment</a>
+        <a href="${g.createLink(controller: "labourAppoinmentInfo",action: "create")}" id="lai" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>স্থানীয় শ্রমিক নিয়োগ</a>
+        <a href="${g.createLink(controller: "MasterRoleSalary",action: "create")}" id="mrs" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>মাস্টার রুল মুজরী </a>
+        <a href="${g.createLink(controller: "AdvanceAdjustment",action: "create")}" id="ada" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>অগ্রিম সমন্বয়</a>
 
         <a href="#" id="rfq" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-share-alt"></span> &nbsp &nbsp <strong>আর এফ কিউ পদ্ধতি </strong></a><!-- this is header -->
-        %{--<a href="${g.createLink(controller: "Up_Proc_Master")}"  id="proc_master_rfq" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>মালামালের বিবরণ তৈরী  করুন</a>--}%
+    %{--<a href="${g.createLink(controller: "Up_Proc_Master")}"  id="proc_master_rfq" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>মালামালের বিবরণ তৈরী  করুন</a>--}%
     %{--<a href="${g.createLink(controller: "Up_Proc_Master")}" id="item_details" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Up RFQ Item Details</a>--}%
         <a href="${g.createLink(controller: "upRfqProcurement",action: 'create')}"  id="item_details" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>মালামালের বিবরণ তৈরী  করুন</a>
-        <a href="${g.createLink(controller: "upRfqOpeningSheet")}" id="openingsheet" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Up RFQ Opening Sheet</a>
-
+        <a href="${g.createLink(controller: "upRfqOpeningSheet",action: "create")}" id="openingsheet" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>দরপত্র খোলা</a>
         %{--<a href="UpRFQOpeningSheetDetails.html" id="opningsheetdetails" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Up RFQ Opening Sheet Details</a>--}%
-        <a href="${g.createLink(controller: "upRfqEvaluation")}" id="evaluation" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> UP RFQ Evaluation</a>
+        <a href="${g.createLink(controller: "upRfqEvaluation",action: "create")}" id="evaluation" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> দরপত্র মূল্যায়ন</a>
         %{--<a href="${g.createLink(controller: "Up_Proc_Master")}" id="evaluationDetails" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> UP RFQ Evaluation Sheet Details</a>--}%
-        <a href="${g.createLink(controller: "upRFQProcWorkOrder")}" id="workorder" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> UP RFQ Procurement Work Order</a>
-        <a href="${g.createLink(controller: "advanceAdjustment")}" id="billpayment" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> UP RFQ Procurement Bill Payment</a>
+        <a href="${g.createLink(controller: "upRFQProcWorkOrder",action: "create")}" id="workorder" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>সরবরাহ আদেশ </a>
+        <a href="${g.createLink(controller: "advanceAdjustment",action: "create")}" id="billpayment" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> বিল পরিশোধ</a>
 
         <a href="#" id="otm-proc" class="list-group-item active" style="font-size:14px;"><span class="glyphicon glyphicon-upload"></span> &nbsp &nbsp <strong>উন্মুক্ত দরপত্র   পদ্ধতি </strong></a><!-- this is header -->
         <a href="${g.createLink(controller: "upOtmProcurement",action: 'create')}"  id="proc_master_otm" class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>মালামালের বিবরণ তৈরী  করুন</a>
-        <a href="${g.createLink(controller: "IFT")}" id="otm-invitation"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Invitation For Tender</a>
-        %{--<a href="UPOTMItemDetails.html" id="UPOTMItemDetails"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> UP OTM Item Details</a>--}%
-        <a href="${g.createLink(controller: "UP_OTM_Tender_Schedule_Sample")}" id="otm-schedule"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>Schedule</a>
-        <a href="${g.createLink(controller: 'upOtmOpeningSheet')}" id="otm-opening-sheet"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Up OTM Opening Sheet</a>
+        <a href="${g.createLink(controller: "IFT",action: "create")}" id="otm-invitation"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> দরপত্র আহবানের ছক</a>
+        <a href="${g.createLink(controller: "UP_OTM_Tender_Document",action: "create")}"  id="otm-tender"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>দরপত্র </a>
+        <a href="${g.createLink(controller: "UP_OTM_Tender_Schedule_Sample",action: "create")}" id="otm-schedule"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>দরপত্র দলিলের শিডিউল নমুনা </a>
+        <a href="${g.createLink(controller: 'upOtmOpeningSheet',action: "create")}" id="otm-opening-sheet"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>দরপত্র খোলা </a>
         %{--<a href="UpOTMOpeningSheetDetails.html" id="otm-opening-sheet-details"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Up OTM Opening Sheet Details</a>--}%
-        <a href="${g.createLink(controller: 'upOtmEvaluation')}" id="otm-te"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>OTM Tender Evaluation</a>
-        <a href="${g.createLink(controller: "upRFQProcWorkOrder")}" id="otm-work-order"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> UP OTM Procurement Work Order</a>
-        <a href="${g.createLink(controller: "advanceAdjustment")}" id="otm-bill-pay"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> Up OTM Bill Payment</a>
+        <a href="${g.createLink(controller: 'upOtmEvaluation',action: "create")}" id="otm-te"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> দরপত্র মূল্যায়ন</a>
+        <a href="${g.createLink(controller: "upRFQProcWorkOrder",action: "create")}" id="otm-work-order"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i> সরবরাহ আদেশ </a>
+        <a href="${g.createLink(controller: "advanceAdjustment",action: "create")}" id="otm-bill-pay"  class="list-group-item"><i class="fa fa-angle-double-right fa-col"></i>  বিল পরিশোধ</a>
 
     </div><!--list-group-->
 </div><!--col-xs-3-->
