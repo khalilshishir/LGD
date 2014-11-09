@@ -36,7 +36,9 @@
                                           'Location wise Asset List',
                                           'Stock Asset List',
                                           'Warranty Period wise Asset List',
-                                          'Asset Update History'
+                                          'Asset Update History',
+                                          'Released Asset List',
+                                          'Under Maintenance Asset List'
                                   ]}" required="" value=""
                                   class="form-control" noSelection="['': '--Select Report Name--']"/>
 
@@ -192,6 +194,50 @@
 
                         $("#END_DATE_DIV").show();
                         $("#END_DATE").removeAttr("disabled");
+
+                        $("#major").hide();
+                        $("#ASSET_MAJOR_CATEGORY_ID").prop('disabled', true);
+
+                        $("#minor").hide();
+                        $("#ASSET_MINOR_CATEGORY_ID").prop('disabled', true);
+
+                        $("#stakeholder").hide();
+                        $("#STAKEHOLDER_ID").prop('disabled', true);
+                    }
+                    else if (report_name == 'Released Asset List') {
+                        $("#location").hide();
+                        $("#LOCATION_ID").prop('disabled', true);
+
+                        $("#ASSET_ID").show();
+                        $("#ASSET_BOOK_ID").removeAttr("disabled");
+
+                        $("#START_DATE_DIV").show();
+                        $("#START_DATE").removeAttr("disabled");
+
+                        $("#END_DATE_DIV").show();
+                        $("#END_DATE").removeAttr("disabled");
+
+                        $("#major").hide();
+                        $("#ASSET_MAJOR_CATEGORY_ID").prop('disabled', true);
+
+                        $("#minor").hide();
+                        $("#ASSET_MINOR_CATEGORY_ID").prop('disabled', true);
+
+                        $("#stakeholder").hide();
+                        $("#STAKEHOLDER_ID").prop('disabled', true);
+                    }
+                    else if (report_name == 'Under Maintenance Asset List') {
+                        $("#location").hide();
+                        $("#LOCATION_ID").prop('disabled', true);
+
+                        $("#ASSET_ID").show();
+                        $("#ASSET_BOOK_ID").removeAttr("disabled");
+
+                        $("#START_DATE_DIV").hide();
+                        $("#START_DATE").prop('disabled', true);
+
+                        $("#END_DATE_DIV").hide();
+                        $("#END_DATE").prop('disabled', true);
 
                         $("#major").hide();
                         $("#ASSET_MAJOR_CATEGORY_ID").prop('disabled', true);
