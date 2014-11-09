@@ -2,11 +2,11 @@ package procurement.up
 
 import comonclass.UpProcType
 import org.springframework.dao.DataIntegrityViolationException
-import procurement.up.directprocurement.UpDirectProcurementDetails
+
 import settings.Committee
 import settings.CommitteeLevel
 
-class Up_Proc_MasterController {
+class Up_Proc_MasterController {/*
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     def upProcurement(){
@@ -32,7 +32,7 @@ class Up_Proc_MasterController {
         [up_Proc_MasterInstance: new Up_Proc_Master(params), wardCommitteeList: results, procurementTypeList: procurementTypeList]
     }
 
- /*   def save() {
+ *//*   def save() {
         def up_Proc_MasterInstance = new Up_Proc_Master(params)
         if (!up_Proc_MasterInstance.save(flush: true)) {
             render(view: "create", model: [up_Proc_MasterInstance: up_Proc_MasterInstance])
@@ -41,7 +41,7 @@ class Up_Proc_MasterController {
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'up_Proc_Master.label', default: 'Up_Proc_Master'), up_Proc_MasterInstance.id])
         redirect(action: "show", id: up_Proc_MasterInstance.id)
-    }*/
+    }*//*
     def save() {
 
         println(params);
@@ -206,11 +206,11 @@ class Up_Proc_MasterController {
             redirect(action: "list")
             return
         }
-/*
+*//*
         def  upDirectProcurementDetailsInstance=new UpDirectProcurementDetails()
 //        upDirectProcurementDetailsInstance.removeFromUpDirectProcurementDetails(upDirectProcurementDetailsInstance)
         up_Proc_MasterInstance.removeFromUpDirectProcurementDetails(upDirectProcurementDetailsInstance)
-*/
+*//*
 
         try {
             up_Proc_MasterInstance.delete(flush: true)
@@ -221,5 +221,5 @@ class Up_Proc_MasterController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'up_Proc_Master.label', default: 'Up_Proc_Master'), id])
             redirect(action: "show", id: id)
         }
-    }
+    }*/
 }

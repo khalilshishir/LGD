@@ -1,6 +1,6 @@
 package procurement.up
 
-import procurement.up.directprocurement.UpDirectProcurementDetails
+
 import settings.Committee
 import settings.District
 import settings.Division
@@ -12,7 +12,7 @@ class Up_Proc_Master {
     static mapping = {
         table('UP_PROC_MASTER')
         version(false)
-        upDirectProcurementDetails cascade: 'all'
+//        upDirectProcurementDetails cascade: 'all'
     }
     long id
     String DETAILS
@@ -28,7 +28,7 @@ class Up_Proc_Master {
     Date CREATED_DATE=new Date()
     long UPDATED_BY=0
     Date UPDATED_DATE=new Date()
-    static hasMany = [upDirectProcurementDetails: UpDirectProcurementDetails]
+//    static hasMany = [upDirectProcurementDetails: UpDirectProcurementDetails]
     static constraints = {
         DETAILS(nullable: true)
         SCHEME_INFO(nullable: false)

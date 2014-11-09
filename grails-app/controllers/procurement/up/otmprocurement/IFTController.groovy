@@ -19,12 +19,13 @@ class IFTController {
     }
 
     def create() {
-        String procurementType = UpProcType.OTM_PROCUREMENT
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
-        def results = upProcMasterListByProcurement.list {
-            inList('procurementType',procurementType)
-        }
-        [IFTInstance: new IFT(params), upProcMasterList: results]
+//         String procurementType = UpProcType.OTM_PROCUREMENT
+//            def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+//            def results = upProcMasterListByProcurement.list {
+//                inList('procurementType',procurementType)
+//        }
+//        [IFTInstance: new IFT(params), upProcMasterList: results]
+        [IFTInstance: new IFT(params)]
     }
 
     def save() {
@@ -52,18 +53,20 @@ class IFTController {
 
     def edit(Long id) {
         def IFTInstance = IFT.get(id)
-        def upProcMaster = Up_Proc_Master.get(IFTInstance?.UP_PROC_MASTER?.id)
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
-        def results = upProcMasterListByProcurement.list {
-            inList('id',upProcMaster.id)
-        }
+//        def upProcMaster = Up_Proc_Master.get(IFTInstance?.UP_PROC_MASTER?.id)
+//        def upProcMaster = Up_Proc_Master.get(IFTInstance?.UP_PROC_MASTER?.id)
+//        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+//        def results = upProcMasterListByProcurement.list {
+//            inList('id',upProcMaster.id)
+//        }
         if (!IFTInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'IFT.label', default: 'IFT'), id])
             redirect(action: "list")
             return
         }
 
-        [IFTInstance: IFTInstance, upProcMasterList: results]
+//        [IFTInstance: IFTInstance, upProcMasterList: results]
+        [IFTInstance: IFTInstance]
     }
 
     def update(Long id, Long version) {
