@@ -1,6 +1,7 @@
 package procurement.up.communityprocurement
 
 import procurement.up.Up_Proc_Master
+import settings.SchemeInfo
 
 class LabourAppoinmentInfo {
     static mapping = {
@@ -10,7 +11,7 @@ class LabourAppoinmentInfo {
     }
 
     long id
-    Up_Proc_Master UP_PROCUREMENT_MASTER
+    SchemeInfo schemeInfo
 
     long CREATED_BY = 0
     Date CREATED_DATE = new Date()
@@ -20,7 +21,7 @@ class LabourAppoinmentInfo {
     static hasMany = [labourAppoinmentInfoDetails: LabourAppoinmentInfoDetails]
 
     static constraints = {
-        UP_PROCUREMENT_MASTER(nullable: false)
+        schemeInfo(nullable: false)
 
         CREATED_BY(nullable: true)
         CREATED_DATE(nullable: true)

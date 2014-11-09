@@ -26,11 +26,11 @@
         <div class="panel-body">
             <ol class="property-list upRfqOpeningSheet">
 
-                <g:if test="${upRfqOpeningSheetInstance?.UP_PROC_MASTER}">
+                <g:if test="${upRfqOpeningSheetInstance?.schemeInfo}">
                     <li class="fieldcontain">
-                        <span id="UP_PROC_MASTER-label" class="property-label"><g:message code="upRfqOpeningSheet.UP_PROC_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয় : " /></span>
+                        <span id="schemeInfo-label" class="property-label"><g:message code="upRfqOpeningSheet.schemeInfo.label" default="ইউনিয়ন পরিষদ ক্রয় : " /></span>
 
-                        <span class="property-value" aria-labelledby="UP_PROC_MASTER-label"><g:fieldValue bean="${upRfqOpeningSheetInstance}" field="UP_PROC_MASTER"/></span>
+                        <span class="property-value" aria-labelledby="schemeInfo-label"><g:fieldValue bean="${upRfqOpeningSheetInstance}" field="schemeInfo"/></span>
 
                     </li>
                 </g:if>

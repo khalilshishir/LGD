@@ -1,4 +1,4 @@
-<%@ page import="procurement.up.Up_Proc_Master; procurement.up.Procurement_Type; procurement.up.communityprocurement.MasterRoleSalary" %>
+<%@ page import="settings.SchemeInfo; procurement.up.Up_Proc_Master; procurement.up.Procurement_Type; procurement.up.communityprocurement.MasterRoleSalary" %>
 
 %{--jquery form validation starts--}%
 <script>
@@ -27,14 +27,16 @@
 
 <script type="text/javascript">
     function loadGrantedAmountForTheScheme(procurementMasterId){
-        <g:remoteFunction action="setValueForGrantedAmount"  params="'procurementMasterId='+procurementMasterId" update="grantedAmount"/>
+        <g:remoteFunction action="setValueForGrantedAmount"  params="'schemeInfo='+procurementMasterId" update="grantedAmount"/>
     }
 </script>
 
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="UP_PROCUREMENT_MASTER"><g:message code="masterRoleSalary.UP_PROCUREMENT_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
-        <g:select id="UP_PROCUREMENT_MASTER" name="upProcMaster.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="['':'Select One']" required="" value="${masterRoleSalaryInstance?.upProcMaster?.id}" class="form-control" onchange="loadGrantedAmountForTheScheme(this.value)"/>
+        <label for="UP_PROCUREMENT_MASTER"><g:message code="masterRoleSalary.UP_PROCUREMENT_MASTER.label" default="কমিউনিটি প্রকিয়াই ক্রয়কৃত  স্কীম সমূহ" /></label>
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'Community Procurement')}" optionKey="id"  noSelection="['': 'Select One']" optionValue="NAME" required="" value="${masterRoleSalaryInstance?.schemeInfo?.id}" class="form-control" onchange="loadGrantedAmountForTheScheme(this.value)"/>
+
+
     </div>
 </div>
 

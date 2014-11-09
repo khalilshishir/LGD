@@ -13,8 +13,12 @@
 
         <script type="text/javascript">
             function setValueOnSchemeChange(schemeInfoId){
-                setSchemeTypeGrantedAmountIsLabourAppointedOnSchemeChange(schemeInfoId);
+                if(schemeInfoId <=0 || schemeInfoId==null||schemeInfoId==""){
+                    setSchemeTypeGrantedAmountIsLabourAppointedOnSchemeChange(schemeInfoId);
 
+                }else {
+                    setSchemeTypeGrantedAmountIsLabourAppointedOnSchemeChange(schemeInfoId);
+                }
             }
 
             function setSchemeTypeGrantedAmountIsLabourAppointedOnSchemeChange(schemeInfoId) {

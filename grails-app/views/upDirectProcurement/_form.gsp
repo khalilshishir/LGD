@@ -1,11 +1,11 @@
-<%@ page import="settings.SchemeInfo; procurement.up.directprocurement.UpDirectProcurement" %>
+<%@ page import="comonclass.UpProcType; settings.SchemeInfo; procurement.up.directprocurement.UpDirectProcurement" %>
 <div class="col-xs-3"></div>
 <div class="col-xs-6">
     <div class="form-group">
         <label for="schemeInfo"><g:message code="upDirectProcurement.schemeInfo.label" default="স্কীম সমূহ" />
             <span class="required-indicator">*</span>
         </label>
-        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.list()}" optionKey="id"  onchange="setValueOnSchemeChange(this.value)" noSelection="['': 'Select One']" optionValue="NAME" required="" value="${upDirectProcurementInstance?.schemeInfo?.id}" class="form-control"/>
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'Direct Procurement')}" optionKey="id"  onchange="setValueOnSchemeChange(this.value)" noSelection="['': 'Select One']" optionValue="NAME" required="" value="${upDirectProcurementInstance?.schemeInfo?.id}" class="form-control"/>
 
     </div>
 </div>

@@ -14,7 +14,8 @@
         <script type="text/javascript">
             function setValueOnSchemeChange(schemeInfoId){
 //                alert(schemeInfoId);
-                if(schemeInfoId <=0 || schemeInfoId==null){
+                if(schemeInfoId <=0 || schemeInfoId==null||schemeInfoId==""){
+                    setSchemeTypeGrantedAmountIsLabourAppointedOnSchemeChange(schemeInfoId);
 
                 }else{
                     setSchemeTypeGrantedAmountIsLabourAppointedOnSchemeChange(schemeInfoId);
