@@ -242,7 +242,7 @@
             <g:message code="schemeInfo.IMPLEMENTATION_SYSTEM.label" default="Implementation Method" />
 
         </label>
-        <g:select class="form-control" id="IMPLEMENTATION_SYSTEM" name="IMPLEMENTATION_SYSTEM.id" from="${UpProcType.values()}" noSelection="['':'Select One']"  required=""  />
+        <g:select class="form-control" id="IMPLEMENTATION_SYSTEM" name="IMPLEMENTATION_SYSTEM" from="${UpProcType.values()}" noSelection="['':'Select One']"  required=""  />
 
     </div>
 </div>

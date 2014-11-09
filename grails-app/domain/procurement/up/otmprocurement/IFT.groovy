@@ -1,6 +1,7 @@
 package procurement.up.otmprocurement
 
 import procurement.up.Up_Proc_Master
+import settings.SchemeInfo
 
 class IFT {
     static mapping = {
@@ -9,7 +10,7 @@ class IFT {
     }
 
     long id
-    Up_Proc_Master UP_PROC_MASTER
+    SchemeInfo schemeInfo
     String IFT_NUMBER
     Date LAST_CONTACT_DATE = new Date()
     Date SUB_LAST_DATE = new Date()
@@ -25,7 +26,7 @@ class IFT {
         LAST_CONTACT_DATE(nullable: false)
         SUB_LAST_DATE(nullable: false)
         SUB_LAST_TIME(nullable: false)
-        UP_PROC_MASTER(nullable: false)
+        schemeInfo(nullable: false)
 
         CREATED_BY(nullable:true)
         CREATED_DATE(nullable:true)
