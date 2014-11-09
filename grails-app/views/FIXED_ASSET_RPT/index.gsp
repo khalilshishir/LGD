@@ -35,7 +35,8 @@
                                           'Assigned Person wise Asset List',
                                           'Location wise Asset List',
                                           'Stock Asset List',
-                                          'Warranty Period wise Asset List'
+                                          'Warranty Period wise Asset List',
+                                          'Asset Update History'
                                   ]}" required="" value=""
                                   class="form-control" noSelection="['': '--Select Report Name--']"/>
 
@@ -62,6 +63,9 @@
 
                         $("#END_DATE_DIV").hide();
                         $("#END_DATE").prop('disabled', true);
+
+                        $("#ASSET_ID").hide();
+                        $("#ASSET_BOOK_ID").prop('disabled', true);
                     }
                     else if (report_name == 'Category Wise Asset List') {
                         $("#location").hide();
@@ -81,6 +85,9 @@
 
                         $("#END_DATE_DIV").hide();
                         $("#END_DATE").prop('disabled', true);
+
+                        $("#ASSET_ID").hide();
+                        $("#ASSET_BOOK_ID").prop('disabled', true);
 
                     }
 
@@ -103,6 +110,9 @@
 
                         $("#END_DATE_DIV").hide();
                         $("#END_DATE").prop('disabled', true);
+
+                        $("#ASSET_ID").hide();
+                        $("#ASSET_BOOK_ID").prop('disabled', true);
                     }
                     else if (report_name == 'Location wise Asset List') {
                         $("#location").show();
@@ -122,6 +132,9 @@
 
                         $("#END_DATE_DIV").hide();
                         $("#END_DATE").prop('disabled', true);
+
+                        $("#ASSET_ID").hide();
+                        $("#ASSET_BOOK_ID").prop('disabled', true);
                     }
                     else if (report_name == 'Stock Asset List') {
                         $("#location").show();
@@ -141,10 +154,38 @@
 
                         $("#stakeholder").hide();
                         $("#STAKEHOLDER_ID").prop('disabled', true);
+
+                        $("#ASSET_ID").hide();
+                        $("#ASSET_BOOK_ID").prop('disabled', true);
                     }
                     else if (report_name == 'Warranty Period wise Asset List') {
                         $("#location").hide();
                         $("#LOCATION_ID").prop('disabled', true);
+
+                        $("#ASSET_ID").hide();
+                        $("#ASSET_BOOK_ID").prop('disabled', true);
+
+                        $("#START_DATE_DIV").show();
+                        $("#START_DATE").removeAttr("disabled");
+
+                        $("#END_DATE_DIV").show();
+                        $("#END_DATE").removeAttr("disabled");
+
+                        $("#major").hide();
+                        $("#ASSET_MAJOR_CATEGORY_ID").prop('disabled', true);
+
+                        $("#minor").hide();
+                        $("#ASSET_MINOR_CATEGORY_ID").prop('disabled', true);
+
+                        $("#stakeholder").hide();
+                        $("#STAKEHOLDER_ID").prop('disabled', true);
+                    }
+                    else if (report_name == 'Asset Update History') {
+                        $("#location").hide();
+                        $("#LOCATION_ID").prop('disabled', true);
+
+                        $("#ASSET_ID").show();
+                        $("#ASSET_BOOK_ID").removeAttr("disabled");
 
                         $("#START_DATE_DIV").show();
                         $("#START_DATE").removeAttr("disabled");
@@ -175,7 +216,17 @@
                 </div>
             </div>
 
+        <div class="col-xs-6" id="ASSET_ID">
+            <div class="form-group">
+                <label>
+                    <g:message code="ASSET_BOOK.book.label" default="Asset Name" />
 
+                </label>
+                <g:select disabled=""  id="ASSET_BOOK_ID" name="ASSET_BOOK_ID.id" from="${fixedAsset.ASSET_BOOK.executeQuery("from ASSET_BOOK where IS_ACTIVE=1")}" optionKey="id"
+                          value="" class="many-to-one form-control"
+                          noSelection="['': '-Select-']"/>
+            </div>
+        </div>
 
             <div class="col-xs-6" id="location">
                 <div class="form-group">
@@ -262,7 +313,7 @@
                         <g:message code="ASSET_BOOK.FROM_DATE.label" default="From Date" />
 
                     </label>
-                    <div id="START_DATE" disabled="" class="bfh-datepicker"  data-date="${formatDate(format:'MM/dd/yyyy')}" data-close="true" data-name="START_DATE"></div>
+                    <div id="START_DATE" disabled="" class="bfh-datepicker"  data-date="${formatDate(format:'MM/dd/yyyy',date:advanceAdjustmentInstance?.WARRANTY_START_DATE)}" data-close="true" data-name="START_DATE"></div>
                 </div>
             </div>
 
@@ -272,7 +323,7 @@
                     <g:message code="ASSET_BOOK.END_DATE.label" default="To Date" />
 
                 </label>
-                <div id="END_DATE" disabled="" class="bfh-datepicker"  data-date="${formatDate(format:'MM/dd/yyyy')}" data-close="true" data-name="END_DATE"></div>
+                <div id="END_DATE" disabled="" class="bfh-datepicker"  data-date="${formatDate(format:'MM/dd/yyyy',date:advanceAdjustmentInstance?.WARRANTY_START_DATE)}" data-close="true" data-name="END_DATE"></div>
             </div>
         </div>
 
