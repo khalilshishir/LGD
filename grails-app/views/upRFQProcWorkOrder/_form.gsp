@@ -12,7 +12,7 @@
 
 <div class="col-xs-4">
     <div class="form-group">
-        <label for="signContractDate"><g:message code="upRfqEvaluation.signContractDate.label" default="দরপত্র মূল্যায়ন তারিখ" /></label>
+        <label for="signContractDate"><g:message code="upRfqEvaluation.signContractDate.label" default="সরবরাহ তারিখ" /></label>
         <div class="bfh-datepicker"   id="signContractDate" data-date="${formatDate(format:'MM/dd/yyyy',date:upRFQProcWorkOrderInstance?.signContractDate)}" data-close="true" data-name="signContractDate"></div>
     </div>
 </div>
