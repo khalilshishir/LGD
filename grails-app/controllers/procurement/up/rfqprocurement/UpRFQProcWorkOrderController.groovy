@@ -1,9 +1,6 @@
 package procurement.up.rfqprocurement
 
-import comonclass.UpProcType
 import org.springframework.dao.DataIntegrityViolationException
-import procurement.up.Procurement_Type
-import procurement.up.Up_Proc_Master
 
 class UpRFQProcWorkOrderController {
 
@@ -19,12 +16,7 @@ class UpRFQProcWorkOrderController {
     }
 
     def create() {
-        String procurementType = UpProcType.RFQ_PROCUREMENT
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
-        def results = upProcMasterListByProcurement.list {
-            inList('procurementType',procurementType)
-        }
-        [upRFQProcWorkOrderInstance: new UpRFQProcWorkOrder(params), upProcMasterList: results]
+        [upRFQProcWorkOrderInstance: new UpRFQProcWorkOrder(params)]
     }
 
     def save() {
@@ -51,18 +43,13 @@ class UpRFQProcWorkOrderController {
 
     def edit(Long id) {
         def upRFQProcWorkOrderInstance = UpRFQProcWorkOrder.get(id)
-        def upProcMaster = Up_Proc_Master.get(upRFQProcWorkOrderInstance?.UP_PROC_MASTER?.id)
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
-        def results = upProcMasterListByProcurement.list {
-            inList('id',upProcMaster.id)
-        }
         if (!upRFQProcWorkOrderInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'upRFQProcWorkOrder.label', default: 'UpRFQProcWorkOrder'), id])
             redirect(action: "list")
             return
         }
 
-        [upRFQProcWorkOrderInstance: upRFQProcWorkOrderInstance, upProcMasterList: results]
+        [upRFQProcWorkOrderInstance: upRFQProcWorkOrderInstance]
     }
 
     def update(Long id, Long version) {
@@ -76,8 +63,8 @@ class UpRFQProcWorkOrderController {
         if (version != null) {
             if (upRFQProcWorkOrderInstance.version > version) {
                 upRFQProcWorkOrderInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'upRFQProcWorkOrder.label', default: 'UpRFQProcWorkOrder')] as Object[],
-                          "Another user has updated this UpRFQProcWorkOrder while you were editing")
+                        [message(code: 'upRFQProcWorkOrder.label', default: 'UpRFQProcWorkOrder')] as Object[],
+                        "Another user has updated this UpRFQProcWorkOrder while you were editing")
                 render(view: "edit", model: [upRFQProcWorkOrderInstance: upRFQProcWorkOrderInstance])
                 return
             }
