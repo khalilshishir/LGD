@@ -5,7 +5,9 @@ import org.springframework.dao.DataIntegrityViolationException
 class UpDirectProcurementController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+    def upProcurement(){
+        render( view: "/layouts/upprochome")
+    }
     def index() {
         redirect(action: "list", params: params)
     }
