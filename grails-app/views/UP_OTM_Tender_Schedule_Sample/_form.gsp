@@ -1,4 +1,4 @@
-<%@ page import="procurement.up.otmprocurement.UP_OTM_Tender_Schedule_Sample" %>
+<%@ page import="settings.SchemeInfo; procurement.up.otmprocurement.UP_OTM_Tender_Schedule_Sample" %>
 
 %{--jquery form validation starts--}%
 <script>
@@ -33,8 +33,8 @@
 
 <div class="col-xs-12">
     <div class="form-group">
-        <label for="UP_PROC_MASTER"><g:message code="UP_OTM_Tender_Schedule_Sample.UP_PROC_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
-        <g:select id="UP_PROC_MASTER" name="UP_PROC_MASTER.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" required="" noSelection="['':'Select One']" value="${UP_OTM_Tender_Schedule_SampleInstance?.UP_PROC_MASTER?.id}" onchange="loadDetailsOnProcurementChange(this.value)" class="form-control"/>
+        <label for="schemeInfo"><g:message code="UP_OTM_Tender_Schedule_Sample.UP_PROC_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'OTM Procurement')}" optionKey="id" optionValue="NAME" required="" noSelection="['':'Select One']" value="${UP_OTM_Tender_Schedule_SampleInstance?.schemeInfo?.id}" onchange="loadDetailsOnProcurementChange(this.value)" class="form-control"/>
     </div>
 </div>
 

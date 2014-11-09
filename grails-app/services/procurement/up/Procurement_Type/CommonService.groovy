@@ -178,10 +178,10 @@ class CommonService {
 
         try {
             String query = """
-                                 SELECT UPM.DETAILS
-                                        FROM UP_PROC_MASTER UPM
+                                 SELECT SCM.NAME AS SCHEME_NAME
+                                        FROM SCHEME_INFO SCM
 
-                                        WHERE UPM.ID IN (${procurementMasterId})   """
+                                        WHERE SCM.ID IN (${procurementMasterId})   """
 
             Sql db = new Sql(dataSource)
             result = db.rows(query)

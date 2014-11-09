@@ -92,6 +92,20 @@ class FIXED_ASSET_RPTController {
             parameters.put("P_ST_DATE",startDate)
             parameters.put("P_EN_DATE",endDate)
         }
+        else if (reportNamel.equals("Released Asset List"))
+        {
+            report_name="releasedAssetList.jasper"
+            report_name1="releasedAssetList"
+            parameters.put("AssetID",assetBookId.id)
+            parameters.put("StartDate",startDate)
+            parameters.put("EndDate",endDate)
+        }
+        else if (reportNamel.equals("Under Maintenance Asset List"))
+        {
+            report_name="underMaintenanceAssetList.jasper"
+            report_name1="underMaintenanceAssetList"
+            parameters.put("AssetID",assetBookId.id)
+        }
 
         String subReportDir = Util.getReportDirectory()
         String reportDir = Util.getReportDirectory()

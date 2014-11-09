@@ -25,6 +25,7 @@ class AdvanceAdjustmentController {
     }
 
     def create() {
+        
         def upProcMasterListByProcurement = Up_Proc_Master.findAllByProcurementType(UpProcType?.COMMUNITY_PROCUREMENT?.toString())
         [advanceAdjustmentInstance: new AdvanceAdjustment(params), upProcMasterList: upProcMasterListByProcurement]
     }
