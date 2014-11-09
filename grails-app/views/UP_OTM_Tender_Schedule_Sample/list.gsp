@@ -4,19 +4,19 @@
 <html>
 <head>
     <meta name="layout" content="upprocurement">
-    <g:set var="entityName" value="${message(code: 'UP_OTM_Tender_Schedule_Sample.label', default: 'ইউপি ও-টি-এম টেন্ডার শিডিউল স্যাম্পল')}" />
+    <g:set var="entityName" value="${message(code: 'UP_OTM_Tender_Schedule_Sample.label', default: 'ইউপি দরপত্র আহ্বান দলিলের শিডিউল নমুনা')}" />
     <title><g:message code="default.list.label/" default="লিস্ট" args="[entityName]" /></title>
 </head>
 <body>
-<p align="right" style="color:#666; font-size: 11px; padding-right: 5px; margin-top: 10px;">
-    <a style="color:#666; font-size: 11px;" class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label/" default="হোম"/></a>
+<p align="right" style="color:#666; font-size: 15px; padding-right: 5px; margin-top: 10px;">
+    <a style="color:#666; font-size: 15px;" class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label/" default="হোম"/></a>
     |
-    <a style="color:#666; font-size: 11px;" href="#"><g:link class="create" action="create"><g:message code="default.new.label/" default="নতুন ইউপি ও-টি-এম টেন্ডার শিডিউল স্যাম্পল" args="[entityName]" /></g:link></a>
+    <a style="color:#666; font-size: 15px;" href="#"><g:link class="create" action="create"><g:message code="default.new.label/" default="নতুন ইউপি দরপত্র আহ্বান দলিলের শিডিউল নমুনা" args="[entityName]" /></g:link></a>
 </p>
 <div id="list-upOtmEvaluation" class="content scaffold-list" role="main">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title"><g:message code="default.list.label/" default="ইউপি ও-টি-এম টেন্ডার শিডিউল স্যাম্পল লিস্ট" args="[entityName]" /></h3>
+            <h3 class="panel-title"><g:message code="default.list.label/" default="ইউপি দরপত্র আহ্বান দলিলের শিডিউল নমুনা লিস্ট" args="[entityName]" /></h3>
         </div>
     </div>
     <g:if test="${flash.message}">
@@ -46,7 +46,7 @@
         <g:each in="${UP_OTM_Tender_Schedule_SampleInstanceList}" status="i" var="UP_OTM_Tender_Schedule_SampleInstance">
             <tr>
 
-                <td><g:link action="show" id="${UP_OTM_Tender_Schedule_SampleInstance.id}">${fieldValue(bean: UP_OTM_Tender_Schedule_SampleInstance, field: "UP_PROC_MASTER.SCHEME_INFO.NAME")}</g:link></td>
+                <td><g:link action="show" id="${UP_OTM_Tender_Schedule_SampleInstance.id}">${fieldValue(bean: UP_OTM_Tender_Schedule_SampleInstance, field: "schemeInfo.NAME")}</g:link></td>
 
                 <td>${fieldValue(bean: UP_OTM_Tender_Schedule_SampleInstance, field: "UNIT")}</td>
 
