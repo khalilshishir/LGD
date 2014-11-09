@@ -1,5 +1,17 @@
 <%@ page import="fixedAsset.ASSET_DISTRIBUTION" %>
 
+<div class="col-xs-6">
+    <div class="form-group">
+
+        <div class="fieldcontain ${hasErrors(bean: ASSET_DISTRIBUTIONInstance, field: 'IDENTIFICATION_ID', 'error')} ">
+            <label for="IDENTIFICATION_ID">
+                <g:message code="ASSET_DISTRIBUTION.IDENTIFICATION_ID.label" default="Identification Id"/>
+
+            </label>
+            <g:textField required="" name="IDENTIFICATION_ID" value="${ASSET_DISTRIBUTIONInstance?.IDENTIFICATION_ID}" class="form-control"/>
+        </div>
+    </div>
+</div>
 
 <div class="col-xs-6">
     <div class="form-group">
@@ -22,7 +34,10 @@
                 <g:message code="ASSET_DISTRIBUTION.ASSET_BOOK_ID.label" default="Asset Name"/>
 
             </label>
-            <g:select required="" id="ASSET_BOOK_ID" name="ASSET_BOOK_ID.id" from="${fixedAsset.ASSET_BOOK.list()}" optionKey="id"
+            %{--<g:select required="" id="ASSET_BOOK_ID" name="ASSET_BOOK_ID.id" from="${fixedAsset.ASSET_BOOK.list()}" optionKey="id"
+                      value="${ASSET_DISTRIBUTIONInstance?.ASSET_BOOK_ID?.id}" class="many-to-one form-control"
+                      noSelection="['': '-Select-']"/>--}%
+            <g:select required="" id="ASSET_BOOK_ID" name="ASSET_BOOK_ID.id" from="${fixedAsset.ASSET_BOOK.executeQuery("from ASSET_BOOK where IS_ACTIVE=1")}" optionKey="id"
                       value="${ASSET_DISTRIBUTIONInstance?.ASSET_BOOK_ID?.id}" class="many-to-one form-control"
                       noSelection="['': '-Select-']"/>
         </div>

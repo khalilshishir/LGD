@@ -53,17 +53,17 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="BANK_SOMONNOI" title="${message(code: 'INSPECTION.BANK_SOMONNOI.label', default: 'BANKSOMONNOI')}" />
+						<g:sortableColumn property="BANK_SOMONNOI" title="${message(code: 'INSPECTION.BANK_SOMONNOI.label', default: 'Bank Somonnoi')}" />
 					
-						<g:sortableColumn property="BANK_SOMONNOI_NO" title="${message(code: 'INSPECTION.BANK_SOMONNOI_NO.label', default: 'BANKSOMONNOINO')}" />
+						<g:sortableColumn property="BANK_SOMONNOI_NO" title="${message(code: 'INSPECTION.BANK_SOMONNOI_NO.label', default: 'Bank Somonnoi No')}" />
 					
-						<g:sortableColumn property="BANK_SOMONNOI_YES" title="${message(code: 'INSPECTION.BANK_SOMONNOI_YES.label', default: 'BANKSOMONNOIYES')}" />
+						<g:sortableColumn property="BANK_SOMONNOI_YES" title="${message(code: 'INSPECTION.BANK_SOMONNOI_YES.label', default: 'Bank Somonnoi Yes')}" />
 					
-						<g:sortableColumn property="BGB_AMOUNT" title="${message(code: 'INSPECTION.BGB_AMOUNT.label', default: 'BGBAMOUNT')}" />
+						<g:sortableColumn property="BGB_AMOUNT" title="${message(code: 'INSPECTION.BGB_AMOUNT.label', default: 'BGB Amount')}" />
 					
-						<g:sortableColumn property="BGCC_JACHAI" title="${message(code: 'INSPECTION.BGCC_JACHAI.label', default: 'BGCCJACHAI')}" />
+						<g:sortableColumn property="BGCC_JACHAI" title="${message(code: 'INSPECTION.BGCC_JACHAI.label', default: 'BGCC')}" />
 					
-						<g:sortableColumn property="BGCC_JACHAI_NO" title="${message(code: 'INSPECTION.BGCC_JACHAI_NO.label', default: 'BGCCJACHAINO')}" />
+						<g:sortableColumn property="BGCC_JACHAI_NO" title="${message(code: 'INSPECTION.BGCC_JACHAI_NO.label', default: 'BGCC No')}" />
 					
 					</tr>
 				</thead>

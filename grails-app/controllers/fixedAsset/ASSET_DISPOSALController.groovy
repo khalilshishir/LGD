@@ -21,6 +21,20 @@ class ASSET_DISPOSALController {
     }
 
     def save() {
+        /*image processing start*/
+        def file = request.getFile("file_");
+        if (file && (file.getSize() > 0)) {
+
+            def fileName = file.getOriginalFilename()
+            def ext = fileName.substring(fileName.lastIndexOf('.'))
+            def docFileTitle = UUID.randomUUID().toString()
+            docFileTitle = docFileTitle + ext
+            params.picFileTitle = docFileTitle
+            String filePath = grailsAttributes.getApplicationContext().getResource("images/repository/Asset_Disposal/DOC_").getFile().toString() + "\\" + docFileTitle
+            file.transferTo(new File(filePath))
+            params.file_url_ = docFileTitle
+        }
+        /*image processing end*/
         def ASSET_DISPOSALInstance = new ASSET_DISPOSAL(params)
         def ASSET_BOOKInstance=ASSET_BOOK.get(ASSET_DISPOSALInstance.ASSET_BOOK_ID.id)
         def disposed=AllLookup.executeQuery("from AllLookup where lookup_name='Disposed Asset'")
@@ -62,6 +76,20 @@ class ASSET_DISPOSALController {
     }
 
     def update(Long id, Long version) {
+        /*image processing start*/
+        def file = request.getFile("file_");
+        if (file && (file.getSize() > 0)) {
+
+            def fileName = file.getOriginalFilename()
+            def ext = fileName.substring(fileName.lastIndexOf('.'))
+            def docFileTitle = UUID.randomUUID().toString()
+            docFileTitle = docFileTitle + ext
+            params.picFileTitle = docFileTitle
+            String filePath = grailsAttributes.getApplicationContext().getResource("images/repository/Asset_Disposal/DOC_").getFile().toString() + "\\" + docFileTitle
+            file.transferTo(new File(filePath))
+            params.file_url_ = docFileTitle
+        }
+        /*image processing end*/
         def ASSET_DISPOSALInstance = ASSET_DISPOSAL.get(id)
         if (!ASSET_DISPOSALInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'ASSET_DISPOSAL.label', default: 'ASSET_DISPOSAL'), id])
@@ -107,5 +135,12 @@ class ASSET_DISPOSALController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'ASSET_DISPOSAL.label', default: 'ASSET_DISPOSAL'), id])
             redirect(action: "show", id: id)
         }
+    }
+    def downloadFile={
+        def  fName=params.file_url_
+        String cvAbsolutePath = grailsAttributes.getApplicationContext().getResource("images/repository/Asset_Disposal/DOC_/"+fName+"").getFile().toString()
+        def file = new File(cvAbsolutePath); //<-- you'll probably want to pass in the file name dynamically with the 'params' map
+        response.setHeader("Content-disposition", "attachment;filename=${file.getName()}")
+        response.outputStream << file.newInputStream()
     }
 }

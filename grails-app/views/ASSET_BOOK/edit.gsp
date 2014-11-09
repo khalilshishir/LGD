@@ -58,7 +58,7 @@
                         <g:hiddenField name="id" value="${ASSET_BOOKInstance?.id}" />
                         <g:hiddenField name="version" value="${ASSET_BOOKInstance?.version}" />
                         <fieldset class="form">
-                            <g:render template="form"/>
+                            <g:render template="form2"/>
                         </fieldset>
                         <fieldset class="buttons">
                             <g:actionSubmit class="save btn btn-primary btn-sm" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

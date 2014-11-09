@@ -54,12 +54,12 @@
 			</g:hasErrors>
             <div class="panel-body">
 
-			<g:form action="save" >
+			<g:form action="save" enctype="multipart/form-data" >
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save btn btn-primary btn-sm" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" class="save btn btn-primary btn-sm" value="Disposed" />
 				</fieldset>
 			</g:form>
             </div>

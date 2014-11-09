@@ -134,6 +134,20 @@
 			</ol>--}%
                 <div class="col-xs-6">
                     <div class="form-group">
+                        <div class="fieldcontain ${hasErrors(bean: ASSET_DISTRIBUTIONInstance, field: 'IDENTIFICATION_ID', 'error')} ">
+                            <label for="IDENTIFICATION_ID">
+                                <g:message code="ASSET_DISTRIBUTION.IDENTIFICATION_ID.label" default="Identification Id"/>
+
+                            </label>
+                            %{--<g:datePicker name="ASSIGN_DATE" precision="day" value="${ASSET_DISTRIBUTIONInstance?.ASSIGN_DATE}"
+                          default="none" noSelection="['': '']"/>--}%
+                            ${ASSET_DISTRIBUTIONInstance?.IDENTIFICATION_ID}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
                         <div class="fieldcontain ${hasErrors(bean: ASSET_DISTRIBUTIONInstance, field: 'STAKEHOLDER_ID', 'error')} ">
                             <label for="STAKEHOLDER_ID">
                                 <g:message code="ASSET_DISTRIBUTION.STAKEHOLDER_ID.label" default="Stakeholder Name"/>
@@ -211,6 +225,7 @@
                         </div>
                     </div>
                 </div>
+
                 <g:if test="${ASSET_DISTRIBUTIONInstance?.file_url_}">
 
                     <div class="col-xs-6">

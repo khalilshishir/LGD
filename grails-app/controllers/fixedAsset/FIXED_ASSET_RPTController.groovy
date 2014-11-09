@@ -28,22 +28,16 @@ class FIXED_ASSET_RPTController {
         def report_name1=""
         def reportNamel=params.reportName
         def locationId=params.LOCATION_ID
+        def assetBookId=params.ASSET_BOOK_ID
         def majorCatId=params.ASSET_MAJOR_CATEGORY_ID
         def minorCatId=params.ASSET_MINOR_CATEGORY_ID
-
-        if (reportNamel.equals("fixedAssetList"))
+        def stakeholderId=params.STAKEHOLDER_ID
+        def startDate=params.START_DATE
+        def endDate=params.END_DATE
+        if (reportNamel.equals("Fixed asset list"))
         {
             report_name="fixedAssetList.jasper"
             report_name1="fixedAssetList"
-
-        }
-
-        else if (reportNamel.equals("Report name"))
-        {
-            report_name="genarate_ready_student_list.jasper"
-            report_name1="genarate_ready_student_list"
-//            parameters.put("p_sector", instituteId)
-//            parameters.put("p_occupation", fName)
 
         }
         else if (reportNamel.equals("Category Wise Asset List"))
@@ -63,9 +57,40 @@ class FIXED_ASSET_RPTController {
         {
             report_name="locationWiseAssetList.jasper"
             report_name1="locationWiseAssetList"
-//            parameters.put("LocationId",locationId)
+            parameters.put("LocationId",locationId.id)
 //            parameters.put("p_occupation", fName)
 
+        }
+        else if (reportNamel.equals("Assigned Person wise Asset List"))
+        {
+            report_name="assignPersonWiseAssetList.jasper"
+            report_name1="assignPersonWiseAssetList"
+            parameters.put("StakeholderId",stakeholderId)
+//            parameters.put("p_occupation", fName)
+
+        }
+        else if (reportNamel.equals("Stock Asset List"))
+        {
+            report_name="stockAssetList.jasper"
+            report_name1="stockAssetList"
+            parameters.put("Location",locationId.id)
+            parameters.put("P_STDATE",startDate)
+            parameters.put("P_ENDATE",endDate)
+        }
+        else if (reportNamel.equals("Warranty Period wise Asset List"))
+        {
+            report_name="warrantyPeriodWiseAssetList.jasper"
+            report_name1="warrantyPeriodWiseAssetList"
+            parameters.put("P_STDATE",startDate)
+            parameters.put("P_ENDATE",endDate)
+        }
+        else if (reportNamel.equals("Asset Update History"))
+        {
+            report_name="assetUpdateHistory.jasper"
+            report_name1="assetUpdateHistory"
+            parameters.put("AssetBookId",assetBookId.id)
+            parameters.put("P_ST_DATE",startDate)
+            parameters.put("P_EN_DATE",endDate)
         }
 
         String subReportDir = Util.getReportDirectory()

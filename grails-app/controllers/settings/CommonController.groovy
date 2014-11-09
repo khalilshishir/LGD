@@ -67,6 +67,7 @@ class CommonController {
     }
 
     def loadSchemeInfo(){
+
         double grantedAmount = 0.0
         String procurementType = "", isLabourAppointed = "", schemeLocation = ""
         if (params.schemeInfoId != null && params.schemeInfoId != 'null' && params.schemeInfoId != ''){
@@ -76,8 +77,13 @@ class CommonController {
             isLabourAppointed = schemeInfo.IS_LABOUR_APPOINTED ? "Yes" : "No"
             schemeLocation = schemeInfo.SCHEME_LOCATION
         }
-        def schemeInfo = SchemeInfo.get(params.schemeInfoId?.toLong())
-        render (template: '/upDirectProcurement/schemeInfo', model: [scheme: schemeInfo,grantedAmount: grantedAmount, procurementType: procurementType, isLabourAppointed: isLabourAppointed, schemeLocation: schemeLocation])
+        def schemeInfo=null
+        if(params.schemeInfoId){
+            schemeInfo = SchemeInfo.get(params.schemeInfoId?.toLong())
+        }
+
+            render(template: '/upDirectProcurement/schemeInfo', model: [scheme: schemeInfo, grantedAmount: grantedAmount, procurementType: procurementType, isLabourAppointed: isLabourAppointed, schemeLocation: schemeLocation])
+
     }
 
     def loadProcurementTypeOnBlurContractAmount(){

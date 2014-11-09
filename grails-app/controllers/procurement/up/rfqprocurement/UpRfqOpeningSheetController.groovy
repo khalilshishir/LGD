@@ -22,19 +22,15 @@ class UpRfqOpeningSheetController {
 
     def create() {
 //        def procurementType = Procurement_Type.get(3)
-        String procurementType = UpProcType.RFQ_PROCUREMENT
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
-        def results = upProcMasterListByProcurement.list {
-            inList('procurementType',procurementType)
-        }
-        [upRfqOpeningSheetInstance: new UpRfqOpeningSheet(params), upProcMasterList: results]
+
+        [upRfqOpeningSheetInstance: new UpRfqOpeningSheet(params)]
     }
 
     def save() {
         println(params)
         def upRfqOpeningSheetInstance = new UpRfqOpeningSheet()
 
-        upRfqOpeningSheetInstance.properties["id", "UP_PROC_MASTER","INVITATION_DATE","SUB_LAST_DATE","OPENING_DATE"] = params
+        upRfqOpeningSheetInstance.properties["id", "schemeInfo","INVITATION_DATE","SUB_LAST_DATE","OPENING_DATE"] = params
 
 
         int i = 0
@@ -78,10 +74,10 @@ class UpRfqOpeningSheetController {
 
     def edit(Long id) {
         def upRfqOpeningSheetInstance = UpRfqOpeningSheet.get(id)
-        def upProcMaster = Up_Proc_Master.get(upRfqOpeningSheetInstance?.UP_PROC_MASTER?.id)
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+        def schemeInfo = SchemeInfo.get(upRfqOpeningSheetInstance?.schemeInfoId)
+        def upProcMasterListByProcurement = SchemeInfo.createCriteria();
         def results = upProcMasterListByProcurement.list {
-            inList('id',upProcMaster.id)
+            inList('id',schemeInfo.id)
         }
         if (!upRfqOpeningSheetInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'upRfqOpeningSheet.label', default: 'UpOtmOpeningSheet'), id])
@@ -109,7 +105,7 @@ class UpRfqOpeningSheetController {
             }
         }
 
-        upRfqOpeningSheetInstance.properties["id", "UP_PROC_MASTER","INVITATION_DATE","SUB_LAST_DATE","OPENING_DATE"] = params
+        upRfqOpeningSheetInstance.properties["id", "schemeInfo","INVITATION_DATE","SUB_LAST_DATE","OPENING_DATE"] = params
 
 
 
@@ -191,9 +187,8 @@ class UpRfqOpeningSheetController {
 
     def setValueForEstimatedAmount(){
         String estimatedAmount = ""
-        if(params.procurementMasterId != null && params.procurementMasterId != "" && params.procurementMasterId != "null"){
-            def upProcMaster = Up_Proc_Master.get(params.procurementMasterId?.toLong())
-            def schemeInfo = SchemeInfo.get(upProcMaster?.SCHEME_INFO?.id)
+        if(params.schemeInfo != null && params.schemeInfo != "" && params.schemeInfo != "null"){
+            def schemeInfo = SchemeInfo.get(params.schemeInfo)
             estimatedAmount = schemeInfo.GRANTED_AMOUNT
         }
         render (template: 'estimatedAmount', model: [estimatedAmount: estimatedAmount])

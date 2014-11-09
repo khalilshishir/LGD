@@ -550,7 +550,7 @@
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="WARRANTY_PERIOD">
-                    <g:message code="ASSET_BOOK.WARRANTY_PERIOD.label" default="Warranty Period" />
+                    <g:message code="ASSET_BOOK.WARRANTY_PERIOD.label" default="Warranty End Date" />
 
                 </label>
                 <div class="bfh-datepicker"  data-date="${formatDate(format:'MM/dd/yyyy',date:advanceAdjustmentInstance?.WARRANTY_PERIOD)}" data-close="true" data-name="WARRANTY_PERIOD"></div>
@@ -608,7 +608,7 @@
                     <g:message code="ASSET_BOOK.IS_ACTIVE.label" default="Active" />
 
                 </label>
-                <g:checkBox name="IS_ACTIVE" value="${ASSET_BOOKInstance?.IS_ACTIVE}" />
+                <g:checkBox checked="true" name="IS_ACTIVE" value="${ASSET_BOOKInstance?.IS_ACTIVE}" />
             </div>
         </div>
     </div>

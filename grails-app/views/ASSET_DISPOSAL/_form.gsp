@@ -166,4 +166,17 @@
 	</label>
 	<g:field name="ID" type="number" value="${ASSET_DISPOSALInstance.ID}" required=""/>
 </div>--}%
+<div class="col-xs-6">
+    <div class="form-group">
+        <div class="fieldcontain ${hasErrors(bean: ASSET_DISPOSALInstance, field: 'pic_url_', 'error')} ">
+            <label for="pic_url_">
+                <g:message code="ASSET_DISPOSALInstance.pic_url_.label" default="Committee Report"/>
 
+            </label>
+            %{--<g:datePicker name="ASSIGN_DATE" precision="day" value="${ASSET_DISTRIBUTIONInstance?.ASSIGN_DATE}"
+                          default="none" noSelection="['': '']"/>--}%
+            <input type="file" id="file_" name="file_" class="real-upload" />
+
+        </div>
+    </div>
+</div>

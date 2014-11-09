@@ -5,10 +5,17 @@
 		<meta name="layout" content="upprocurement">
 		<g:set var="entityName" value="${message(code: 'upRfqProcurement.label', default: 'UpRfqProcurement')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+
+        <style>
+        #schemeTypeGrantedAmounIsLabourAppointed{
+            width: 792px;
+        }
+        </style>
         <script type="text/javascript">
             function setValueOnSchemeChange(schemeInfoId){
 //                alert(schemeInfoId);
-                if(schemeInfoId <=0 || schemeInfoId==null){
+                if(schemeInfoId <=0 || schemeInfoId==null||schemeInfoId==""){
+                    setSchemeTypeGrantedAmountIsLabourAppointedOnSchemeChange(schemeInfoId);
 
                 }else{
                     setSchemeTypeGrantedAmountIsLabourAppointedOnSchemeChange(schemeInfoId);

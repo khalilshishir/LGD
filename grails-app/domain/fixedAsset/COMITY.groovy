@@ -15,6 +15,7 @@ class COMITY {
     Long CREATED_BY
     Date CREATED_DATE=new Date()
     boolean IS_ACTIVE
+    String file_url_
     static hasMany = [comityDtl:COMITY_DTL]
     static constraints = {
         COMITY_NAME(nullable: true)
@@ -25,6 +26,7 @@ class COMITY {
         CREATED_BY(nullable: true)
         CREATED_DATE(nullable: true)
         IS_ACTIVE(nullable:true)
+        file_url_(nullable: true)
         comityDtl lazy: false,cascade: "all,delete-orphan"
 
     }

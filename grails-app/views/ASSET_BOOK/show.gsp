@@ -623,7 +623,7 @@
 
                         </label>
                         %{--<div class="bfh-datepicker"  data-date="${formatDate(format:'MM/dd/yyyy',date:advanceAdjustmentInstance?.WARRANTY_START_DATE)}" data-close="true" data-name="WARRANTY_START_DATE"></div>--}%
-                        ${formatDate(format:'MM/dd/yyyy',date:advanceAdjustmentInstance?.WARRANTY_START_DATE)}
+                        ${formatDate(format:'MM/dd/yyyy',date:ASSET_BOOKInstance?.WARRANTY_START_DATE)}
                     </div>
                 </div>
             </div>
@@ -645,11 +645,11 @@
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label for="WARRANTY_PERIOD">
-                            <g:message code="ASSET_BOOK.WARRANTY_PERIOD.label" default="Warranty Period" />
+                            <g:message code="ASSET_BOOK.WARRANTY_PERIOD.label" default="Warranty End Date" />
 
                         </label>
                         %{--<div class="bfh-datepicker"  data-date="${formatDate(format:'MM/dd/yyyy',date:advanceAdjustmentInstance?.WARRANTY_PERIOD)}" data-close="true" data-name="WARRANTY_PERIOD"></div>--}%
-                        ${formatDate(format:'MM/dd/yyyy',date:advanceAdjustmentInstance?.WARRANTY_PERIOD)}
+                        ${formatDate(format:'MM/dd/yyyy',date:ASSET_BOOKInstance?.WARRANTY_PERIOD)}
                     </div>
                 </div>
             </div>

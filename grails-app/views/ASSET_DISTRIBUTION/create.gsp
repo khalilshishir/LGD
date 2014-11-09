@@ -61,7 +61,7 @@
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save btn btn-primary btn-sm" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" class="save btn btn-primary btn-sm" value="Distribute" />
 				</fieldset>
 			</g:form>
 		</div>

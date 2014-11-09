@@ -1,6 +1,7 @@
 package procurement.up.communityprocurement
 
 import procurement.up.Up_Proc_Master
+import settings.SchemeInfo
 
 class MasterRoleSalary {
     static mapping = {
@@ -11,7 +12,7 @@ class MasterRoleSalary {
 
     long id
 //    Up_Proc_Master UP_PROCUREMENT_MASTER
-    Up_Proc_Master upProcMaster
+   SchemeInfo schemeInfo
 
     long CREATED_BY = 0
     Date CREATED_DATE = new Date()
@@ -22,7 +23,7 @@ class MasterRoleSalary {
 
     static constraints = {
 //        UP_PROCUREMENT_MASTER(nullable: false)
-        upProcMaster(nullable: false)
+        schemeInfo(nullable: false)
 
         CREATED_BY(nullable: true)
         CREATED_DATE(nullable: true)

@@ -26,7 +26,7 @@
         <thead>
         <tr>
 
-            <g:sortableColumn property="upRfqOpeningSheet.UP_PROC_MASTER" title="${message(code: 'upRfqOpeningSheet.UP_PROC_MASTER.label', default: 'ইউনিয়ন পরিষদ ক্রয়')}" />
+            <g:sortableColumn property="upRfqOpeningSheet.schemeInfo" title="${message(code: 'upRfqOpeningSheet.schemeInfo.label', default: 'ইউনিয়ন পরিষদ ক্রয়')}" />
 
             <g:sortableColumn property="INVITATION_DATE" title="${message(code: 'upRfqOpeningSheet.INVITATION_DATE.label', default: 'দরপত্র আহ্বান তারিখ')}" />
 
@@ -40,7 +40,7 @@
         <g:each in="${upRfqOpeningSheetInstanceList}" status="i" var="upRfqOpeningSheetInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                <td><g:link action="show" id="${upRfqOpeningSheetInstance.id}">${fieldValue(bean: upRfqOpeningSheetInstance, field: "UP_PROC_MASTER.SCHEME_INFO")}</g:link></td>
+                <td><g:link action="show" id="${upRfqOpeningSheetInstance.id}">${fieldValue(bean: upRfqOpeningSheetInstance, field: "schemeInfo.NAME")}</g:link></td>
 
                 <td><g:formatDate date="${upRfqOpeningSheetInstance.INVITATION_DATE}" format="yyyy-MM-dd" /></td>
 

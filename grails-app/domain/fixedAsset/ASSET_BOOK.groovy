@@ -37,7 +37,7 @@ class ASSET_BOOK {
     Long CREATED_BY
     Date CREATED_DATE=new Date()
     Boolean IS_ACTIVE	//NUMBER (10)
-
+    Boolean IS_MAINTENANCE=0
     static constraints = {
         ASSET_NAME(nullable: true)
         ASSET_DESCRIPTION(nullable: true)
@@ -69,6 +69,7 @@ class ASSET_BOOK {
         ASSET_MINOR_CATEGORY_ID(nullable: true)
         CREATED_BY(nullable: true)
         CREATED_DATE(nullable: true)
+        IS_MAINTENANCE(nullable: true)
     }
     String toString(){
         return ASSET_NAME

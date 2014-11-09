@@ -59,7 +59,7 @@
 			</ul>
 			</g:hasErrors>
             <div class="panel-body">
-			<g:form method="post" >
+			<g:form method="post" enctype="multipart/form-data">
 				<g:hiddenField name="id" value="${COMITYInstance?.id}" />
 				<g:hiddenField name="version" value="${COMITYInstance?.version}" />
 				<fieldset class="form">
