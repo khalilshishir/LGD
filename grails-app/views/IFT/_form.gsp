@@ -27,7 +27,7 @@
 
 <div class="col-xs-3">
     <div class="form-group">
-        <label for="schemeInfo"><g:message code="IFT.UP_PROC_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
+        <label for="schemeInfo"><g:message code="IFT.UP_PROC_MASTER.label" default="উন্মুক্ত দরপত্র প্রক্রিয়ায় ক্রয়কৃত স্কীম সমূহ" /></label>
         %{--<g:select id="SCHEME_INFO" name="SCHEME_INFO.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="['':'Select One']" required="" value="${IFTInstance?.UP_PROC_MASTER?.id}" class="form-control"/>--}%
         <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'OTM Procurement')}" optionKey="id"  optionValue="NAME" noSelection="['': 'Select One']" required="" value="${IFTInstance?.schemeInfo?.id}" class="form-control"/>
     </div>

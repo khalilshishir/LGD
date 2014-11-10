@@ -33,7 +33,7 @@
 
 <div class="col-xs-12">
     <div class="form-group">
-        <label for="schemeInfo"><g:message code="UP_OTM_Tender_Schedule_Sample.UP_PROC_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
+        <label for="schemeInfo"><g:message code="UP_OTM_Tender_Schedule_Sample.UP_PROC_MASTER.label" default="উন্মুক্ত দরপত্র প্রক্রিয়ায় ক্রয়কৃত স্কীম সমূহ" /></label>
         <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'OTM Procurement')}" optionKey="id" optionValue="NAME" required="" noSelection="['':'Select One']" value="${UP_OTM_Tender_Schedule_SampleInstance?.schemeInfo?.id}" onchange="loadDetailsOnProcurementChange(this.value)" class="form-control"/>
     </div>
 </div>
