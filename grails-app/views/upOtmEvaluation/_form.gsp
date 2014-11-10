@@ -1,4 +1,4 @@
-<%@ page import="procurement.up.otmprocurement.UpOtmEvaluation" %>
+<%@ page import="settings.SchemeInfo; procurement.up.otmprocurement.UpOtmEvaluation" %>
 
 %{--jquery form validation starts--}%
 <script>
@@ -27,8 +27,8 @@
 
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="UP_PROC_MASTER"><g:message code="upOtmEvaluation.UP_PROC_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
-        <g:select id="UP_PROC_MASTER" name="UP_PROC_MASTER.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="['':'Select One']" required="" value="${upOtmEvaluationInstance?.UP_PROC_MASTER?.id}" class="form-control"/>
+        <label for="schemeInfo"><g:message code="upOtmEvaluation.UP_PROC_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'OTM Procurement')}" optionKey="id" optionValue="NAME" noSelection="['':'Select One']" required="" value="${upOtmEvaluationInstance?.schemeInfo?.id}" class="form-control"/>
     </div>
 </div>
 
@@ -41,21 +41,21 @@
 
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="INVITATION_DATE"><g:message code="upOtmEvaluation.INVITATION_DATE.label" default="আহ্বান তারিখ" /></label>
+        <label for="INVITATION_DATE"><g:message code="upOtmEvaluation.INVITATION_DATE.label" default="দরপত্র আহ্বান তারিখ" /></label>
         <g:textField name="INVITATION_DATE" class="form-control" readonly=""/>
     </div>
 </div>
 
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="OPENING_DATE"><g:message code="upOtmEvaluation.OPENING_DATE.label" default="খোলার তারিখ" /></label>
+        <label for="OPENING_DATE"><g:message code="upOtmEvaluation.OPENING_DATE.label" default="দরপত্র খোলার তারিখ" /></label>
         <g:textField name="OPENING_DATE" class="form-control" readonly=""/>
     </div>
 </div>
 
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="EVALUATION_DATE"><g:message code="upOtmEvaluation.EVALUATION_DATE.label" default="মূল্যায়ন তারিখ" /></label>
+        <label for="EVALUATION_DATE"><g:message code="upOtmEvaluation.EVALUATION_DATE.label" default="দরপত্র মূল্যায়ন তারিখ" /></label>
         <div class="bfh-datepicker"   id="EVALUATION_DATE" data-date="${formatDate(format:'MM/dd/yyyy',date:upOtmEvaluationInstance?.EVALUATION_DATE)}" data-close="true" data-name="EVALUATION_DATE"></div>
     </div>
 </div>

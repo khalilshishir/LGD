@@ -110,14 +110,16 @@ class CommonService {
 
         try {
             String query = """
-                                 SELECT OSD.VENDOR_NAME,OSD.PRICE,ROWNUM
-                                FROM UP_OTM_OPENING_SHEET_DETAILS OSD
-                                INNER JOIN UP_OTM_OPENING_SHEET OS
-                                ON (OSD.UP_OTM_OPENING_SHEET_ID = OS.ID)
-                                INNER JOIN UP_PROC_MASTER UPM
-                                ON (OS.UP_PROC_MASTER_ID = UPM.ID)
+                                 SELECT SUPP.SUPP_NAME AS VENDOR_NAME,OSD.PRICE,ROWNUM
+                                 FROM UP_OTM_OPENING_SHEET_DETAILS OSD
+                                 INNER JOIN PROC_PMU_SUPPLIER SUPP
+                                  ON (OSD.VENDOR_ID = SUPP.ID)
+                                 INNER JOIN UP_OTM_OPENING_SHEET OS
+                                  ON (OSD.UP_OTM_OPENING_SHEET_ID = OS.ID)
+                                 INNER JOIN SCHEME_INFO SCM
+                                  ON (OS.SCHEME_INFO_ID = SCM.ID)
 
-                                WHERE UPM.ID IN (${procurementMasterId}) ORDER BY OSD.PRICE ASC """
+                                WHERE SCM.ID IN (${procurementMasterId}) ORDER BY OSD.PRICE ASC """
 
             Sql db = new Sql(dataSource)
             result = db.rows(query)
@@ -157,12 +159,15 @@ class CommonService {
 
         try {
             String query = """
-                                SELECT UPM.DETAILS, OTMOS.OPENING_DATE, IFT.CREATED_DATE AS INVITATION_DATE
-                                FROM UP_PROC_MASTER UPM
-                                INNER JOIN IFT ON (UPM.ID = IFT.UP_PROC_MASTER_ID)
-                                INNER JOIN UP_OTM_OPENING_SHEET OTMOS ON (OTMOS.UP_PROC_MASTER_ID = UPM.ID)
+                                SELECT  SCM.NAME AS DETAILS, OTMOS.OPENING_DATE,
+                                        IFT.CREATED_DATE AS INVITATION_DATE
+                                FROM    SCHEME_INFO SCM
+                                INNER JOIN IFT
+                                 ON (SCM.ID = IFT.SCHEME_INFO_ID)
+                                INNER JOIN UP_OTM_OPENING_SHEET OTMOS
+                                 ON (OTMOS.SCHEME_INFO_ID = SCM.ID)
 
-                                WHERE UPM.ID IN (${procurementMasterId})  """
+                                WHERE SCM.ID IN (${procurementMasterId})  """
 
             Sql db = new Sql(dataSource)
             result = db.rows(query)
