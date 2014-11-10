@@ -18,8 +18,10 @@
         clone.find("input[id$=deleted]").attr('id', htmlId + 'deleted').attr('name', htmlId + 'deleted');
         clone.find("input[id$=new]").attr('id', htmlId + 'new').attr('name', htmlId + 'new').attr('value', 'true');
 
-        clone.find("input[id$=VENDOR_NAME]").attr('id', htmlId + 'VENDOR_NAME').attr('name', htmlId + 'VENDOR_NAME');
+        clone.find("input[id$=SL]").attr('id', htmlId + 'SL').attr('name', htmlId + 'SL').attr('value', childCount + 1);
+//        clone.find("input[id$=VENDOR_NAME]").attr('id', htmlId + 'VENDOR_NAME').attr('name', htmlId + 'VENDOR_NAME');
 
+        clone.find("select[id$=VENDOR]").attr('id', htmlId + 'VENDOR').attr('name', htmlId + 'VENDOR');
         clone.find("input[id$=PRICE]").attr('id', htmlId + 'PRICE').attr('name', htmlId + 'PRICE');
         clone.find("input[id$=COMMENTS]").attr('id', htmlId + 'COMMENTS').attr('name', htmlId + 'COMMENTS');
 
@@ -35,10 +37,10 @@
 
 <div class="" style="border: solid 1px;border-radius: 5px">
     <table id="detailList" name="detailList" style=" border-radius:5px;table-layout: fixed" class="table table-bordered table-striped table-hover table-condensed">
-    <tr><th>বিক্রেতার নাম</th><th>মূল্য</th><th>মন্তব্য</th><th width="44px">কর্ম</th></tr>
-    <g:render template='detail' model="['result':null,'i':'_clone','hidden':true]"/>
-    <g:each var="upOtmOpeningSheetDetails" in="${upOtmOpeningSheetInstance.upOtmOpeningSheetDetails}" status="i" >
-        <g:render template='detail' model="['upOtmOpeningSheetDetails':upOtmOpeningSheetDetails,'i':i]"/>
-    </g:each>
-</table>
+        <tr><th>ক্রমিক নং</th><th>দরদাতার নাম ও ঠিকানা</th><th>উদ্বৃত্ত মূল্য</th><th>মন্তব্য</th><th width="44px">কর্ম</th></tr>
+        <g:render template='detail' model="['result':null,'i':'_clone','hidden':true]"/>
+        <g:each var="upOtmOpeningSheetDetails" in="${upOtmOpeningSheetInstance.upOtmOpeningSheetDetails}" status="i" >
+            <g:render template='detail' model="['upOtmOpeningSheetDetails':upOtmOpeningSheetDetails,'i':i]"/>
+        </g:each>
+    </table>
 </div>

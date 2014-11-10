@@ -2,6 +2,7 @@ package procurement.up.otmprocurement
 
 import comonclass.UpProcType
 import org.springframework.dao.DataIntegrityViolationException
+import procurement.pmu.Supplier
 import procurement.up.Procurement_Type
 import procurement.up.Procurement_Type.CommonService
 import procurement.up.Up_Proc_Master
@@ -22,26 +23,27 @@ class UpOtmOpeningSheetController {
     }
 
     def create() {
-        String procurementType = UpProcType.OTM_PROCUREMENT
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
-        def results = upProcMasterListByProcurement.list {
-            inList('procurementType',procurementType)
-        }
-        [upOtmOpeningSheetInstance: new UpOtmOpeningSheet(params), upProcMasterList: results]
+//        String procurementType = UpProcType.OTM_PROCUREMENT
+//        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+//        def results = upProcMasterListByProcurement.list {
+//            inList('procurementType',procurementType)
+//        }
+//        [upOtmOpeningSheetInstance: new UpOtmOpeningSheet(params), upProcMasterList: results]
+        [upOtmOpeningSheetInstance: new UpOtmOpeningSheet(params)]
     }
 
     def save() {
         println(params);
         def upOtmOpeningSheetInstance = new UpOtmOpeningSheet()
 
-        upOtmOpeningSheetInstance.properties["id", "UP_PROC_MASTER","SUB_LAST_DATE","OPENING_DATE"] = params
+        upOtmOpeningSheetInstance.properties["id", "schemeInfo","SUB_LAST_DATE","OPENING_DATE"] = params
 
 
         int i = 0
-        while (params["upOtmOpeningSheetDetails[" + i + "].VENDOR_NAME"] != null && params["upOtmOpeningSheetDetails[" + i + "].VENDOR_NAME"] != "") {
+        while (params["upOtmOpeningSheetDetails[" + i + "].VENDOR"] != null && params["upOtmOpeningSheetDetails[" + i + "].VENDOR"] != "") {
             def upOtmOpeningSheetDetails = new UpOtmOpeningSheetDetails()
 
-            upOtmOpeningSheetDetails.properties['VENDOR_NAME']=params["upOtmOpeningSheetDetails[" + i + "].VENDOR_NAME"]
+            upOtmOpeningSheetDetails.properties['VENDOR']=Supplier.get(Long.parseLong(params["upOtmOpeningSheetDetails[" + i + "].VENDOR"]))
             upOtmOpeningSheetDetails.properties['PRICE']=Double.parseDouble(params["upOtmOpeningSheetDetails[" + i + "].PRICE"])
             upOtmOpeningSheetDetails.properties['COMMENTS']=params["upOtmOpeningSheetDetails[" + i + "].COMMENTS"]
 
@@ -71,18 +73,19 @@ class UpOtmOpeningSheetController {
 
     def edit(Long id) {
         def upOtmOpeningSheetInstance = UpOtmOpeningSheet.get(id)
-        def upProcMaster = Up_Proc_Master.get(upOtmOpeningSheetInstance?.UP_PROC_MASTER?.id)
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
-        def results = upProcMasterListByProcurement.list {
-            inList('id',upProcMaster.id)
-        }
+//        def upProcMaster = Up_Proc_Master.get(upOtmOpeningSheetInstance?.UP_PROC_MASTER?.id)
+//        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+//        def results = upProcMasterListByProcurement.list {
+//            inList('id',upProcMaster.id)
+//        }
         if (!upOtmOpeningSheetInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'upOtmOpeningSheet.label', default: 'UpOtmOpeningSheet'), id])
             redirect(action: "list")
             return
         }
 
-        [upOtmOpeningSheetInstance: upOtmOpeningSheetInstance, upProcMasterList: results]
+//        [upOtmOpeningSheetInstance: upOtmOpeningSheetInstance, upProcMasterList: results]
+        [upOtmOpeningSheetInstance: upOtmOpeningSheetInstance]
     }
 
     def update(Long id, Long version) {
@@ -96,14 +99,14 @@ class UpOtmOpeningSheetController {
         if (version != null) {
             if (upOtmOpeningSheetInstance.version > version) {
                 upOtmOpeningSheetInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'upOtmOpeningSheet.label', default: 'UpOtmOpeningSheet')] as Object[],
-                          "Another user has updated this UpOtmOpeningSheet while you were editing")
+                        [message(code: 'upOtmOpeningSheet.label', default: 'UpOtmOpeningSheet')] as Object[],
+                        "Another user has updated this UpOtmOpeningSheet while you were editing")
                 render(view: "edit", model: [upOtmOpeningSheetInstance: upOtmOpeningSheetInstance])
                 return
             }
         }
 
-        upOtmOpeningSheetInstance.properties["id", "UP_PROC_MASTER","SUB_LAST_DATE","OPENING_DATE"] = params
+        upOtmOpeningSheetInstance.properties["id", "schemeInfo","SUB_LAST_DATE","OPENING_DATE"] = params
 
 
 
@@ -111,7 +114,7 @@ class UpOtmOpeningSheetController {
 
 
 
-        while (params["upOtmOpeningSheetDetails[" + i + "].VENDOR_NAME"] != null && params["upOtmOpeningSheetDetails[" + i + "].VENDOR_NAME"] !="") {
+        while (params["upOtmOpeningSheetDetails[" + i + "].VENDOR"] != null && params["upOtmOpeningSheetDetails[" + i + "].VENDOR"] !="") {
 
 
             def studentDetail
@@ -129,13 +132,13 @@ class UpOtmOpeningSheetController {
             }
             else if (params["upOtmOpeningSheetDetails[" + i + "].deleted"] == "false" && params["upOtmOpeningSheetDetails[" + i + "].new"] == "true") {
                 studentDetail = new UpOtmOpeningSheetDetails()
-                studentDetail.properties['VENDOR_NAME'] =params["upOtmOpeningSheetDetails[" + i + "].VENDOR_NAME"]
+                studentDetail.properties['VENDOR'] =params["upOtmOpeningSheetDetails[" + i + "].VENDOR"]
             }
             else {
                 studentDetail = UpOtmOpeningSheetDetails.get(Long.valueOf(params["upOtmOpeningSheetDetails[" + i + "].id"]))
             }
 
-            studentDetail.properties['VENDOR_NAME']=params["upOtmOpeningSheetDetails[" + i + "].VENDOR_NAME"]
+            studentDetail.properties['VENDOR']=Supplier.get(Long.parseLong(params["upOtmOpeningSheetDetails[" + i + "].VENDOR"]))
             studentDetail.properties['PRICE']=Double.parseDouble(params["upOtmOpeningSheetDetails[" + i + "].PRICE"])
             studentDetail.properties['COMMENTS']=params["upOtmOpeningSheetDetails[" + i + "].COMMENTS"]
 
@@ -180,7 +183,7 @@ class UpOtmOpeningSheetController {
     def setValueForDetails(){
         def otmIFQDetailsByProcurementMaster = []
         if(params.procurementMasterId != null && params.procurementMasterId != "" && params.procurementMasterId != "null"){
-           otmIFQDetailsByProcurementMaster = commonService.getOtmIFQDetailsValueByProcurementMaster(Long.parseLong(params.procurementMasterId))
+            otmIFQDetailsByProcurementMaster = commonService.getOtmIFQDetailsValueByProcurementMaster(Long.parseLong(params.procurementMasterId))
         }
 //        String value="${otmIFQDetailsByProcurementMaster?.PROCUREMENT_TYPE.toString().replace('[', '').replace(']', '')}"
         render (template: 'ifqDetails', model: [otmIFQDetailsByProcurementMaster: otmIFQDetailsByProcurementMaster])

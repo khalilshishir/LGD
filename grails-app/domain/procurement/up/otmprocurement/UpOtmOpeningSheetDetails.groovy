@@ -1,12 +1,14 @@
 package procurement.up.otmprocurement
 
+import procurement.pmu.Supplier
+
 class UpOtmOpeningSheetDetails {
     static mapping = {
         table('UP_OTM_OPENING_SHEET_DETAILS')
         version(false)
     }
     long id
-    String VENDOR_NAME
+    Supplier VENDOR
     double PRICE
     String COMMENTS
 
@@ -19,7 +21,7 @@ class UpOtmOpeningSheetDetails {
 
 
     static constraints = {
-        VENDOR_NAME(nullable: false)
+        VENDOR(nullable: false)
         PRICE(nullable: false)
         COMMENTS(nullable: false)
         upOtmOpeningSheet(nullable: false)
@@ -30,7 +32,7 @@ class UpOtmOpeningSheetDetails {
         UPDATED_DATE(nullable: true)
     }
     String toString(){
-        return VENDOR_NAME
+        return VENDOR
     }
 
 }

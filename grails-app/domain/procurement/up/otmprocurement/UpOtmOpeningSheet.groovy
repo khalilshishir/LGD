@@ -1,6 +1,7 @@
 package procurement.up.otmprocurement
 
 import procurement.up.Up_Proc_Master
+import settings.SchemeInfo
 
 class UpOtmOpeningSheet {
     static mapping = {
@@ -9,7 +10,7 @@ class UpOtmOpeningSheet {
         upOtmOpeningSheetDetails cascade: 'all'
     }
     long id
-    Up_Proc_Master UP_PROC_MASTER
+    SchemeInfo schemeInfo
 //    Date SUB_LAST_DATE = new Date()
     Date OPENING_DATE = new Date()
 
@@ -19,7 +20,7 @@ class UpOtmOpeningSheet {
     Date UPDATED_DATE=new Date()
     static hasMany = [upOtmOpeningSheetDetails: UpOtmOpeningSheetDetails]
     static constraints = {
-        UP_PROC_MASTER(nullable: false)
+        schemeInfo(nullable: false)
 //        SUB_LAST_DATE(nullable: false)
         OPENING_DATE(nullable: false)
 

@@ -134,12 +134,13 @@ class CommonService {
 
         try {
             String query = """
-                                 SELECT UPM.DETAILS, UPM.PROCUREMENT_TYPE, IFT.CREATED_DATE AS IFT_DATE,
+                                 SELECT SCM.NAME AS DETAILS, SCM.IMPLEMENTATION_SYSTEM AS PROCUREMENT_TYPE,
+                                        SCM.GRANTED_AMOUNT, IFT.CREATED_DATE AS IFT_DATE,
                                         IFT.IFT_NUMBER, IFT.SUB_LAST_DATE
-                                FROM UP_PROC_MASTER UPM
-                                INNER JOIN IFT ON (UPM.ID = IFT.UP_PROC_MASTER_ID)
+                                FROM SCHEME_INFO SCM
+                                INNER JOIN IFT ON (SCM.ID = IFT.SCHEME_INFO_ID)
 
-                                WHERE UPM.ID IN (${procurementMasterId})  """
+                                WHERE SCM.ID IN (${procurementMasterId})  """
 
             Sql db = new Sql(dataSource)
             result = db.rows(query)
