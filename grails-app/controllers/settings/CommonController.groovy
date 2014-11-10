@@ -126,18 +126,31 @@ class CommonController {
         String procurementType = ""
         double previousAdvanceAdjustment = 0, vatAndTax = 0, afterDeductionVatTax = 0, payableAmount = 0, cashInHandToPayWages = 0, totalWagesPaidAmount = 0
         if (params.upProcMasterId != null && params.upProcMasterId != 'null' && params.upProcMasterId != ''){
-            def upProcMaster = Up_Proc_Master.get(params.upProcMasterId?.toLong())
-            def schemeInfo = SchemeInfo.get(upProcMaster.SCHEME_INFO?.id)
-            if(AdvanceAdjustment.findAllByUpProcMaster(upProcMaster).size() != 0){
-                def advanceAdjustment = AdvanceAdjustment.findAllByUpProcMaster(upProcMaster)
+//            def upProcMaster = Up_Proc_Master.get(params.upProcMasterId?.toLong())
+            def schemeInfo = SchemeInfo.get(params.upProcMasterId?.toLong())
+            if(AdvanceAdjustment.findAllBySchemeInfo(schemeInfo).size() != 0){
+                def advanceAdjustment = AdvanceAdjustment.findAllBySchemeInfo(schemeInfo)
                     advanceAdjustment.each {
                         previousAdvanceAdjustment += it.ADJUSTMENT_AMOUNT
                     }
-                def masterRoleSalary = MasterRoleSalary.findByUpProcMaster(upProcMaster)
-                def masterRoleSalaryDetails = MasterRoleSalaryDetails.findAllByMasterRoleSalary(masterRoleSalary)
-                masterRoleSalaryDetails.each {
-                    totalWagesPaidAmount += it.TOTAL_AMOUNT
+//                def masterRoleSalary = MasterRoleSalary.findBySchemeInfo(schemeInfo)
+                def masterRoleSalary = MasterRoleSalary.findAllBySchemeInfo(schemeInfo)
+                masterRoleSalary.each {
+                    it.masterRoleSalaryDetails.each {
+                        totalWagesPaidAmount += it.TOTAL_AMOUNT
+                    }
                 }
+
+//                if(masterRoleSalary?.masterRoleSalaryDetails?.size() > 0){
+//                    def masterRoleSalaryDetails = MasterRoleSalaryDetails.findAllByMasterRoleSalary(masterRoleSalary)
+//                    masterRoleSalaryDetails.each {
+//                        totalWagesPaidAmount += it.TOTAL_AMOUNT
+//                    }
+//                }
+//                def masterRoleSalaryDetails = MasterRoleSalaryDetails.findAllByMasterRoleSalary(masterRoleSalary)
+//                masterRoleSalaryDetails.each {
+//                    totalWagesPaidAmount += it.TOTAL_AMOUNT
+//                }
                 cashInHandToPayWages = previousAdvanceAdjustment - totalWagesPaidAmount
 //                println(cashInHandToPayWages)
             }

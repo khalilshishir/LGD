@@ -28,15 +28,15 @@
 
 <div class="col-xs-4">
     <div class="form-group">
-        <label for="upProcMaster"><g:message code="advanceAdjustment.UP_PROCUREMENT_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
-        <g:select id="upProcMaster"
-                  name="upProcMaster.id"
-                  from="${upProcMasterList}"
+        <label for="schemeInfo"><g:message code="advanceAdjustment.UP_PROCUREMENT_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
+        <g:select id="schemeInfo"
+                  name="schemeInfo.id"
+                  from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'Community Procurement')}"
                   optionKey="id"
-                  optionValue="SCHEME_INFO"
+                  optionValue="NAME"
                   noSelection="['':'Select One']"
                   required=""
-                  value="${advanceAdjustmentInstance?.upProcMaster?.id}"
+                  value="${advanceAdjustmentInstance?.schemeInfo?.id}"
                   class="form-control"
                   onchange="loadValue(this.value)"
         />
@@ -64,7 +64,7 @@
             <label><br/></label>
             %{--<span style="font-size: 20px;color: #808080"  class='glyphicon glyphicon-search' onclick="alert('ok');"></span>--}%
             <div class="btn-group">
-                <a class="showPreviousAdvanceAdjustment btn btn-warning" id="showPreviousAdvanceAdjustment" referenceId="${fieldValue(bean: advanceAdjustmentInstance, field: "upProcMaster")}"
+                <a class="showPreviousAdvanceAdjustment btn btn-warning" id="showPreviousAdvanceAdjustment" referenceId="${fieldValue(bean: advanceAdjustmentInstance, field: "schemeInfo")}"
                    title="Show Previous Advance Adjustment" onclick="showModal();">Show <i class="glyphicon glyphicon-search"></i></a>
             </div>
         </div>

@@ -39,7 +39,7 @@
         <g:each in="${advanceAdjustmentInstanceList}" status="i" var="advanceAdjustmentInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                <td><g:link action="show" id="${advanceAdjustmentInstance.id}">${fieldValue(bean: advanceAdjustmentInstance, field: "upProcMaster.SCHEME_INFO")}</g:link></td>
+                <td><g:link action="show" id="${advanceAdjustmentInstance.id}">${fieldValue(bean: advanceAdjustmentInstance, field: "schemeInfo.NAME")}</g:link></td>
 
                 <td>${fieldValue(bean: advanceAdjustmentInstance, field: "ADJUSTMENT_AMOUNT")}</td>
 

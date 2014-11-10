@@ -26,11 +26,11 @@
         <div class="panel-body">
             <ol class="property-list advanceAdjustment">
 
-                <g:if test="${advanceAdjustmentInstance?.upProcMaster}">
+                <g:if test="${advanceAdjustmentInstance?.schemeInfo}">
                     <li class="fieldcontain">
-                        <span id="UP_PROCUREMENT_MASTER-label" class="property-label"><g:message code="advanceAdjustment.UP_PROCUREMENT_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয় : " /></span>
+                        <span id="schemeInfo-label" class="property-label"><g:message code="advanceAdjustment.UP_PROCUREMENT_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয় : " /></span>
 
-                        <span class="property-value" aria-labelledby="UP_PROCUREMENT_MASTER-label"><g:fieldValue field="upProcMaster.SCHEME_INFO" bean="${advanceAdjustmentInstance}"/></span>
+                        <span class="property-value" aria-labelledby="schemeInfo-label"><g:fieldValue field="schemeInfo.NAME" bean="${advanceAdjustmentInstance}"/></span>
 
                     </li>
                 </g:if>

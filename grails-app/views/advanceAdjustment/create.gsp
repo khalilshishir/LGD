@@ -8,7 +8,7 @@
     <g:javascript plugin="jquery" library="jquery" src="jquery/jquery-1.8.0.js"/>
     <script>
         $(document).ready(function(){
-            upProcMaster = $('#upProcMaster').val();
+            upProcMaster = $('#schemeInfo').val();
         })
         function loadValue(upProcMasterId) {
             upProcMaster = upProcMasterId
@@ -26,7 +26,7 @@
 //       alert(upProcMaster)
             if(upProcMaster == null || upProcMaster == ''){
 //                        alert('Please Select Up Procurement Master')
-                $('#upProcMaster').focus().css('border-color', 'red');
+                $('#schemeInfo').focus().css('border-color', 'red');
 //                        $('#upProcMaster').css('border-color', 'red');
             }else{
                 var control=this;
