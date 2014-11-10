@@ -26,10 +26,10 @@
         <div class="panel-body">
             <ol class="property-list upRfqEvaluation">
 
-                <g:if test="${upRfqEvaluationInstance?.UP_PROC_MASTER}">
+                <g:if test="${upRfqEvaluationInstance?.schemeInfo}">
                     <li class="fieldcontain">
-                        <span id="UP_PROC_MASTER-label" class="property-label"><g:message code="upRfqEvaluation.UP_PROC_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয় : " /></span>
-                        <span class="property-value" aria-labelledby="UP_PROC_MASTER-label"><g:fieldValue bean="${upRfqEvaluationInstance}" field="UP_PROC_MASTER"/></span>
+                        <span id="schemeInfo-label" class="property-label"><g:message code="upRfqEvaluation.schemeInfo.label" default="ইউনিয়ন পরিষদ ক্রয় : " /></span>
+                        <span class="property-value" aria-labelledby="schemeInfo-label"><g:fieldValue bean="${upRfqEvaluationInstance}" field="schemeInfo"/></span>
                     </li>
                 </g:if>
 

@@ -35,7 +35,7 @@
     <div class="form-group">
         <label for="UP_PROC_MASTER"><g:message code="upRfqOpeningSheet.UP_PROC_MASTER.label" default="কমিউনিটি প্রকিয়াই ক্রয়কৃত  স্কীম সমূহ" /></label>
         %{--<g:select id="UP_PROC_MASTER" name="UP_PROC_MASTER.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="['':'Select One']" required="" value="${upRfqOpeningSheetInstance?.UP_PROC_MASTER?.id}" class="form-control" onchange="showEstimatedAmountForTheProcurement(this.value)"/>--}%
-        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'Direct Procurement')}" optionKey="id"  onchange="showEstimatedAmountForTheProcurement(this.value)" noSelection="['': 'Select One']" optionValue="NAME" required="" value="${upRfqOpeningSheetInstance?.schemeInfo?.id}" class="form-control"/>
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'RFQ Procurement')}" optionKey="id"  onchange="showEstimatedAmountForTheProcurement(this.value)" noSelection="['': 'Select One']" optionValue="NAME" required="" value="${upRfqOpeningSheetInstance?.schemeInfo?.id}" class="form-control"/>
 
     </div>
 </div>

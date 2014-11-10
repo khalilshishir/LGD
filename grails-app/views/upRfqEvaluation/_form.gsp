@@ -1,4 +1,4 @@
-<%@ page import="procurement.up.rfqprocurement.UpRfqEvaluation" %>
+<%@ page import="settings.SchemeInfo; procurement.up.rfqprocurement.UpRfqEvaluation" %>
 
 %{--jquery form validation starts--}%
 <script>
@@ -11,7 +11,7 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                UP_PROC_MASTER: {
+                schemeInfo: {
                     message: 'The Procurement Name is not valid',
                     validators: {
                         notEmpty: {
@@ -24,13 +24,21 @@
     });
 </script>
 %{--jquery form validation ends--}%
-
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="UP_PROC_MASTER"><g:message code="upRfqEvaluation.UP_PROC_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
-        <g:select id="UP_PROC_MASTER" name="UP_PROC_MASTER.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="['':'Select One']" required="" value="${upRfqEvaluationInstance?.UP_PROC_MASTER?.id}" class="form-control"/>
+        <label for="schemeInfo"><g:message code="upRfqOpeningSheet.schemeInfo.label" default="কমিউনিটি প্রকিয়াই ক্রয়কৃত  স্কীম সমূহ" /></label>
+        %{--<g:select id="UP_PROC_MASTER" name="UP_PROC_MASTER.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="['':'Select One']" required="" value="${upRfqOpeningSheetInstance?.UP_PROC_MASTER?.id}" class="form-control" onchange="showEstimatedAmountForTheProcurement(this.value)"/>--}%
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'RFQ Procurement')}" optionKey="id"   noSelection="['': 'Select One']" optionValue="NAME" required="" value="${upRfqEvaluationInstance?.schemeInfo?.id}" class="form-control"/>
+
     </div>
 </div>
+%{--
+<div class="col-xs-6">
+    <div class="form-group">
+        <label for="schemeInfo"><g:message code="upRfqEvaluation.schemeInfo.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="['':'Select One']" required="" value="${upRfqEvaluationInstance?.schemeInfo?.id}" class="form-control"/>
+    </div>
+</div>--}%
 
 <div class="col-xs-6">
     <div class="form-group">

@@ -78,22 +78,22 @@ class CommonService {
     }
 
     @Transactional(readOnly = true)
-    public List getRfqOpeningSheetDetailsValueByProcurementMaster(long procurementMasterId) {
+    public List getRfqOpeningSheetDetailsValueByProcurementMaster(long schemeId) {
         List result = []
 
         try {
             String query = """
-                                 SELECT SUP.SUPP_NAME AS VENDOR_NAME,OSD.PRICE,ROWNUM,SI.GRANTED_AMOUNT
+                                SELECT SUP.SUPP_NAME AS VENDOR_NAME,OSD.PRICE,ROWNUM,SI.GRANTED_AMOUNT
                                         FROM UP_RFQ_OPENING_SHEET_DETAILS OSD
                                         INNER JOIN PROC_PMU_SUPPLIER SUP
-                                         ON (OSD.VENDOR_ID = SUP.ID)
+                                         ON (OSD. VENDOR_ID= SUP.ID)
                                         INNER JOIN UP_RFQ_OPENING_SHEET OS
                                          ON (OSD.UP_RFQ_OPENING_SHEET_ID = OS.ID)
-                                        INNER JOIN UP_PROC_MASTER UPM
-                                         ON (OS.UP_PROC_MASTER_ID = UPM.ID)
+                                        INNER JOIN SCHEME_INFO UPM
+                                         ON (OS.SCHEME_INFO_ID = UPM.ID)
                                         INNER JOIN SCHEME_INFO SI
-                                        ON(UPM.SCHEME_INFO_ID=SI.ID)
-                                        WHERE UPM.ID IN (${procurementMasterId})  ORDER BY OSD.PRICE ASC   """
+                                        ON(UPM.id=SI.ID)
+                                        WHERE UPM.ID IN (${schemeId})  ORDER BY OSD.PRICE DESC """
 
             Sql db = new Sql(dataSource)
             result = db.rows(query)
@@ -199,16 +199,16 @@ class CommonService {
     }
 
     @Transactional(readOnly = true)
-    def getRfqOpeningSheetDateDetailsValueByProcurementMaster(long procurementMasterId) {
+    def getRfqOpeningSheetDateDetailsValueByProcurementMaster(long schemeId) {
         def result = null
 
         try {
             String query = """
-                                SELECT UPM.DETAILS, RFQOS.INVITATION_DATE, RFQOS.OPENING_DATE
-                                FROM   UP_PROC_MASTER UPM
-                                INNER JOIN UP_RFQ_OPENING_SHEET RFQOS ON (RFQOS.UP_PROC_MASTER_ID = UPM.ID)
+                                SELECT UPM.NAME as DETAILS, RFQOS.INVITATION_DATE, RFQOS.OPENING_DATE
+                                FROM   SCHEME_INFO UPM
+                                INNER JOIN UP_RFQ_OPENING_SHEET RFQOS ON (RFQOS.SCHEME_INFO_ID = UPM.ID)
 
-                                WHERE UPM.ID IN (${procurementMasterId})  """
+                                WHERE UPM.ID IN (${schemeId})  """
 
             Sql db = new Sql(dataSource)
             result = db.rows(query)
