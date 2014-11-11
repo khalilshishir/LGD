@@ -1,10 +1,11 @@
-package procurement.up.directprocurement
+package procurement.up.rfqprocurement
 
-import procurement.up.Up_Proc_Master
+import procurement.up.otmprocurement.UpOtmProcurement
 
-class UpDirectProcurementDetails {
+class UpRfqProcurementDetails {
+
     static mapping = {
-        table 'UP_DIRECT_PROC_DETAILS'
+        table 'UP_RFQ_PROC_DETAILS'
         // version is set to false, because this isn't available by default for legacy databases
         version false
     }
@@ -15,13 +16,8 @@ class UpDirectProcurementDetails {
     double RATE
     double AMOUNT
     double TOTAL_PRICE
-    double ACTUAL_RATE
-    double ACTUAL_AMOUNT
-    double ACTUAL_TOTAL_PRICE
+    UpRfqProcurement upRfqProcurement
 
-    Up_Proc_Master UP_PROC_MASTER_ID
-
-    //static belongsTo = [Up_Proc_Master]
     static constraints = {
         GOODS_ID(nullable: false)
         GOODS_NAME(nullable: false)
@@ -29,11 +25,10 @@ class UpDirectProcurementDetails {
         RATE(nullable: true)
         AMOUNT(nullable: true)
         TOTAL_PRICE(nullable: true)
-        ACTUAL_RATE(nullable: true)
-        ACTUAL_AMOUNT(nullable: true)
-        ACTUAL_TOTAL_PRICE(nullable: true)
     }
     String toString() {
         return "${GOODS_NAME}"
     }
+
+
 }

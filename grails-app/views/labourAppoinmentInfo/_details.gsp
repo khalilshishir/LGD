@@ -1,11 +1,11 @@
 <script type="text/javascript">
     function setTotalAmount(id){
-             var LABOUR_AMOUNT = id.replace(".PER_WORK_DAY_RATE", ".LABOUR_AMOUNT"),
-                 WORK_DAY_TOTAL_AMOUNT = id.replace(".PER_WORK_DAY_RATE", ".WORK_DAY_TOTAL_AMOUNT"),
-                 labourWorkDay = document.getElementById(LABOUR_AMOUNT).value,
-                 perWorkDayRate = document.getElementById(id).value,
-                 workDayTotalAmount = labourWorkDay * perWorkDayRate;
-             document.getElementById(WORK_DAY_TOTAL_AMOUNT).value = workDayTotalAmount;
+        var LABOUR_AMOUNT = id.replace(".PER_WORK_DAY_RATE", ".LABOUR_AMOUNT"),
+                WORK_DAY_TOTAL_AMOUNT = id.replace(".PER_WORK_DAY_RATE", ".WORK_DAY_TOTAL_AMOUNT"),
+                labourWorkDay = document.getElementById(LABOUR_AMOUNT).value,
+                perWorkDayRate = document.getElementById(id).value,
+                workDayTotalAmount = labourWorkDay * perWorkDayRate;
+        document.getElementById(WORK_DAY_TOTAL_AMOUNT).value = workDayTotalAmount;
     }
 
     var childCount = ${labourAppoinmentInfoInstance?.labourAppoinmentInfoDetails?.size()} + 0;
@@ -47,12 +47,12 @@
 %{--<table id="detailList" class="table table-bordered table-striped table-hover table-condensed">--}%
 %{--<table id="detailList" name="detailList" style=" border-radius:5px;table-layout: fixed" class="table table-bordered table-striped table-hover table-condensed">--}%
 <div class="" style="border: solid 1px;border-radius: 5px">
-<table id="detailList" name="detailList" style=" border-radius:5px;table-layout: fixed" class="table table-bordered table-striped table-hover table-condensed">
-    <tr><th>কাজের বর্ণনা</th><th>কাজের একক</th><th>কাজের পরিমান</th><th>প্রয়োজনীয় জনবল / শ্রমদিবস</th><th>প্রতি শ্রমদিবসের মজুরি হার</th><th>শ্রমদিবস বাবদ মোট খরচ</th><th>মন্তব্য</th><th width="44px">কর্ম</th></tr>
-    <g:render template='detail' model="['result':null,'i':'_clone','hidden':true]"/>
-    <g:each var="labourAppoinmentInfoDetails" in="${labourAppoinmentInfoInstance.labourAppoinmentInfoDetails}" status="i">
-        <g:render template='detail' model="['labourAppoinmentInfoDetails':labourAppoinmentInfoDetails,'i':i]"/>
-    </g:each>
-</table>
-<input type="button"  style="border: 2px solid" class="btn btn-info btn-md save" value="Add Detail" onclick="addChild();"/>
+    <table id="detailList" name="detailList" style=" border-radius:5px;table-layout: fixed" class="table table-bordered table-striped table-hover table-condensed">
+        <tr><th>কাজের বর্ণনা</th><th>কাজের একক</th><th>কাজের পরিমান</th><th>প্রয়োজনীয় জনবল / শ্রমদিবস</th><th>প্রতি শ্রমদিবসের মজুরি হার</th><th>শ্রমদিবস বাবদ মোট খরচ</th><th>মন্তব্য</th><th width="44px">কর্ম</th></tr>
+        <g:render template='detail' model="['result':null,'i':'_clone','hidden':true]"/>
+        <g:each var="labourAppoinmentInfoDetails" in="${labourAppoinmentInfoInstance.labourAppoinmentInfoDetails}" status="i">
+            <g:render template='detail' model="['labourAppoinmentInfoDetails':labourAppoinmentInfoDetails,'i':i]"/>
+        </g:each>
+    </table>
+    <input type="button"  style="border: 2px solid" class="btn btn-info btn-md save" value="Add Detail" onclick="addChild();"/>
 </div>

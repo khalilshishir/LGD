@@ -71,6 +71,20 @@
 </div>
 <div class="col-xs-6">
     <div class="form-group">
+        <div class="fieldcontain ${hasErrors(bean: COMITYInstance, field: 'pic_url_', 'error')} ">
+            <label for="file_">
+                <g:message code="COMITYInstance.file_.label" default="Committee formation GO"/>
+
+            </label>
+            %{--<g:datePicker name="ASSIGN_DATE" precision="day" value="${ASSET_DISTRIBUTIONInstance?.ASSIGN_DATE}"
+                          default="none" noSelection="['': '']"/>--}%
+            <input type="file" id="file_" name="file_" class="real-upload" />
+
+        </div>
+    </div>
+</div>
+<div class="col-xs-6">
+    <div class="form-group">
         <label for="IS_ACTIVE">
             <g:message code="ASSET_BOOK.IS_ACTIVE.label" default="Active" />
 

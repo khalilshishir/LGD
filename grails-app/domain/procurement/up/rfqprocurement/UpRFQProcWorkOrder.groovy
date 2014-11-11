@@ -1,6 +1,8 @@
 package procurement.up.rfqprocurement
 
+import procurement.pmu.Supplier
 import procurement.up.Up_Proc_Master
+import settings.SchemeInfo
 
 class UpRFQProcWorkOrder {
 
@@ -9,11 +11,10 @@ class UpRFQProcWorkOrder {
         version(false)
     }
 
-    Up_Proc_Master UP_PROC_MASTER
+    SchemeInfo schemeInfo
     long id
-    String  RECEIVED_COMPANY
-    String COMPANY_ADDRESS
-    boolean IS_SIGN_CONTRACT=Boolean.FALSE
+    Supplier  supplier
+    Date signContractDate
 
     long CREATED_BY=0
     Date CREATED_DATE=new Date()
@@ -25,8 +26,7 @@ class UpRFQProcWorkOrder {
         CREATED_DATE(nullable:true)
         UPDATED_BY(nullable: true)
         UPDATED_DATE(nullable: true)
-        RECEIVED_COMPANY(nullable: false)
-        COMPANY_ADDRESS(nullable: true)
+
     }
     String toString(){
         return RECEIVED_COMPANY

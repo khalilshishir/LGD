@@ -119,6 +119,23 @@
                     </div>
                 </div>
             </g:if>
+            <g:if test="${COMITYInstance?.file_url_}">
+
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <div class="fieldcontain ${hasErrors(bean: COMITYInstance, field: 'file_url_', 'error')} ">
+                            <label for="file_url_">
+                                <g:message code="COMITYInstance.file_url_.label" default="Download :"/>
+
+                            </label>
+                            <g:form>
+                                <input type="hidden" name="file_url_" id="file_url_" value="${COMITYInstance?.file_url_}"/>
+                                <g:actionSubmit class="btn btn-success" action="downloadFile" value="${message(code: 'default.button.download.label', default: 'Download')}"  />
+                            </g:form>
+                        </div>
+                    </div>
+                </div>
+            </g:if>
             <g:if test="${COMITYInstance?.IS_ACTIVE}">
                 <div class="col-xs-6">
                     <div class="form-group">

@@ -22,23 +22,24 @@ class UpOtmEvaluationController {
     }
 
     def create() {
-        String procurementType = UpProcType.OTM_PROCUREMENT
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
-        def results = upProcMasterListByProcurement.list {
-            inList('procurementType',procurementType)
-        }
-        [upOtmEvaluationInstance: new UpOtmEvaluation(params), upProcMasterList: results]
+//        String procurementType = UpProcType.OTM_PROCUREMENT
+//        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+//        def results = upProcMasterListByProcurement.list {
+//            inList('procurementType',procurementType)
+//        }
+//        [upOtmEvaluationInstance: new UpOtmEvaluation(params), upProcMasterList: results]
+        [upOtmEvaluationInstance: new UpOtmEvaluation(params)]
     }
 
     def save() {
         println(params);
         def upOtmEvaluationInstance = new UpOtmEvaluation()
 
-        upOtmEvaluationInstance.properties["id", "INVITATION_DATE","OPENING_DATE","EVALUATION_DATE","UP_PROC_MASTER","TEC"] = params
+        upOtmEvaluationInstance.properties["id", "INVITATION_DATE","OPENING_DATE","EVALUATION_DATE","schemeInfo","TEC"] = params
 
 
         int i = 0
-        while (params["otmOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"] != null) {
+        while (params["otmOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"] != null && params["otmOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"] != '') {
             def upOtmEvaluationSheetDetails = new UpOtmEvaluationSheetDetails()
 
             upOtmEvaluationSheetDetails.properties['VENDOR_NAME']=params["otmOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"]
@@ -78,20 +79,21 @@ class UpOtmEvaluationController {
 
     def edit(Long id) {
         def upOtmEvaluationInstance = UpOtmEvaluation.get(id)
-        def upProcMaster = Up_Proc_Master.get(upOtmEvaluationInstance?.UP_PROC_MASTER?.id)
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
-        def results = upProcMasterListByProcurement.list {
-            inList('id',upProcMaster.id)
-        }
+//        def upProcMaster = Up_Proc_Master.get(upOtmEvaluationInstance?.UP_PROC_MASTER?.id)
+//        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+//        def results = upProcMasterListByProcurement.list {
+//            inList('id',upProcMaster.id)
+//        }
         if (!upOtmEvaluationInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'upOtmEvaluation.label', default: 'UpOtmEvaluation'), id])
             redirect(action: "list")
             return
         }
 
-        def upOtmEvaluationSheetDetails = UpOtmEvaluationSheetDetails.findAllByUpOtmEvaluation(UpOtmEvaluation.get(upOtmEvaluationInstance.id))
+        def upOtmEvaluationSheetDetails = UpOtmEvaluationSheetDetails.findAllByUpOtmEvaluation(UpOtmEvaluation.get(upOtmEvaluationInstance.id), [sort: 'POSITION_BY_QUOTED_PRICE', order: 'asc'])
 
-        [upOtmEvaluationInstance: upOtmEvaluationInstance, upOtmEvaluationSheetDetails: upOtmEvaluationSheetDetails, upProcMasterList: results]
+//        [upOtmEvaluationInstance: upOtmEvaluationInstance, upOtmEvaluationSheetDetails: upOtmEvaluationSheetDetails, upProcMasterList: results]
+        [upOtmEvaluationInstance: upOtmEvaluationInstance, upOtmEvaluationSheetDetails: upOtmEvaluationSheetDetails]
     }
 
     def update(Long id, Long version) {
@@ -112,14 +114,14 @@ class UpOtmEvaluationController {
             }
         }
 
-        upOtmEvaluationInstance.properties["id", "INVITATION_DATE","OPENING_DATE","EVALUATION_DATE","UP_PROC_MASTER","TEC"] = params
+        upOtmEvaluationInstance.properties["id", "INVITATION_DATE","OPENING_DATE","EVALUATION_DATE","schemeInfo","TEC"] = params
 
 
         def i = 0
 
 
 
-        while (params["otmOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"] != null) {
+        while (params["otmOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"] != null && params["otmOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"] != '') {
 
 
             def studentDetail

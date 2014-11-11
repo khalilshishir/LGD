@@ -3,23 +3,23 @@
 <html>
 <head>
     <meta name="layout" content="upprocurement">
-    <g:set var="entityName" value="${message(code: 'upOtmOpeningSheet.label', default: 'ইউপি ও-টি-এম ওপেনিং শিট')}"/>
+    <g:set var="entityName" value="${message(code: 'upOtmOpeningSheet.label', default: 'ইউপি উন্মুক্ত দরপত্র খোলার নমুনা ছক')}"/>
     <title><g:message code="default.list.label/" default="লিস্ট" args="[entityName]"/></title>
 </head>
 
 <body>
-<p align="right" style="color:#666; font-size: 11px; padding-right: 5px; margin-top: 10px;">
-    <a style="color:#666; font-size: 11px;" class="home" href="${createLink(uri: '/')}"><g:message
+<p align="right" style="color:#666; font-size: 15px; padding-right: 5px; margin-top: 10px;">
+    <a style="color:#666; font-size: 15px;" class="home" href="${createLink(uri: '/')}"><g:message
             code="default.home.label/" default="হোম"/></a>
     |
-    <a style="color:#666; font-size: 11px;" href="#"><g:link class="create" action="create"><g:message
-            code="default.new.label/" default="নতুন ইউপি ও-টি-এম ওপেনিং শিট" args="[entityName]"/></g:link></a>
+    <a style="color:#666; font-size: 15px;" href="#"><g:link class="create" action="create"><g:message
+            code="default.new.label/" default="নতুন ইউপি উন্মুক্ত দরপত্র খোলার নমুনা ছক" args="[entityName]"/></g:link></a>
 </p>
 
 <div id="list-upRfqOpeningSheet" class="content scaffold-list" role="main">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title"><g:message code="default.list.label/" default="ইউপি ও-টি-এম ওপেনিং শিট লিস্ট" args="[entityName]"/></h3>
+            <h3 class="panel-title"><g:message code="default.list.label/" default="ইউপি উন্মুক্ত দরপত্র খোলার নমুনা ছক লিস্ট" args="[entityName]"/></h3>
         </div>
     </div>
     <g:if test="${flash.message}">
@@ -33,7 +33,7 @@
                               title="${message(code: 'upOtmOpeningSheet.UP_PROC_MASTER.label', default: 'ইউনিয়ন পরিষদ ক্রয়')}"/>
 
             <g:sortableColumn property="OPENING_DATE"
-                              title="${message(code: 'upOtmOpeningSheet.OPENING_DATE.label', default: 'খোলার তারিখ')}"/>
+                              title="${message(code: 'upOtmOpeningSheet.OPENING_DATE.label', default: 'দরপত্র খোলার তারিখ')}"/>
 
         </tr>
         </thead>
@@ -42,7 +42,7 @@
             <tr>
 
                 <td><g:link action="show"
-                            id="${upOtmOpeningSheetInstance.id}">${fieldValue(bean: upOtmOpeningSheetInstance, field: "UP_PROC_MASTER.SCHEME_INFO.NAME")}</g:link></td>
+                            id="${upOtmOpeningSheetInstance.id}">${fieldValue(bean: upOtmOpeningSheetInstance, field: "schemeInfo.NAME")}</g:link></td>
 
                 <td><g:formatDate date="${upOtmOpeningSheetInstance.OPENING_DATE}" format="yyyy-MM-dd"/></td>
 

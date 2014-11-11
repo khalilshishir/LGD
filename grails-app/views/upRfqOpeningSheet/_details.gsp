@@ -18,8 +18,9 @@
         clone.find("input[id$=deleted]").attr('id', htmlId + 'deleted').attr('name', htmlId + 'deleted');
         clone.find("input[id$=new]").attr('id', htmlId + 'new').attr('name', htmlId + 'new').attr('value', 'true');
 
-        clone.find("input[id$=VENDOR_NAME]").attr('id', htmlId + 'VENDOR_NAME').attr('name', htmlId + 'VENDOR_NAME');
+//        clone.find("input[id$=VENDOR_NAME]").attr('id', htmlId + 'VENDOR_NAME').attr('name', htmlId + 'VENDOR_NAME');
 
+        clone.find("select[id$=VENDOR]").attr('id', htmlId + 'VENDOR').attr('name', htmlId + 'VENDOR');
         clone.find("input[id$=PRICE]").attr('id', htmlId + 'PRICE').attr('name', htmlId + 'PRICE');
         clone.find("input[id$=COMMENTS]").attr('id', htmlId + 'COMMENTS').attr('name', htmlId + 'COMMENTS');
 

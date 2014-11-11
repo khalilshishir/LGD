@@ -58,7 +58,7 @@
         </g:hasErrors>
         <div class="panel-body">
 
-            <g:form action="save">
+            <g:form action="save" enctype="multipart/form-data">
                 <fieldset class="form">
                     <g:render template="form"/>
                 </fieldset>

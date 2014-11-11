@@ -37,7 +37,7 @@
 </div>
 <div class="col-xs-6">
     <label class="label_cl">মহিলা কর্তৃক বাছাইকৃত ?</label>
-    <span class="values">: ${scheme.IS_SELECTED_BY_WOMEN?"হ্যাঁ":"না"}" </span>
+    <span class="values">: ${scheme?.IS_SELECTED_BY_WOMEN?"হ্যাঁ":"না"} </span>
 </div>
 <div class="col-xs-6">
     <label class="label_cl">অর্থ বছর </label>
@@ -45,11 +45,11 @@
 </div>
 <div class="col-xs-6">
     <label class="label_cl">ইউ. পরিষদ  কর্তৃক অনুমোদিত?</label>
-    <span class="values">: ${scheme.approvedByUp?"হ্যাঁ":"না"}</span>
+    <span class="values">: ${scheme?.approvedByUp?"হ্যাঁ":"না"}</span>
 </div>
 <div class="col-xs-6">
     <label class="label_cl">বি জি সি সি  কর্তৃক অনুমোদিত?</label>
-    <span class="values">: ${scheme.endorsedByBgcc?"হ্যাঁ":"না"}</span>
+    <span class="values">: ${scheme?.endorsedByBgcc?"হ্যাঁ":"না"}</span>
 </div>
 <div class="col-xs-6">
     <label class="label_cl">স্কীমের প্রকৃতি </label>
@@ -62,5 +62,5 @@
 
 <div class="col-xs-6">
     <label class="label_cl">শ্রমিক নিয়োজিত?</label>
-    <span class="values">: ${scheme.IS_LABOUR_APPOINTED?"হ্যাঁ":"না"}</span>
+    <span class="values">: ${scheme?.IS_LABOUR_APPOINTED?"হ্যাঁ":"না"}</span>
 </div>

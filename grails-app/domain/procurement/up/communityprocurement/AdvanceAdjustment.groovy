@@ -1,13 +1,14 @@
 package procurement.up.communityprocurement
 
 import procurement.up.Up_Proc_Master
+import settings.SchemeInfo
 
 class AdvanceAdjustment {
     static mapping = {
         table('ADVANCE_ADJUSTMENT')
         version(false)
     }
-    Up_Proc_Master upProcMaster
+    SchemeInfo schemeInfo
     double ADJUSTMENT_AMOUNT
     Date PAYMENT_DATE = new Date()
     String BANK_NAME
@@ -18,7 +19,7 @@ class AdvanceAdjustment {
     Date UPDATED_DATE=new Date()
 
     static constraints = {
-        upProcMaster(nullable: false)
+        schemeInfo(nullable: false)
         ADJUSTMENT_AMOUNT(nullable: false)
         PAYMENT_DATE(nullable: false)
         BANK_NAME(nullable: false)

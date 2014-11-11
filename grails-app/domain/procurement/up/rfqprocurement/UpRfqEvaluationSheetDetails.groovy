@@ -1,12 +1,14 @@
 package procurement.up.rfqprocurement
 
+import procurement.pmu.Supplier
+
 class UpRfqEvaluationSheetDetails {
     static mapping = {
         table('UP_RFQ_EVAL_SHEET_DETAILS')
         version(false)
     }
     long id
-    String VENDOR_NAME
+    Supplier supplier
     double PRICE
     double VENDOR_SCORE
     double INVITED_SPEC_AMOUNT
@@ -21,7 +23,7 @@ class UpRfqEvaluationSheetDetails {
     long UPDATED_BY=0
     Date UPDATED_DATE=new Date()
     static constraints = {
-        VENDOR_NAME(nullable: false)
+        supplier(nullable: false)
         PRICE(nullable: false)
         VENDOR_SCORE(nullable: false)
         INVITED_SPEC_AMOUNT(nullable: false)
@@ -35,8 +37,6 @@ class UpRfqEvaluationSheetDetails {
         UPDATED_BY(nullable: true)
         UPDATED_DATE(nullable: true)
     }
-    String toString(){
-        return VENDOR_NAME
-    }
+
 
 }

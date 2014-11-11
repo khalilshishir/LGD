@@ -1,4 +1,4 @@
-<%@ page import="procurement.up.rfqprocurement.UpRfqEvaluation" %>
+<%@ page import="settings.SchemeInfo; procurement.up.rfqprocurement.UpRfqEvaluation" %>
 
 %{--jquery form validation starts--}%
 <script>
@@ -32,21 +32,30 @@
     }
 
     function setValueForDetails(procurementMasterId){
-        <g:remoteFunction action="setValueForDetails"  params="'procurementMasterId='+procurementMasterId" update="createDetailTable"/>
+        <g:remoteFunction action="setValueForDetails"  params="'schemeId='+procurementMasterId" update="createDetailTable"/>
     }
 
     function setValueForForm(procurementMasterId) {
-        <g:remoteFunction action="setValueForForm"  params="'procurementMasterId='+procurementMasterId" update="changedValue"/>
+        <g:remoteFunction action="setValueForForm"  params="'schemeId='+procurementMasterId" update="changedValue"/>
     }
 </script>
 
+<div class="col-xs-6">
+    <div class="form-group">
+        <label for="schemeInfo"><g:message code="upRfqOpeningSheet.schemeInfo.label" default="কমিউনিটি প্রকিয়াই ক্রয়কৃত  স্কীম সমূহ" /></label>
+        %{--<g:select id="UP_PROC_MASTER" name="UP_PROC_MASTER.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="['':'Select One']" required="" value="${upRfqOpeningSheetInstance?.UP_PROC_MASTER?.id}" class="form-control" onchange="showEstimatedAmountForTheProcurement(this.value)"/>--}%
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'RFQ Procurement')}" optionKey="id"  onchange="setValueOnProcurementChange(this.value)"   noSelection="['': 'Select One']" optionValue="NAME" required="" value="${upRfqEvaluationInstance?.schemeInfo?.id}" class="form-control"/>
 
+    </div>
+</div>
+%{--
 <div class="col-xs-6">
     <div class="form-group">
         <label for="UP_PROC_MASTER"><g:message code="upRfqEvaluation.UP_PROC_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
         <g:select id="UP_PROC_MASTER" name="UP_PROC_MASTER.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="${['':'Select One']}" required="" value="${upRfqEvaluationInstance?.UP_PROC_MASTER?.id}" onchange="setValueOnProcurementChange(this.value)" class="form-control"/>
     </div>
 </div>
+--}%
 
 <div class="col-xs-6">
     <div class="form-group">
@@ -56,24 +65,24 @@
 </div>
 
 <div id="changedValue">
-<div class="col-xs-6">
-    <div class="form-group">
-        <label for="INVITATION_DATE"><g:message code="upRfqEvaluation.INVITATION_DATE.label" default="আহ্বান তারিখ" /></label>
-        <g:textField name="INVITATION_DATE" class="form-control" readonly=""/>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="INVITATION_DATE"><g:message code="upRfqEvaluation.INVITATION_DATE.label" default="দরপত্র আহ্বান তারিখ" /></label>
+            <g:textField name="INVITATION_DATE" class="form-control" readonly=""/>
+        </div>
+    </div>
+
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="OPENING_DATE"><g:message code="upRfqEvaluation.OPENING_DATE.label" default="দরপত্র খোলার তারিখ" /></label>
+            <g:textField name="OPENING_DATE" class="form-control" readonly=""/>
+        </div>
     </div>
 </div>
 
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="OPENING_DATE"><g:message code="upRfqEvaluation.OPENING_DATE.label" default="খোলার তারিখ" /></label>
-        <g:textField name="OPENING_DATE" class="form-control" readonly=""/>
-    </div>
-</div>
-</div>
-
-<div class="col-xs-6">
-    <div class="form-group">
-        <label for="EVALUATION_DATE"><g:message code="upRfqEvaluation.EVALUATION_DATE.label" default="মূল্যায়ন তারিখ" /></label>
+        <label for="EVALUATION_DATE"><g:message code="upRfqEvaluation.EVALUATION_DATE.label" default="দরপত্র মূল্যায়ন তারিখ" /></label>
         <div class="bfh-datepicker"   id="EVALUATION_DATE" data-date="${formatDate(format:'MM/dd/yyyy',date:upRfqEvaluationInstance?.EVALUATION_DATE)}" data-close="true" data-name="EVALUATION_DATE"></div>
     </div>
 </div>

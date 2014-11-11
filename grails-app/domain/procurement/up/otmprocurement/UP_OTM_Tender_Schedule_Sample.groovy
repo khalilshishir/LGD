@@ -1,6 +1,7 @@
 package procurement.up.otmprocurement
 
 import procurement.up.Up_Proc_Master
+import settings.SchemeInfo
 
 class UP_OTM_Tender_Schedule_Sample {
     static mapping = {
@@ -8,7 +9,7 @@ class UP_OTM_Tender_Schedule_Sample {
         version(false)
     }
     long id
-    Up_Proc_Master UP_PROC_MASTER
+    SchemeInfo schemeInfo
 //    String ITEM_DETAILS
     double UNIT
     double AMOUNT
@@ -22,7 +23,7 @@ class UP_OTM_Tender_Schedule_Sample {
     long UPDATED_BY=0
     Date UPDATED_DATE=new Date()
     static constraints = {
-        UP_PROC_MASTER(nullable: false)
+        schemeInfo(nullable: false)
 //        ITEM_DETAILS(nullable: false)
         UNIT(nullable: false)
         AMOUNT(nullable: false)

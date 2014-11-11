@@ -32,7 +32,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <g:message code="default.list.label/\" default="লিস্ট - ইউনিয়ন পরিষদ ক্রয়" args="[entityName]" /></h3>
+                        <g:message code="default.list.label" default="লিস্ট - ইউনিয়ন পরিষদ ক্রয়" args="[entityName]" /></h3>
                 </div>
             </div>
             <g:if test="${flash.message}">
@@ -42,10 +42,8 @@
                 <thead>
 					<tr>
 					
-						<g:sortableColumn property="UPZ_ID" title="${message(code: 'upazila.UPZ_ID.label', default: 'Upazila ID')}" />
-					
-						<g:sortableColumn property="UPZ_NAME" title="${message(code: 'upazila.UPZ_NAME.label', default: 'Upazila Name')}" />
-					
+						<td>Upazila Id</td>
+                        <td>Upazila Name</td>
 						%{--<g:sortableColumn property="CREATED_BY" title="${message(code: 'upazila.CREATED_BY.label', default: 'Created By')}" />--}%
 					%{----}%
 						%{--<g:sortableColumn property="CREATED_DATE" title="${message(code: 'upazila.CREATED_DATE.label', default: 'Created Date')}" />--}%
@@ -76,9 +74,7 @@
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
-				<g:paginate total="${upazilaInstanceTotal}" />
-			</div>
+
 		</div>
 	</body>
 </html>

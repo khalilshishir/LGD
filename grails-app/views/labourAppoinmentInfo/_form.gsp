@@ -1,4 +1,4 @@
-<%@ page import="procurement.up.Up_Proc_Master; procurement.up.communityprocurement.LabourAppoinmentInfo" %>
+<%@ page import="settings.SchemeInfo; procurement.up.Up_Proc_Master; procurement.up.communityprocurement.LabourAppoinmentInfo" %>
 
 %{--jquery form validation starts--}%
 <script>
@@ -27,24 +27,26 @@
 
 <script type="text/javascript">
     function loadGrantedAmountForTheScheme(procurementMasterId){
-        <g:remoteFunction action="setValueForGrantedAmount"  params="'procurementMasterId='+procurementMasterId" update="grantedAmount"/>
+        <g:remoteFunction action="setValueForGrantedAmount"  params="'schemeInfo='+procurementMasterId" update="grantedAmount"/>
     }
 </script>
 
 <div class="col-xs-6">
     <div class="form-group">
-        <label for="UP_PROCUREMENT_MASTER"><g:message code="labourAppoinmentInfo.UP_PROCUREMENT_MASTER.label" default="ইউনিয়ন পরিষদ ক্রয়" /></label>
-        <g:select id="UP_PROCUREMENT_MASTER" name="UP_PROCUREMENT_MASTER.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="['':'Select One']" required="" value="${labourAppoinmentInfoInstance?.UP_PROCUREMENT_MASTER?.id}" class="form-control" onchange="loadGrantedAmountForTheScheme(this.value)"/>
+        <label for="UP_PROCUREMENT_MASTER"><g:message code="labourAppoinmentInfo.UP_PROCUREMENT_MASTER.label" default="কমিউনিটি প্রকিয়াই ক্রয়কৃত  স্কীম সমূহ" /></label>
+        <g:select id="schemeInfo" name="schemeInfo.id" from="${SchemeInfo.findAllWhere(IMPLEMENTATION_SYSTEM :'Community Procurement')}" optionKey="id"  noSelection="['': 'Select One']" optionValue="NAME" required="" value="${labourAppoinmentInfoInstance?.schemeInfo?.id}" class="form-control" onchange="loadGrantedAmountForTheScheme(this.value)"/>
+        %{--<g:select id="UP_PROCUREMENT_MASTER" name="UP_PROCUREMENT_MASTER.id" from="${upProcMasterList}" optionKey="id" optionValue="SCHEME_INFO" noSelection="['':'Select One']" required="" value="${labourAppoinmentInfoInstance?.UP_PROCUREMENT_MASTER?.id}" class="form-control" onchange="loadGrantedAmountForTheScheme(this.value)"/>--}%
+
     </div>
 </div>
 
 <div id="grantedAmount">
-<div class="col-xs-6">
-    <div class="form-group">
-        <label for="grantedAmount"><g:message code="labourAppoinmentInfo.UP_PROCUREMENT_MASTER.label" default="অনুমোদিত মূল্য" /></label>
-        <g:textField name="grantedAmount" id="grantedAmount" readonly=""  value="${grantedAmount}" class="form-control"/>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="grantedAmount"><g:message code="labourAppoinmentInfo.UP_PROCUREMENT_MASTER.label" default="অনুমোদিত মূল্য" /></label>
+            <g:textField name="grantedAmount" id="grantedAmount" readonly=""  value="${grantedAmount}" class="form-control"/>
+        </div>
     </div>
-</div>
 </div>
 
 <div class="col-xs-12 detail-list">

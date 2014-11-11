@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException
 import procurement.up.Procurement_Type
 import procurement.up.Procurement_Type.CommonService
 import procurement.up.Up_Proc_Master
+import settings.SchemeInfo
 
 class UpRfqEvaluationController {
 
@@ -22,26 +23,26 @@ class UpRfqEvaluationController {
     }
 
     def create() {
-        String procurementType = UpProcType.RFQ_PROCUREMENT
+       /* String procurementType = UpProcType.RFQ_PROCUREMENT
         def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
         def results = upProcMasterListByProcurement.list {
             inList('procurementType',procurementType)
-        }
-        [upRfqEvaluationInstance: new UpRfqEvaluation(params), upProcMasterList: results]
+        }*/
+        [upRfqEvaluationInstance: new UpRfqEvaluation(params)]
     }
 
     def save() {
         println(params);
         def upRfqEvaluationInstance = new UpRfqEvaluation(params)
 
-        upRfqEvaluationInstance.properties["id","EVALUATION_DATE","UP_PROC_MASTER","TEC"] = params
+        upRfqEvaluationInstance.properties["id","EVALUATION_DATE","schemeInfo","TEC"] = params
 
 
         int i = 0
-        while (params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"] != null) {
+        while (params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].supplier"] != null) {
             def upRfqEvaluationSheetDetails = new UpRfqEvaluationSheetDetails()
 
-            upRfqEvaluationSheetDetails.properties['VENDOR_NAME']=params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"]
+            upRfqEvaluationSheetDetails.properties['supplier']=params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].supplier"]
             upRfqEvaluationSheetDetails.properties['PRICE']=Double.parseDouble(params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].PRICE"])
             upRfqEvaluationSheetDetails.properties['VENDOR_SCORE']=Double.parseDouble(params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_SCORE"])
             upRfqEvaluationSheetDetails.properties['INVITED_SPEC_AMOUNT']=Double.parseDouble(params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].INVITED_SPEC_AMOUNT"])
@@ -75,8 +76,8 @@ class UpRfqEvaluationController {
 
     def edit(Long id) {
         def upRfqEvaluationInstance = UpRfqEvaluation.get(id)
-        def upProcMaster = Up_Proc_Master.get(upRfqEvaluationInstance?.UP_PROC_MASTER?.id)
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+        def upProcMaster = SchemeInfo.get(upRfqEvaluationInstance?.schemeInfoId)
+        def upProcMasterListByProcurement = SchemeInfo.createCriteria();
         def results = upProcMasterListByProcurement.list {
             inList('id',upProcMaster.id)
         }
@@ -110,14 +111,14 @@ class UpRfqEvaluationController {
             }
         }
 
-        upRfqEvaluationInstance.properties["id","EVALUATION_DATE","UP_PROC_MASTER","TEC"] = params
+        upRfqEvaluationInstance.properties["id","EVALUATION_DATE","schemeInfo","TEC"] = params
 
 
         def i = 0
 
 
 
-        while (params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"] != null) {
+        while (params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].supplier"] != null) {
 
 
             def studentDetail
@@ -142,7 +143,7 @@ class UpRfqEvaluationController {
                 studentDetail = UpRfqEvaluationSheetDetails.get(Long.valueOf(params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].id"]))
             }
 
-            studentDetail.properties['VENDOR_NAME']=params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_NAME"]
+            studentDetail.properties['supplier']=params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].supplier"]
             studentDetail.properties['PRICE']=Double.parseDouble(params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].PRICE"])
             studentDetail.properties['VENDOR_SCORE']=Double.parseDouble(params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].VENDOR_SCORE"])
             studentDetail.properties['INVITED_SPEC_AMOUNT']=Double.parseDouble(params["rfqOpeningSheetDetailsByProcurementMaster[" + i + "].INVITED_SPEC_AMOUNT"])
@@ -189,17 +190,17 @@ class UpRfqEvaluationController {
 
     def setValueForDetails(){
         List  rfqOpeningSheetDetailsByProcurementMaster = []
-        if(params.procurementMasterId != null && params.procurementMasterId != "" && params.procurementMasterId != "null"){
-            rfqOpeningSheetDetailsByProcurementMaster = commonService.getRfqOpeningSheetDetailsValueByProcurementMaster(Long.parseLong(params.procurementMasterId))
+        if(params.schemeId != null && params.schemeId != "" && params.schemeId != "null"){
+            rfqOpeningSheetDetailsByProcurementMaster = commonService.getRfqOpeningSheetDetailsValueByProcurementMaster(Long.parseLong(params.schemeId))
         }
-            int rowCount = rfqOpeningSheetDetailsByProcurementMaster.size()
+        int rowCount = rfqOpeningSheetDetailsByProcurementMaster.size()
         render (template: 'rowWithValues', model: [rfqOpeningSheetDetailsByProcurementMaster: rfqOpeningSheetDetailsByProcurementMaster,rowCount: rowCount])
     }
 
     def setValueForForm(){
         def rfqOpeningSheetDetailsByProcurementMaster = []
-        if(params.procurementMasterId != null && params.procurementMasterId != "" && params.procurementMasterId != "null"){
-            rfqOpeningSheetDetailsByProcurementMaster = commonService.getRfqOpeningSheetDateDetailsValueByProcurementMaster(Long.parseLong(params.procurementMasterId))
+        if(params.schemeId != null && params.schemeId != "" && params.schemeId != "null"){
+            rfqOpeningSheetDetailsByProcurementMaster = commonService.getRfqOpeningSheetDateDetailsValueByProcurementMaster(Long.parseLong(params.schemeId))
         }
 //        String value="${otmIFQDetailsByProcurementMaster?.PROCUREMENT_TYPE.toString().replace('[', '').replace(']', '')}"
         render (template: 'rfqOpeningSheetDetails', model: [rfqOpeningSheetDetailsByProcurementMaster: rfqOpeningSheetDetailsByProcurementMaster])

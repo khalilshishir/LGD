@@ -128,7 +128,7 @@
                 </li>
                 <li><a href="http://bangladesh.gov.bd/?q=bn/%E0%A6%9C%E0%A6%BE%E0%A6%A4%E0%A7%80%E0%A7%9F-%E0%A6%AC%E0%A6%BE%E0%A6%A4%E0%A6%BE%E0%A7%9F%E0%A6%A8">জেলা বাতায়ন</a></li>
                 <li><a href="#">Training</a></li>
-                <li><a href="${g.createLink(controller: 'up_Proc_Master',action: 'upProcurement')}"> ক্রয় (ইউনিয়ন পরিষদ)</a></li>
+                <li><a href="${g.createLink(controller: 'upDirectProcurement',action: 'upProcurement')}"> ক্রয় (ইউনিয়ন পরিষদ)</a></li>
                 %{--<li><a href="${g.createLink(controller: 'Up_Asset_Regi_MasterController',action: 'upAsset')}"> সম্পদ   (ইউনিয়ন পরিষদ)</a></li>--}%
                 <li> <a href="${g.createLink(controller: 'up_Asset_Regi_Master', action: 'upAsset')}">সম্পদ   (ইউনিয়ন পরিষদ)</a> </li>
             </ul>

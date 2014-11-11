@@ -16,7 +16,8 @@ class ASSET_BOOKController {
     def list(Integer max) {
 //        params.max = Math.min(max ?: 10, 100)
 //        [ASSET_BOOKInstanceList: ASSET_BOOK.list(params), ASSET_BOOKInstanceTotal: ASSET_BOOK.count()]
-        String MainQQ="from ASSET_BOOK where IS_ACTIVE=1"
+        String MainQQ="from ASSET_BOOK where IS_ACTIVE=1 and IS_MAINTENANCE=0"
+        //IS_MAINTENANCE=0 means this asset now is in maintanance jone
         def lst=ASSET_BOOK.executeQuery(MainQQ)
 
         def totalCount = ASSET_BOOK.executeQuery(MainQQ).size()
@@ -29,6 +30,17 @@ class ASSET_BOOKController {
     def list_disposed(Integer max) {
 
         String MainQQ="from ASSET_BOOK where ASSET_STATUS.lookup_name='Disposed Asset'"
+        def lst=ASSET_BOOK.executeQuery(MainQQ)
+
+        def totalCount = ASSET_BOOK.executeQuery(MainQQ).size()
+        [ASSET_BOOKInstanceList: lst, ASSET_BOOKInstanceTotal: totalCount]
+
+//        params.max = Math.min(max ?: 10, 100)
+//        [ASSET_BOOKInstanceList: ASSET_BOOK.list(params), ASSET_BOOKInstanceTotal: ASSET_BOOK.count()]
+    }
+    def list_stock(Integer max) {
+
+        String MainQQ="from ASSET_BOOK where ID not in (select ASSET_BOOK_ID from ASSET_DISTRIBUTION)"
         def lst=ASSET_BOOK.executeQuery(MainQQ)
 
         def totalCount = ASSET_BOOK.executeQuery(MainQQ).size()
@@ -77,6 +89,15 @@ class ASSET_BOOKController {
 
     def update(Long id, Long version) {
         def ASSET_BOOKInstance = ASSET_BOOK.get(id)
+        def ASSET_BOOK_HISTORYinstance=new ASSET_BOOK_HISTORY()
+        ASSET_BOOK_HISTORYinstance.NOTE=params.note
+
+        if((params.id!=null && !params.id.isEmpty())){
+
+            def assetBookId = ASSET_BOOK.findById(Long.valueOf(params.id))
+            ASSET_BOOK_HISTORYinstance.setASSET_BOOK_ID(assetBookId)
+        }
+        ASSET_BOOK_HISTORYinstance.save()
         if (!ASSET_BOOKInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'ASSET_BOOK.label', default: 'ASSET_BOOK'), id])
             redirect(action: "list")

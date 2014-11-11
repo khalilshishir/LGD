@@ -2,8 +2,6 @@ package procurement.up.communityprocurement
 
 import comonclass.UpProcType
 import org.springframework.dao.DataIntegrityViolationException
-import procurement.up.Procurement_Type
-import procurement.up.Up_Proc_Master
 import settings.SchemeInfo
 
 class MasterRoleSalaryController {
@@ -20,8 +18,7 @@ class MasterRoleSalaryController {
     }
 
     def create() {
-        def upProcMasterListByProcurement = Up_Proc_Master.findAllByProcurementType(UpProcType?.COMMUNITY_PROCUREMENT?.toString())
-        [masterRoleSalaryInstance: new MasterRoleSalary(params), upProcMasterList: upProcMasterListByProcurement]
+        [masterRoleSalaryInstance: new MasterRoleSalary(params)]
     }
 
     def save() {
@@ -29,7 +26,7 @@ class MasterRoleSalaryController {
         println(params);
         def masterRoleSalaryInstance = new MasterRoleSalary()
 
-        masterRoleSalaryInstance.properties["id","upProcMaster"] = params
+        masterRoleSalaryInstance.properties["id","schemeInfo"] = params
 
 
         int i = 0, grantAmountCounter = 0
@@ -56,8 +53,7 @@ class MasterRoleSalaryController {
 
         if(grantAmountCounter > grantedAmount){
             flash.message = "মাস্টার রোলে মজুরি প্রদানের মোট টাকা স্কীমের অনুমোদিত মূল্য হতে অধিক হতে পারবে না ।"
-            def upProcMasterListByProcurement = Up_Proc_Master.findAllByProcurementType(UpProcType?.COMMUNITY_PROCUREMENT?.toString())
-            render(view: "create", model: [masterRoleSalaryInstance: masterRoleSalaryInstance, upProcMasterList: upProcMasterListByProcurement])
+            render(view: "create", model: [masterRoleSalaryInstance: masterRoleSalaryInstance])
             return
         }
 
@@ -84,12 +80,11 @@ class MasterRoleSalaryController {
 
     def edit(Long id) {
         def masterRoleSalaryInstance = MasterRoleSalary.get(id)
-        def upProcMaster = Up_Proc_Master.get(masterRoleSalaryInstance?.upProcMaster?.id)
-        def schemeInfo = SchemeInfo.get(upProcMaster?.SCHEME_INFO?.id)
+        def schemeInfo = SchemeInfo.get(masterRoleSalaryInstance.schemeInfoId)
         String grantedAmount = schemeInfo.GRANTED_AMOUNT
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+        def upProcMasterListByProcurement = SchemeInfo.createCriteria();
         def results = upProcMasterListByProcurement.list {
-            inList('id',upProcMaster.id)
+            inList('id',schemeInfo.id)
         }
         if (!masterRoleSalaryInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'masterRoleSalary.label', default: 'MasterRoleSalary'), id])
@@ -119,7 +114,7 @@ class MasterRoleSalaryController {
             }
         }
 
-        masterRoleSalaryInstance.properties["id", "upProcMaster"] = params
+        masterRoleSalaryInstance.properties["id", "schemeInfo"] = params
         int i = 0, grantAmountCounter = 0
         while (params["masterRoleSalaryDetails[" + i + "].LABOUR_NAME"] != null && params["masterRoleSalaryDetails[" + i + "].LABOUR_NAME"] != "") {
             def studentDetail
@@ -153,10 +148,10 @@ class MasterRoleSalaryController {
 
         if(grantAmountCounter > grantedAmount){
             flash.message = "মাস্টার রোলে মজুরি প্রদানের মোট টাকা স্কীমের অনুমোদিত মূল্য হতে অধিক হতে পারবে না ।"
-            def upProcMaster = Up_Proc_Master.get(masterRoleSalaryInstance?.upProcMaster?.id)
-            def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+            def schemeInfo = SchemeInfo.get(masterRoleSalaryInstance?.schemeInfoId)
+            def upProcMasterListByProcurement = SchemeInfo.createCriteria();
             def results = upProcMasterListByProcurement.list {
-                inList('id',upProcMaster.id)
+                inList('id',schemeInfo.id)
             }
             render(view: "edit", model: [masterRoleSalaryInstance: masterRoleSalaryInstance, upProcMasterList: results, grantedAmount: grantedAmount])
             return
@@ -193,9 +188,8 @@ class MasterRoleSalaryController {
 
     def setValueForGrantedAmount(){
         String grantedAmount = ""
-        if(params.procurementMasterId != null && params.procurementMasterId != "" && params.procurementMasterId != "null"){
-            def upProcMaster = Up_Proc_Master.get(params.procurementMasterId?.toLong())
-            def schemeInfo = SchemeInfo.get(upProcMaster?.SCHEME_INFO?.id)
+        if(params.schemeInfo != null && params.schemeInfo != "" && params.schemeInfo != "null"){
+            def schemeInfo = SchemeInfo.get(params.schemeInfo)
             grantedAmount = schemeInfo.GRANTED_AMOUNT
         }
         render (template: 'grantedAmount', model: [grantedAmount: grantedAmount])

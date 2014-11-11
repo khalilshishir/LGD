@@ -2,6 +2,7 @@ package procurement.up.otmprocurement
 
 import procurement.up.Up_Proc_Master
 import settings.Committee
+import settings.SchemeInfo
 
 class UpOtmEvaluation {
     static mapping = {
@@ -14,7 +15,7 @@ class UpOtmEvaluation {
 //    Date OPENING_DATE = new Date()
     Date EVALUATION_DATE = new Date()
 
-    Up_Proc_Master UP_PROC_MASTER
+    SchemeInfo schemeInfo
     Committee TEC
 
     long CREATED_BY=0
@@ -28,7 +29,7 @@ class UpOtmEvaluation {
 //        INVITATION_DATE(nullable: false)
 //        OPENING_DATE(nullable: false)
         EVALUATION_DATE(nullable: false)
-        UP_PROC_MASTER(nullable: false)
+        schemeInfo(nullable: false)
         TEC(nullable: false)
 
         CREATED_BY(nullable:true)

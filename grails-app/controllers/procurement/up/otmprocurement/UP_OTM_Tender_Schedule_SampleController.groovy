@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException
 import procurement.up.Procurement_Type
 import procurement.up.Procurement_Type.CommonService
 import procurement.up.Up_Proc_Master
+import settings.SchemeInfo
 
 class UP_OTM_Tender_Schedule_SampleController {
 
@@ -32,13 +33,13 @@ class UP_OTM_Tender_Schedule_SampleController {
     def save() {
         println(params);
         def UP_OTM_Tender_Schedule_SampleInstance = new UP_OTM_Tender_Schedule_Sample()
-
+        UP_OTM_Tender_Schedule_SampleInstance.properties["id","schemeInfo"] = params
 
 
 
         int i = 0
         while (params["otmTenderScheduleDetailsByProcurementMaster[" + i + "].DETAILS"] != null && params["otmTenderScheduleDetailsByProcurementMaster[" + i + "].DETAILS"] != "") {
-            UP_OTM_Tender_Schedule_SampleInstance.properties["id","UP_PROC_MASTER"] = params
+
             UP_OTM_Tender_Schedule_SampleInstance.UNIT = Double.parseDouble(params["otmTenderScheduleDetailsByProcurementMaster[" + i + "].UNIT"])
             UP_OTM_Tender_Schedule_SampleInstance.AMOUNT = Double.parseDouble(params["otmTenderScheduleDetailsByProcurementMaster[" + i + "].AMOUNT"])
             UP_OTM_Tender_Schedule_SampleInstance.RATE = Double.parseDouble(params["otmTenderScheduleDetailsByProcurementMaster[" + i + "].RATE"])
@@ -71,18 +72,19 @@ class UP_OTM_Tender_Schedule_SampleController {
 
     def edit(Long id) {
         def UP_OTM_Tender_Schedule_SampleInstance = UP_OTM_Tender_Schedule_Sample.get(id)
-        def upProcMaster = Up_Proc_Master.get(UP_OTM_Tender_Schedule_SampleInstance?.UP_PROC_MASTER?.id)
-        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
-        def results = upProcMasterListByProcurement.list {
-            inList('id',upProcMaster.id)
-        }
+//        def upProcMaster = Up_Proc_Master.get(UP_OTM_Tender_Schedule_SampleInstance?.UP_PROC_MASTER?.id)
+//        def upProcMasterListByProcurement = Up_Proc_Master.createCriteria();
+//        def results = upProcMasterListByProcurement.list {
+//            inList('id',upProcMaster.id)
+//        }
         if (!UP_OTM_Tender_Schedule_SampleInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UP_OTM_Tender_Schedule_Sample.label', default: 'UP_OTM_Tender_Schedule_Sample'), id])
             redirect(action: "list")
             return
         }
 
-        [UP_OTM_Tender_Schedule_SampleInstance: UP_OTM_Tender_Schedule_SampleInstance, upProcMasterList: results]
+//        [UP_OTM_Tender_Schedule_SampleInstance: UP_OTM_Tender_Schedule_SampleInstance, upProcMasterList: results]
+        [UP_OTM_Tender_Schedule_SampleInstance: UP_OTM_Tender_Schedule_SampleInstance]
     }
 
     def update(Long id, Long version) {
@@ -152,6 +154,9 @@ class UP_OTM_Tender_Schedule_SampleController {
     def setValueForDetails(){
         List  workDetailsByProcurementMaster = []
         if(params.procurementMasterId != null && params.procurementMasterId != "" && params.procurementMasterId != "null"){
+//            def schemeInfo = SchemeInfo.get(Long.parseLong(params.procurementMasterId))
+//            String  details = schemeInfo.NAME
+//            render (template: 'rowWithValues', model: [details: details])
             workDetailsByProcurementMaster = commonService.getworkDetailsValueByProcurementMaster(Long.parseLong(params.procurementMasterId))
         }
         render (template: 'rowWithValues', model: [workDetailsByProcurementMaster: workDetailsByProcurementMaster])

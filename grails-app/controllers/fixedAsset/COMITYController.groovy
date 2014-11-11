@@ -29,8 +29,22 @@ class COMITYController {
         flash.message = message(code: 'default.created.message', args: [message(code: 'COMITY.label', default: 'COMITY'), COMITYInstance.id])
         redirect(action: "show", id: COMITYInstance.id)*/
 
+        /*image processing start*/
+        def file = request.getFile("file_");
+        if (file && (file.getSize() > 0)) {
+
+            def fileName = file.getOriginalFilename()
+            def ext = fileName.substring(fileName.lastIndexOf('.'))
+            def docFileTitle = UUID.randomUUID().toString()
+            docFileTitle = docFileTitle + ext
+            params.picFileTitle = docFileTitle
+            String filePath = grailsAttributes.getApplicationContext().getResource("images/repository/Comity/DOC_").getFile().toString() + "\\" + docFileTitle
+            file.transferTo(new File(filePath))
+            params.file_url_ = docFileTitle
+        }
+        /*image processing end*/
         def COMITYInstance = new COMITY()
-        COMITYInstance.properties["ID","COMITY_NAME","WORK_PURPOSE","DESCRIPTION","START_DATE","END_DATE","IS_ACTIVE"]=params
+        COMITYInstance.properties["ID","COMITY_NAME","WORK_PURPOSE","DESCRIPTION","START_DATE","END_DATE","file_url_","IS_ACTIVE"]=params
         int i=0
         while (params["comityDtl[" + i + "].id"] != null) {
 
@@ -80,6 +94,19 @@ class COMITYController {
     }
 
     def update(Long id, Long version) {
+        def file = request.getFile("file_");
+        if (file && (file.getSize() > 0)) {
+
+            def fileName = file.getOriginalFilename()
+            def ext = fileName.substring(fileName.lastIndexOf('.'))
+            def docFileTitle = UUID.randomUUID().toString()
+            docFileTitle = docFileTitle + ext
+            params.picFileTitle = docFileTitle
+            String filePath = grailsAttributes.getApplicationContext().getResource("images/repository/Comity/DOC_").getFile().toString() + "\\" + docFileTitle
+            file.transferTo(new File(filePath))
+            params.file_url_ = docFileTitle
+        }
+        /*image processing end*/
         def COMITYInstance = COMITY.get(id)
 //        def COMITYInstanceForDelete = COMITY.get(id)
 //        COMITYInstanceForDelete.delete()
@@ -100,7 +127,7 @@ class COMITYController {
         }
 
 //        COMITYInstance.properties = params
-        COMITYInstance.properties["ID","COMITY_NAME","WORK_PURPOSE","DESCRIPTION","START_DATE","END_DATE","IS_ACTIVE"]=params
+        COMITYInstance.properties["ID","COMITY_NAME","WORK_PURPOSE","DESCRIPTION","START_DATE","END_DATE","file_url_","IS_ACTIVE"]=params
 
         int i=0
 //        def allDtl=COMITY_DTL(params.id)
@@ -168,5 +195,12 @@ class COMITYController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'COMITY.label', default: 'COMITY'), id])
             redirect(action: "show", id: id)
         }
+    }
+    def downloadFile={
+        def  fName=params.file_url_
+        String cvAbsolutePath = grailsAttributes.getApplicationContext().getResource("images/repository/Comity/DOC_/"+fName+"").getFile().toString()
+        def file = new File(cvAbsolutePath); //<-- you'll probably want to pass in the file name dynamically with the 'params' map
+        response.setHeader("Content-disposition", "attachment;filename=${file.getName()}")
+        response.outputStream << file.newInputStream()
     }
 }
