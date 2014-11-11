@@ -58,7 +58,7 @@
                 $("#pConveyance").val(parseFloat(data[3]));
                 $("#pWashingAllow").val(parseFloat(data[4]));
                 $("#pMedicalAllowance").val(parseFloat(data[5]));
-                $("#pOrgPfContribution").val(parseFloat(data[6]));
+               // $("#pOrgPfContribution").val(parseFloat(data[6]));
                 $("#totalPayable").val(parseFloat(data[7]));
 
                 //Edit By Maruf
@@ -80,20 +80,50 @@
     // Net Payable Salary
     function getNetPayableSalary()
     {
-        document.getElementById("totalPayable").value = parseFloat(document.getElementById("pBasic").value)+parseFloat(document.getElementById("pDa").value)+parseFloat(document.getElementById("pHr").value)+parseFloat(document.getElementById("pConveyance").value)+parseFloat(document.getElementById("pWashingAllow").value)+parseFloat(document.getElementById("pMedicalAllowance").value)+parseFloat(document.getElementById("pOrgPfContribution").value);
+       // getExpectedFieldValue("totalPayable","pBasic:pDa:pConveyance:pHr:pWashingAllow:pMedicalAllowance:festivalAllowance:extraLoadAllowance:conveyanceAllowance:hillAllowance:educationAllowance");
+        getExpectedFieldValue("totalPayable","pBasic:pDa:pConveyance:pHr:pWashingAllow:pMedicalAllowance:festivalAllowance:extraLoadAllowance:conveyanceAllowance:hillAllowance:educationAllowance");
+        //document.getElementById("totalPayable").value = parseFloat(document.getElementById("pBasic").value)+parseFloat(document.getElementById("pDa").value)+parseFloat(document.getElementById("pHr").value)+parseFloat(document.getElementById("pConveyance").value)+parseFloat(document.getElementById("pWashingAllow").value)+parseFloat(document.getElementById("pMedicalAllowance").value)+parseFloat(document.getElementById("festivalAllowance").value)+parseFloat(document.getElementById("extraLoadAllowance").value)+parseFloat(document.getElementById("conveyanceAllowance").value)+parseFloat(document.getElementById("hillAllowance").value)+parseFloat(document.getElementById("educationAllowance").value);
         document.getElementById("totalOtherPayable").value = parseFloat(document.getElementById("spAllowance").value)+parseFloat(document.getElementById("spDaAllowance").value)+parseFloat(document.getElementById("addSpAllowance").value)+parseFloat(document.getElementById("spRetro").value)+parseFloat(document.getElementById("retroPf").value);
         document.getElementById("totalMonthlyEarnings").value = parseFloat(document.getElementById("totalPayable").value) + parseFloat(document.getElementById("totalOtherPayable").value);
-        document.getElementById("totalDeduction").value = parseFloat(document.getElementById("dLoanSalary").value)+parseFloat(document.getElementById("dLoanPf").value)+parseFloat(document.getElementById("dOwnPf").value)+parseFloat(document.getElementById("dOthers").value)+parseFloat(document.getElementById("dIncomeTax").value)+parseFloat(document.getElementById("dRevenueStamp").value)+parseFloat(document.getElementById("dGroupInsurance").value);
-        document.getElementById("netMonthlyPayable").value = parseFloat(document.getElementById("totalMonthlyEarnings").value) - parseFloat(document.getElementById("totalDeduction").value);
+        document.getElementById("totalDeduction").value = parseFloat(document.getElementById("dLoanSalary").value)+parseFloat(document.getElementById("dLoanPf").value)+parseFloat(document.getElementById("dOwnPf").value)+parseFloat(document.getElementById("dOthers").value)+parseFloat(document.getElementById("dIncomeTax").value)+parseFloat(document.getElementById("dGroupInsurance").value);
+        document.getElementById("netMonthlyPayable").value = (parseFloat(document.getElementById("totalMonthlyEarnings").value) - parseFloat(document.getElementById("totalDeduction").value))+parseFloat(document.getElementById("consultantRemuneration").value);
     }
+
+    function getExpectedFieldValue(v,idString){
+        var returnVal=0.0
+        var fldValF
+        var fldVal
+        var id=v
+        var idStr=idString
+        var subStr=idStr.split(":")
+
+        for(var i=0;i<subStr.length;i++ ){
+
+            fldVal=document.getElementById(subStr[i]).value;
+
+            if(fldVal.trim()==""){
+                fldVal=0.0
+            }else{
+                fldValF= parseFloat(fldVal);
+            }
+            if(fldValF==""){
+                returnVal=0.0;
+            }
+            else{
+                returnVal=parseFloat(returnVal)+fldValF;
+            }
+        }
+        document.getElementById(id).value =returnVal;
+    }
+
 </script>
 
 <div style="width: 100%; height: 100%; background: #fff; padding: 1%;border: 1px solid #ccc;">
-    <table class="promint_block">
+    <table class="promint_block" style="width: 100%;">
         <tr class="captionSpaceFirst">
             <td class="captionSpaceFirst">
 
-                <div class="col-xs-6">
+                <div class="col-xs-4">
                     <div class="form-group">
                         <label for="payScaleId"><g:message code="hrEmployee.payScaleId.label" default="Current Grade" /></label>
                         <g:select id="payScaleId" name="payScaleId" optionKey="id" optionValue="gradeNo" from="${hrms.HrPayscale.list()}"
@@ -101,10 +131,28 @@
 
                     </div>
                 </div>
-                <div class="col-xs-6">
+                %{--<div class="col-xs-6">
                     <div class="form-group">
                         <label for="stage"><g:message code="hrEmployee.stage.label" default="Current Stage" /></label>
                         <g:select id="stage" name="stage" optionKey="stage" optionValue="stage" from="" value="" noSelection="['':'-Select One-']" onchange="getStageData();" class="form-control"/>
+                    </div>
+                </div>--}%
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="width: 100%; height: 100%; background: #fff; padding: 1%;border: 1px solid #ccc;">
+    <table class="promint_block" style="width: 100%;">
+        <tr class="captionSpaceFirst">
+            <td class="captionSpaceFirst">
+
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label for="consultantRemuneration"><g:message code="hrEmployee.consultantRemuneration.label" default="Consultant Remuneration" /></label>
+                        %{--<g:textField id="pBasic" name="pBasic" value="${pBasic?:0}"  readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />--}%
+                        <g:textField id="consultantRemuneration" name="consultantRemuneration" value="${consultantRemuneration?:0}"   onchange="getNetPayableSalary();" class="form-control" />
                     </div>
                 </div>
 
@@ -122,57 +170,99 @@
                 <div class="col-xs-4">
                     <div class="form-group">
                         <label for="pBasic"><g:message code="hrEmployee.pBasic.label" default="Basic" /></label>
-                        <g:textField id="pBasic" name="pBasic" value="${pBasic?:0}"  readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />
+                        %{--<g:textField id="pBasic" name="pBasic" value="${pBasic?:0}"  readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />--}%
+                        <g:textField id="pBasic" name="pBasic" value="${pBasic?:0}"   onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
                     </div>
                 </div>
 
                 <div class="col-xs-4">
                     <div class="form-group">
                         <label for="pDa"><g:message code="hrEmployee.pDa.label" default="Dearness Allowance" /></label>
-                        <g:textField id="pDa" name="pDa" value="${pDa?:0}" readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />
+                       %{-- <g:textField id="pDa" name="pDa" value="${pDa?:0}" readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />--}%
+                        <g:textField id="pDa" name="pDa" value="${pDa?:0}"  onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
                     </div>
                 </div>
 
                 <div class="col-xs-4">
                     <div class="form-group">
                         <label for="pConveyance"><g:message code="hrEmployee.pConveyance.label" default="Conveyance Allowance" /></label>
-                        <g:textField id="pConveyance" name="pConveyance" value="${pConveyance?:0}"  readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />
+                        %{--<g:textField id="pConveyance" name="pConveyance" value="${pConveyance?:0}"  readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />--}%
+                        <g:textField id="pConveyance" name="pConveyance" value="${pConveyance?:0}"    onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
                     </div>
                 </div>
 
                 <div class="col-xs-4">
                     <div class="form-group">
                         <label for="pHr"><g:message code="hrEmployee.pHr.label" default="House Rent" /></label>
-                        <g:textField id="pHr" name="pHr" value="${pHr?:0}" readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />
+                        %{--<g:textField id="pHr" name="pHr" value="${pHr?:0}" readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />--}%
+                        <g:textField id="pHr" name="pHr" value="${pHr?:0}"   onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
                     </div>
                 </div>
 
                 <div class="col-xs-4">
                     <div class="form-group">
                         <label for="pWashingAllow"><g:message code="hrEmployee.pWashingAllow.label" default="Uniform Washing Allowance" /></label>
-                        <g:textField id="pWashingAllow" name="pWashingAllow" value="${pWashingAllow?:0}"   readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />
+                        %{--<g:textField id="pWashingAllow" name="pWashingAllow" value="${pWashingAllow?:0}"   readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />--}%
+                        <g:textField id="pWashingAllow" name="pWashingAllow" value="${pWashingAllow?:0}"     onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
                     </div>
                 </div>
 
                 <div class="col-xs-4">
                     <div class="form-group">
                         <label for="pMedicalAllowance"><g:message code="hrEmployee.pMedicalAllowance.label" default="Medical Allowance" /></label>
-                        <g:textField id="pMedicalAllowance" name="pMedicalAllowance" value="${pMedicalAllowance?:0}" readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />
+                      %{--  <g:textField id="pMedicalAllowance" name="pMedicalAllowance" value="${pMedicalAllowance?:0}" readonly="readonly" onchange="getNetPayableSalary();" class="form-control" />--}%
+                        <g:textField id="pMedicalAllowance" name="pMedicalAllowance" value="${pMedicalAllowance?:0}"   onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
                     </div>
                 </div>
 
                 <div class="col-xs-4">
+                    <div class="form-group">
+                        <label for="festivalAllowance"><g:message code="hrEmployee.festivalAllowance.label" default="Festival Allowance" /></label>
+                        <g:textField id="festivalAllowance" name="festivalAllowance" value="${festivalAllowance?:0}" onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label for="extraLoadAllowance"><g:message code="hrEmployee.extraLoadAllowance.label" default="ExtraLoad Allowance" /></label>
+                        <g:textField id="extraLoadAllowance" name="extraLoadAllowance" value="${extraLoadAllowance?:0}" onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label for="conveyanceAllowance"><g:message code="hrEmployee.conveyanceAllowance.label" default="Conveyance Allowance" /></label>
+                        <g:textField id="conveyanceAllowance" name="conveyanceAllowance" value="${conveyanceAllowance?:0}" onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label for="hillAllowance"><g:message code="hrEmployee.hillAllowance.label" default="Hill Allowance" /></label>
+                        <g:textField id="hillAllowance" name="hillAllowance" value="${hillAllowance?:0}" onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label for="educationAllowance"><g:message code="hrEmployee.educationAllowance.label" default="Education Allowance" /></label>
+                        <g:textField id="educationAllowance" name="educationAllowance" value="${educationAllowance?:0}" onchange="getNetPayableSalary();" onkeyup="getNetPayableSalary();" class="form-control" />
+                    </div>
+                </div>
+
+%{--                <div class="col-xs-4">
                     <div class="form-group">
                         <label for="pOrgPfContribution"><g:message code="hrEmployee.pOrgPfContribution.label" default="University PF Contribution" /></label>
                         <g:textField id="pOrgPfContribution" name="pOrgPfContribution" value="${pOrgPfContribution?:0}"
                                      onchange="getNetPayableSalary(); changePFContributionValue(this.id);" onkeyup="getNetPayableSalary(); changePFContributionValue(this.id);" class="form-control" />
                     </div>
-                </div>
+                </div>--}%
 
                 <div class="col-xs-4">
                     <div class="form-group">
                         <label for="totalPayable"><g:message code="hrEmployee.totalPayable.label" default="Monthly Earnings" /></label>
-                        <g:textField id="totalPayable" name="totalPayable" value="${totalPayable?:0}" readonly="readonly" class="form-control" />
+                        %{--<g:textField id="totalPayable" name="totalPayable" value="${totalPayable?:0}" readonly="readonly" class="form-control" />--}%
+                        <g:textField id="totalPayable" name="totalPayable" value="${totalPayable?:0}"   class="form-control" readonly="readonly"/>
                     </div>
                 </div>
 
@@ -211,7 +301,7 @@
                 <div class="col-xs-4">
                     <div class="form-group">
                         <label for="spRetro"><g:message code="hrEmployee.spRetro.label" default="Special Retro" /></label>
-                        <g:textField id="spRetro" name="spRetro" value="${totalPayable?:0}" onchange="getNetPayableSalary();" class="form-control" />
+                        <g:textField id="spRetro" name="spRetro" value="${spRetro?:0}" onchange="getNetPayableSalary();" class="form-control" />
                     </div>
                 </div>
 
@@ -222,10 +312,13 @@
                     </div>
                 </div>
 
+
+
                 <div class="col-xs-4">
                     <div class="form-group">
                         <label for="pWashingAllow"><g:message code="hrEmployee.pWashingAllow.label" default="Monthly Other Earnings" /></label>
-                        <g:textField id="totalOtherPayable" name="totalOtherPayable" value="${totalOtherPayable?:0}" readonly="readonly" class="form-control" />
+                        %{--<g:textField id="totalOtherPayable" name="totalOtherPayable" value="${totalOtherPayable?:0}" readonly="readonly" class="form-control" />--}%
+                        <g:textField id="totalOtherPayable" name="totalOtherPayable" value="${totalOtherPayable?:0}"   class="form-control" />
                     </div>
                 </div>
 
@@ -282,12 +375,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-4">
+               %{--  <div class="col-xs-4">
                     <div class="form-group">
                         <label for="dRevenueStamp"><g:message code="hrEmployee.dRevenueStamp.label" default="Revenue Stamp" /></label>
                         <g:textField id="dRevenueStamp" name="dRevenueStamp" value="${dRevenueStamp?:10}" onchange="getNetPayableSalary();" class="form-control" />
                     </div>
-                </div>
+                </div>--}%
 
                 <div class="col-xs-4">
                     <div class="form-group">
@@ -338,15 +431,13 @@
 </div>
 
 <div style="width: 100%; height: 100%; background: #fff; padding: 1%;border: 1px solid #ccc;">
-
-    <table class="promint_block">
+    <table class="promint_block" style="width: 100%;">
         <tr class="captionSpaceFirst">
             <td class="captionSpaceFirst">
-
-                <div class="col-xs-4">
+                <div class="col-xs-10">
                     <div class="form-group">
                         <label for="payrollRemarks"><g:message code="hrEmployee.payrollRemarks.label" default="Remarks" /></label>
-                        <g:textArea id="payrollRemarks" name="payrollRemarks" value="" style="width:800%; height: 100%;"  class="form-control" />
+                        <g:textArea id="payrollRemarks" name="payrollRemarks" value=""   class="form-control" />
                     </div>
                 </div>
             </td>

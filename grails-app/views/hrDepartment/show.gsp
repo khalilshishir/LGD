@@ -41,7 +41,7 @@
                             </span>
                         </li>
                     </g:if>
-                    <g:if test="${hrDepartmentInstance?.shortName}">
+                    %{--<g:if test="${hrDepartmentInstance?.shortName}">
                         <li class="fieldcontain">
                             <span id="shortName1-label" class="property-label">
                                 <g:message code="hrDepartment.shortName.label" default="Short Name : "/>
@@ -50,7 +50,7 @@
                                 <g:fieldValue bean="${hrDepartmentInstance}" field="shortName"/>
                             </span>
                         </li>
-                    </g:if>
+                    </g:if>--}%
                     <g:if test="${hrDepartmentInstance?.sortOrder}">
                         <li class="fieldcontain">
                             <span id="sortOrder1-label" class="property-label">

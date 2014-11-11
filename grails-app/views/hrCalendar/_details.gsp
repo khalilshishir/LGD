@@ -137,7 +137,7 @@
 <br/><br/>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" id="detailList" class="common-list-table">
-    <tr>
+    <tr style="background-color: #0188D1; font-family: arial;font-size: 12px; font-weight: bold; color: white; height: 25px;">
         <th>Calendar Year</th>
         <th>Start Date</th>
         <th>End Date</th>

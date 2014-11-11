@@ -54,17 +54,17 @@
 
     <td>--}%
     <g:select name="hrHolidayCalendars[${i}].holidayTypeIdHrLookup" id="holidayTypeIdHrLookup${i}"
-    from="${HrLookup.findAllByHrLookupTypeIdLookupType(HrLookupType.findByLookupType('HOLIDAY TYPE'))}" optionKey="id" optionValue="lookupValue" value="${hrHolidayCalendar?.holidayTypeIdHrLookup?.id}"/>
+    from="${HrLookup.findAllByHrLookupTypeIdLookupType(HrLookupType.findByLookupType('HOLIDAY TYPE'))}" optionKey="id" optionValue="lookupValue" value="${hrHolidayCalendar?.holidayTypeIdHrLookup?.id}" class="form-control"/>
     </td>
 
     <td>
         <g:select name="hrHolidayCalendars[${i}].holidayTypeDescIdHrLookup" id="holidayTypeDescIdHrLookup${i}"
-                  from="${HrLookup.findAllByHrLookupTypeIdLookupType(HrLookupType.findByLookupType('HOLIDAY DESCRIPTION'))}" optionKey="id" optionValue="lookupValue" value="${hrHolidayCalendar?.holidayTypeDescIdHrLookup?.id}"/>
+                  from="${HrLookup.findAllByHrLookupTypeIdLookupType(HrLookupType.findByLookupType('HOLIDAY DESCRIPTION'))}" optionKey="id" optionValue="lookupValue" value="${hrHolidayCalendar?.holidayTypeDescIdHrLookup?.id}" class="form-control"/>
     </td>
 
-    <td><g:textField id='startDate${i}' name='hrHolidayCalendars[${i}].startDate' value="${formatDate(format:'dd/MM/yyyy',date:hrHolidayCalendar?.startDate)}" class="sDate" style="text-align: center;" onchange="getDays();"/></td>
-    <td><g:textField id='endDate${i}' name='hrHolidayCalendars[${i}].endDate' value="${formatDate(format:'dd/MM/yyyy',date:hrHolidayCalendar?.endDate)}" class="eDate" style="text-align: center;" onchange="getDays();"/></td>
-    <td><g:textField id='totalDays${i}' name='hrHolidayCalendars[${i}].totalDays' value='${hrHolidayCalendar?.totalDays}' class="totalDays" style="text-align: center;width: 60px;"/></td>
+    <td><g:textField id='startDate${i}' name='hrHolidayCalendars[${i}].startDate' value="${formatDate(format:'dd/MM/yyyy',date:hrHolidayCalendar?.startDate)}"   style="text-align: center;" onchange="getDays();" class="sDate form-control"/></td>
+    <td><g:textField id='endDate${i}' name='hrHolidayCalendars[${i}].endDate' value="${formatDate(format:'dd/MM/yyyy',date:hrHolidayCalendar?.endDate)}"   style="text-align: center;" onchange="getDays();" class="eDate form-control"/></td>
+    <td><g:textField id='totalDays${i}' name='hrHolidayCalendars[${i}].totalDays' value='${hrHolidayCalendar?.totalDays}'   style="text-align: center; " class="totalDays form-control"/></td>
 
 
     <td><span class='delButton' id='delButton${i}' name='results[${i}].delButton'><img

@@ -412,10 +412,21 @@
                 <g:if test="${hrEmployeeInstance?.noticePeriod}">
                     <li class="fieldcontain">
                         <span id="noticePeriod1-label" class="property-label">
-                            <g:message code="hrEmployee.noticePeriod.label" default="Notice Period : "/>
+                            <g:message code="hrEmployee.noticePeriod.label" default="Notice Period (Month): "/>
                         </span>
                         <span class="property-value" aria-labelledby="noticePeriod-label">
                             <g:fieldValue bean="${hrEmployeeInstance}" field="noticePeriod"/>
+                        </span>
+                    </li>
+                </g:if>
+
+                <g:if test="${hrEmployeeInstance?.probationaryPeriod}">
+                    <li class="fieldcontain">
+                        <span id="probationaryPeriod1-label" class="property-label">
+                            <g:message code="hrEmployee.probationaryPeriod.label" default="Probationary Period (Month) : "/>
+                        </span>
+                        <span class="property-value" aria-labelledby="probationaryPeriod-label">
+                            <g:fieldValue bean="${hrEmployeeInstance}" field="probationaryPeriod"/>
                         </span>
                     </li>
                 </g:if>
@@ -432,16 +443,7 @@
                 </g:if>
 
 
-            <g:if test="${hrEmployeeInstance?.probationaryPeriod}">
-                <li class="fieldcontain">
-                    <span id="probationaryPeriod1-label" class="property-label">
-                        <g:message code="hrEmployee.probationaryPeriod.label" default="Probationary Period : "/>
-                    </span>
-                    <span class="property-value" aria-labelledby="probationaryPeriod-label">
-                        <g:fieldValue bean="${hrEmployeeInstance}" field="probationaryPeriod"/>
-                    </span>
-                </li>
-            </g:if>
+
 
             <g:if test="${hrEmployeeInstance?.regularationDate}">
                 <li class="fieldcontain">
@@ -520,6 +522,20 @@
                         </span>
                         <span class="property-value" aria-labelledby="perBlockNo-label">
                             <g:fieldValue bean="${hrEmployeeInstance}" field="perBlockNo"/>
+                        </span>
+                    </li>
+                </g:if>
+
+              <g:if test="${hrEmployeeInstance?.emplDocName}">
+                    <li class="fieldcontain">
+                        <span id="emplDocName1-label" class="property-label">
+                            <g:message code="default.download.doc.label" default="Document : "/>
+                        </span>
+                        <span class="property-value" aria-labelledby="emplDocName-label">
+                            <g:form>
+                                <input type="hidden" name="emplDocName" id="emplDocName" value="${hrEmployeeInstance?.emplDocName}"/>
+                                <g:actionSubmit class="btn btn-success" action="downloadFile" value="${message(code: 'default.button.download.label', default: 'Click Here To Download The Uploaded Document')}"  />
+                            </g:form>
                         </span>
                     </li>
                 </g:if>

@@ -394,9 +394,9 @@
                     var repCardNo=str[3]
 
                     // document.getElementById('departmentLbl').innerHTML= "Department:"
-                    document.getElementById('departmentFld').innerHTML= departmentName
+                    document.getElementById('departmentFld').value= departmentName
                    // document.getElementById('designationLbl').innerHTML= "Designation:"
-                    document.getElementById('designationFld').innerHTML= designationName
+                    document.getElementById('designationFld').value= designationName
                     document.getElementById('repEmployeeId').value= repEmployeeId
                     document.getElementById('repCardNo').value= repCardNo
                 },
@@ -426,9 +426,9 @@
                     var employeeName=str[3]
 
                     // document.getElementById('departmentLbl').innerHTML= "Department:"
-                    document.getElementById('departmentFld').innerHTML= departmentName
+                    document.getElementById('departmentFld').value= departmentName
                    // document.getElementById('designationLbl').innerHTML= "Designation:"
-                    document.getElementById('designationFld').innerHTML= designationName
+                    document.getElementById('designationFld').value= designationName
                     document.getElementById('repEmployeeId').value= repEmployeeId
                     document.getElementById('repEmployeeName').value= employeeName
                 },
@@ -476,7 +476,7 @@
        var val=document.getElementById(fldId).value;
         if(fldId=='officeInTime'){
             if(val==null || val==''){
-                document.getElementById(fldId).value='8:30'
+                document.getElementById(fldId).value='09:00'
             }
         }
         if(fldId='officeOutTime'){
@@ -564,7 +564,7 @@
 <div class="col-xs-4">
     <div class="form-group">
         <label for="confirmationDate2"><g:message code="hrEmployee.confirmationDate2.label" default="Confirmation Date" /></label>
-        <g:textField id="confirmationDate2" name="confirmationDate2" value="${formatDate(format:'dd/MM/yyyy',date:hrEmployeeInstance?.confirmationDate != null?hrEmployeeInstance?.confirmationDate:null)}"
+        <g:textField id="confirmationDate2" name="confirmationDate2" value="${formatDate(format:'dd/MM/yyyy',date:hrEmployeeInstance?.confirmationDate != null?hrEmployeeInstance?.confirmationDate:new Date())}"
                      style="text-align: center;" readonly="readonly"  required="" onKeyPress="return numberAndSlashOnly(event)" onblur="getMonths();" class="form-control"/>
     </div>
 </div>
@@ -623,11 +623,24 @@
 <div class="col-xs-4">
     <div class="form-group">
         <label for="employeeTypeIdHrLookup"><g:message code="hrEmployee.employeeTypeIdHrLookup.label" default="Type of Employment" /></label>
-        <g:select id="employeeTypeIdHrLookup"  name="employeeTypeIdHrLookup.id" onchange="showHideTr('employeeTypeIdHrLookup','contractExpiredDateLbl','contractExpiredDateFld');
+    %{--    <g:select id="employeeTypeIdHrLookup"  name="employeeTypeIdHrLookup.id" onchange="showHideTr('employeeTypeIdHrLookup','contractExpiredDateLbl','contractExpiredDateFld');
         check_InputField('employeeTypeIdHrLookup','contractExpiredDate','Please provide data for Contract Expires/ed on.');" from="${HrLookup.findAllByHrLookupTypeIdLookupType(HrLookupType.findByLookupType('EMPLOYEE TYPE'))}" optionKey="id"
-                  value="${hrEmployeeInstance?.employeeTypeIdHrLookup?.id}" required=""  noSelection="['':'-Select One-']"  class="form-control"/>
+                  value="${hrEmployeeInstance?.employeeTypeIdHrLookup?.id}" required=""  noSelection="['':'-Select One-']"  class="form-control"/>--}%
+
+        <select id="employeeTypeIdHrLookup"  name="employeeTypeIdHrLookup.id" required="" class="form-control">
+            <option value="" > -- Select -- </option>
+            <g:each in="${employeeTypeList}" var="employeeTypeInfo">
+                <g:if test="${hrEmployeeInstance?.employeeTypeIdHrLookup?.id==employeeTypeInfo.LOOKUP_ID}">
+                    <option value="${employeeTypeInfo.LOOKUP_ID}" selected="selected">${employeeTypeInfo.LOOKUP_VALUE}</option>
+                </g:if>
+                <g:else>
+                    <option value="${employeeTypeInfo.LOOKUP_ID}">${employeeTypeInfo.LOOKUP_VALUE}</option>
+                </g:else>
+            </g:each>
+        </select>
     </div>
 </div>
+%{--
 <div class="col-xs-4">
     <div class="form-group">
         <label for="currentGrade"><g:message code="hrEmployee.currentGrade.label" default="Current Grade" /></label>
@@ -660,8 +673,9 @@
                   value="${hrEmployeeInstance?.resignationType}" noSelection="['':'-Select One-']" class="form-control" />
     </div>
 </div>
+--}%
 
-<div class="col-xs-4">
+%{--<div class="col-xs-4">
     <div class="form-group">
         <label for="accountingInfoIdHrLookup"><g:message code="hrEmployee.accountingInfoIdHrLookup.label" default="Accounting Information" /></label>
         <select id="accountingInfoIdHrLookup" name="accountingInfoIdHrLookup.id" required="" class="form-control">
@@ -676,7 +690,7 @@
             </g:each>
         </select>
     </div>
-</div>
+</div>--}%
 <div class="col-xs-4">
     <div class="form-group">
         <label for="serviceLengthYYMMDD"><g:message code="hrEmployee.tinCircle.label" default="Service Length" /></label>    <br>
@@ -686,7 +700,7 @@
     </div>
 </div>
 
-<div class="col-xs-4">
+%{--<div class="col-xs-4">
     <div class="form-group">
         <label for="employeeCategoryIdHrLookup"><g:message code="hrEmployee.employeeCategoryIdHrLookup.label" default="Employee Category" /></label>
         <select id="employeeCategoryIdHrLookup" name="employeeCategoryIdHrLookup.id" required="" class="form-control">
@@ -701,7 +715,7 @@
             </g:each>
         </select>
     </div>
-</div>
+</div>--}%
 
 <div class="col-xs-4">
     <div class="form-group">
@@ -752,6 +766,20 @@
         </span>
     </div>
 </div>
+%{--<div class="col-xs-4">
+    <div class="form-group">
+        <label id="branchId_lbl"><g:message code="hrEmployee.branchId.label" default="Branch Name" /></label>
+       --}%%{-- <label for="paymentTypeIdHrLookup"></label>--}%%{--
+        <span id="branchId_fld">
+            <g:select id="branchId" name="branchId" from="${AfmBankInfo.list()}" optionKey="id" required="" optionValue="bankName"
+                  value="${hrEmployeeInstance?.bankId}" noSelection="['':'-Select One-']" onchange="getBranchName();" class="form-control"/>
+
+        <span id="bankAcNo_fld"><g:textField id="bankAcNo" name="bankAcNo" value="${hrEmployeeInstance?.bankAcNo}" required="" class="form-control"/></span>
+
+
+    </span>
+    </div>
+</div>--}%
 
 %{--<div class="col-xs-4">
     <div class="form-group">
@@ -816,17 +844,21 @@
                         </g:else>
                     </div>
                 </div>
-
+%{--                document.getElementById('departmentFld').innerHTML= departmentName
+                // document.getElementById('designationLbl').innerHTML= "Designation:"
+                document.getElementById('designationFld').innerHTML= designationName
+                document.getElementById('repEmployeeId').value= repEmployeeId
+                document.getElementById('repCardNo').value= repCardNo--}%
 
                 <div class="col-xs-4">
                     <div class="form-group">
                         <label for="departmentName"><g:message code="hrEmployee.repEmployeeName.label" default="Department" /></label>
                         <g:if test="${hrEmployeeInstance?.repEmployeeId != null}">
-                            <g:textField id="departmentName" name="departmentName"  style="font-weight: bold;" readonly="readonly"
+                            <g:textField id="departmentFld" name="departmentFld"  style="font-weight: bold;" readonly="readonly"
                                          value="${HrEmployee.findById(hrEmployeeInstance?.repEmployeeId)?.departmentIdHrDepartment?.departmentName}" class="form-control"/>
                         </g:if>
                         <g:else>
-                            <g:textField id="departmentName" name="departmentName"  style="font-weight: bold;" readonly="readonly"
+                            <g:textField id="departmentFld" name="departmentFld"  style="font-weight: bold;" readonly="readonly"
                                          value="" class="form-control"/>
                         </g:else>
                     </div>
@@ -835,14 +867,16 @@
                     <div class="form-group">
                         <label for="designationName"><g:message code="hrEmployee.repEmployeeName.label" default="Designation" /></label>
                         <g:if test="${hrEmployeeInstance?.repEmployeeId != null}">
-                            <g:textField id="designationName" name="designationName"  style="font-weight: bold;"  readonly="readonly"
+                            <g:textField id="designationFld" name="designationFld"  style="font-weight: bold;"  readonly="readonly"
                                          value="${HrEmployee.findById(hrEmployeeInstance?.repEmployeeId)?.designationIdHrDesignation?.designationName}" class="form-control"/>
 
                         </g:if>
                         <g:else>
-                            <g:textField id="designationName" name="designationName"  style="font-weight: bold;"  readonly="readonly"
+                            <g:textField id="designationFld" name="designationFld"  style="font-weight: bold;"  readonly="readonly"
                                          value="" class="form-control"/>
                         </g:else>
+
+                        <g:hiddenField name="repEmployeeId" id="repEmployeeId" style="width:50px;" value="${hrEmployeeInstance?.repEmployeeId}" class="mid-size-input"/>
                     </div>
                 </div>
 
@@ -1071,7 +1105,7 @@
 </div>
 
 <div style="width: 100%; height: 100%; background: #fff; padding: 1%;border: 1px solid #ccc;">
-    <h2>Present Address</h2>
+    <h2>Permanent Address</h2>
     <table class="promint_block">
         <tr class="captionSpaceFirst">
             <td class="captionSpaceFirst">
@@ -1163,6 +1197,27 @@
                     </div>
                 </div>
 
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="width: 100%; height: 100%; background: #fff; padding: 1%;border: 1px solid #ccc;">
+    <h2>Employee Document</h2>
+    <table class="promint_block">
+        <tr class="captionSpaceFirst">
+            <td class="captionSpaceFirst">
+                <g:if test="${hrEmployeeInstance?.emplDocName}">
+                    <div id="newImg" style="width: 100%; background: #fff; padding: 5px;border: 1px solid #ccc;">
+                                <g:message code="default.uploaded.fileName.label" default="FileName : "/>
+                                ${hrEmployeeInstance?.emplDocName}
+                    </div>
+                </g:if>
+
+                <br/>
+                <div style="width: 100%; background: #fff; padding: 5px;border: 1px solid #ccc;">
+                    <g:message code="default.download.doc.label" default="Document : " />  <input type="file" id="emplDocPath" name="emplDocPath"/>
+                </div>
             </td>
         </tr>
     </table>

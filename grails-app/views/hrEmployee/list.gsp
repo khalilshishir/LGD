@@ -89,6 +89,8 @@
     <a style="color:#666; font-size: 11px;" class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
     |
     <a style="color:#666; font-size: 11px;" href="#"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></a>
+    |
+    <a style="color:#666; font-size: 11px;" href="#"><g:link class="create" controller="hrReport" action="hrReportPage">Employee Report Page</g:link></a>
 </p>
 <div id="list-hrEmployee" class="content scaffold-list" role="main">
     %{--<h1><g:message code="default.list.label" args="[entityName]"/></h1>--}%

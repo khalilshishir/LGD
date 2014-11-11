@@ -55,7 +55,10 @@
             </g:each>
             </tbody>
         </table>
-    </div>
 
+    </div>
+    <div class="pagination">
+        <g:paginate total="${hrLookupTypeInstanceTotal}" />
+    </div>
 	</body>
 </html>

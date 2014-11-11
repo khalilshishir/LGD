@@ -52,7 +52,7 @@
 
             <div class="panel-body">
 
-                <g:form action="save" >
+                <g:form action="save" enctype="multipart/form-data">
                     <fieldset class="form">
 
                         %{------ tab page add for all page shows ---------}%
@@ -61,7 +61,7 @@
 
                             <ul>
                                 <li><a href="#tabs-1">Personal Information</a></li>
-                                <li><a href="#tabs-2">Others Information</a></li>
+                                %{--<li><a href="#tabs-2">Others Information</a></li>--}%
                                 <li><a href="#tabs-3">Monthly Payable Salary</a></li>
                                 <li><a href="#tabs-4">Photograph</a></li>
 
@@ -71,14 +71,14 @@
                                 <g:render template="form"/>
                             </div>
 
-                            <div id="tabs-2">%{--Education & Training--}%
+%{--                            <div id="tabs-2">--}%%{--Education & Training--}%%{--
                                 <g:render template="dt_hrEmpEducation"/>
                                 <g:render template="dt_hrEmpPorfQual"/>
                                 <g:render template="dt_hrEmpPorfExp"/>
                                 <g:render template="dt_hrEmployeeTraining"/>
                                 <g:render template="dt_hrEmpPublication"/>
                                 <g:render template="dt_hrEmployeeReference"/>
-                            </div>
+                            </div>--}%
 
                             <div id="tabs-3">
                                  <g:render template="dt_hrEmpPayInfoSetup"/>

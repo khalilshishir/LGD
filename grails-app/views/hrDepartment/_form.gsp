@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="col-xs-4">
+%{--<div class="col-xs-4">
     <div class="form-group">
         <label for="school">
             <g:message code="hrDepartment.school.label" default="School Name" />
@@ -24,7 +24,7 @@
         </label>
         <g:select class="form-control" id="school" name="school.id" from="${HrSchool.list()}" optionKey="id" optionValue="schoolName" noSelection="${['': 'Select One']}" required="" value="${hrDepartmentInstance?.school?.id}"/>
     </div>
-</div>
+</div>--}%
 
 <div class="col-xs-4">
     <div class="form-group">

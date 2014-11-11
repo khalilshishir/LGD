@@ -15,28 +15,28 @@
         <tr>
             <td style="width: 180px;">Calendar Year:</td>
             <td>
-                <g:textField id="calendarYear" name="calendarYear"  value="${hrCalendarInstance?.calendarYear}" class="calendarYearName" style="text-align: center;"/>
+                <g:textField id="calendarYear" name="calendarYear"  value="${hrCalendarInstance?.calendarYear}" required=""   style="text-align: center;" class='calendarYearName form-control'/>
             </td>
         </tr>
 
         <tr>
             <td style="width: 180px;">Starting Month:</td>
             <td>
-                <g:textField id="startMonth" name="startMonth" value="${formatDate(format:'dd/MM/yyyy',date:hrCalendarInstance?.startMonth)}" style="text-align: center;" class="startMonth"/>
+                <g:textField id="startMonth" name="startMonth" required="" value="${formatDate(format:'dd/MM/yyyy',date:hrCalendarInstance?.startMonth)}" style="text-align: center;"   class='startMonth form-control'/>
             </td>
         </tr>
 
         <tr>
             <td style="width: 180px;">Ending Month:</td>
             <td>
-                <g:textField id="endMonth" name="endMonth" value="${formatDate(format:'dd/MM/yyyy',date:hrCalendarInstance?.endMonth)}" style="text-align: center;" class="endMonth"/>
+                <g:textField id="endMonth" name="endMonth" required="" value="${formatDate(format:'dd/MM/yyyy',date:hrCalendarInstance?.endMonth)}" style="text-align: center;" class='endMonth form-control'/>
             </td>
         </tr>
 
         %{--<tr>
             <td style="width: 180px;text-align: right">Name of Designation:</td>
             <td>
-                <g:select id="desingationIdHrDesignation" name="desingationIdHrDesignation.id" from="${hrms.HrDesignation.list()}" optionKey="id" required="" value="${hrPayscaleInstance?.desingationIdHrDesignation?.id}" class="many-to-one" noSelection="['null':'-Select One-']"/>
+                <g:select id="desingationIdHrDesignation" name="desingationIdHrDesignation.id" from="${hrms.HrDesignation.list()}" optionKey="id" required="" value="${hrPayscaleInstance?.desingationIdHrDesignation?.id}"   noSelection="['null':'-Select One-']" class="form-control'/>
             </td>
         </tr>--}%
     </table>

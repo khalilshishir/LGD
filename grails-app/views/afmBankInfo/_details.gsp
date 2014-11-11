@@ -153,7 +153,7 @@
 
 
 <div align="center">
-<table id="detailList" style="border: 1px; width: 70%" >
+<table id="detailList" style="border: 1px; width: 100%" >
     <tr style="background-color: #0188D1; font-family: arial;font-size: 12px; font-weight: bold; color: white; height: 25px;">
         <td style="padding-left: 5px;">Branch Name</td>
         <td>Address</td>
@@ -170,6 +170,6 @@
 </table>
 
 </div>
-<div style="margin-left: 48px;">
-    <input align="right" type="button" value="Add Detail" onclick="addChild();" onmouseover="this.style.color = '#E6443C';this.style.cursor='pointer';" onmouseout="this.style.color = '#024697';this.style.cursor='pointer'"/>
+<div >
+    <input align="right" class="btn-sm" type="button" value="Add Detail" onclick="addChild();" />
 </div>

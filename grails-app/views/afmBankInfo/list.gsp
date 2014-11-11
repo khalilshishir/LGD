@@ -24,72 +24,42 @@
         </style>
 	</head>
 	<body>
-		<a href="#list-afmBankInfo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
 
 
-
-    %{--New Design Start--}%
-
-    <div align="center" id="list-afmBankInfo" class="content scaffold-list myDiv" role="main">
-        <div class="inner-wrapper">
-
-            <div class="page-title-block">
-                <div class="myHeader site-title">
-                    <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-                </div>
-                <div class="clear"></div>
+    <p align="right" style="color:#666; font-size: 11px; padding-right: 5px; margin-top: 10px;">
+        <a style="color:#666; font-size: 11px;" class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+        |
+        <a style="color:#666; font-size: 11px;" href="#"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></a>
+    </p>
+    <div id="list-afmBankInfo" class="content scaffold-list" role="main">
+        %{--<h1><g:message code="default.list.label" args="[entityName]"/></h1>--}%
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"><g:message code="default.list.label" args="[entityName]" /></h3>
             </div>
-
-            <br/>
-            <g:if test="${flash.message == "already exist in database"}">
-                <div>
-
-                </div>
-            </g:if>
-            <g:elseif test="${flash.message != null}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:elseif>
-
-
-            <br/>
-
-            <table style="width: 41%; " class="myTable">
-                <thead>
-                <tr style="height: 25px;">
-
-                    <g:sortableColumn property="slNo" title="${message(code: 'afmBankInfo.bankName.label', default: 'SL. No.')}" />
-                    <g:sortableColumn property="bankName" title="${message(code: 'afmBankInfo.bankName.label', default: 'Bank Name')}" />
-
-                </tr>
-                </thead>
-                <tbody>
-                <% int m=1;%>
-                <g:each in="${afmBankInfoInstanceList}" status="i" var="afmBankInfoInstance">
-                    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-
-                        <td ><center><g:link action="show" id="${afmBankInfoInstance.id}"><%=m%></g:link></center></td>
-                        <td ><center><g:link action="show" id="${afmBankInfoInstance.id}">${fieldValue(bean: afmBankInfoInstance, field: "bankName")}</g:link></center></td>
-
-                    </tr>
-                    <% m++;%>
-                </g:each>
-                </tbody>
-            </table>
-
-            <br/>
-            <div class="pagination">
-                <g:paginate total="${afmBankInfoInstanceTotal}" />
-            </div>
-            <br/>
         </div>
-    </div>
+        <g:if test="${flash.message}">
+            <div class="message" role="status" style="font-family: arial, helvetica, verdana, sans-serif;font-weight: bold; color: #008000;margin: 1%;">${flash.message}</div>
+        </g:if>
+        <table id="example" class="dataListTable table table-bordered table-striped table-hover table-condensed" >
+            <thead>
+            <tr>
 
-    %{--New Design End--}%
+                <g:sortableColumn property="shortName"
+                                  title="${message(code: 'afmBankInfo.bankName.label', default: 'Bank Name')}"/>
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${afmBankInfoInstanceList}" status="i" var="afmBankInfoInstance">
+
+                <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                    <td><center><g:link action="show" id="${afmBankInfoInstance.id}">${fieldValue(bean: afmBankInfoInstance, field: "bankName")}</g:link></center></td>
+                </tr>
+
+            </g:each>
+            </tbody>
+        </table>
+    </div>
 
 
 	</body>

@@ -53,7 +53,7 @@
         clone.show();
         childCount++;
         clone.find('input[id$=startDate]').removeClass('hasDatepicker').datepicker({ dateFormat: 'dd/mm/yy'});
-        clone.find('input[id$=endDate]').removeClass('hasDatepicker').datepicker({ dateFormat: 'dd/mm/yy'});
+       clone.find('input[id$=endDate]').removeClass('hasDatepicker').datepicker({ dateFormat: 'dd/mm/yy'});
     }
 
 
@@ -62,9 +62,9 @@
 </script>
 
 <br/><br/>
-
-<table width="100%" border="0" cellpadding="0" cellspacing="0" id="detailList" class="common-list-table">
-    <tr>
+<div align="center">
+<table id="detailList" style="border: 1px; width: 100%" >
+    <tr style="background-color: #0188D1; font-family: arial;font-size: 12px; font-weight: bold; color: white; height: 25px;">
         %{--<th>Calendar Year</th>--}%
         <th>Holiday Type</th>
         <th>Holiday Description</th>
@@ -80,5 +80,7 @@
         <g:render template='detail' model="['hrHolidayCalendar':hrHolidayCalendar,'i':i]"/>
     </g:each>
 </table>
-
-<input type="button" value="Add Detail" onclick="addChild();" class="add-btn"/>
+</div>
+<div >
+    <input align="right" class="btn-sm" type="button" value="Add Detail" onclick="addChild();" />
+</div>

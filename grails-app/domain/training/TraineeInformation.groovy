@@ -1,7 +1,7 @@
 package training
 
 import lookUp.AllLookup
-import payroll.Department
+import hrms.HrDepartment
 
 class TraineeInformation {
 
@@ -28,7 +28,7 @@ class TraineeInformation {
     String TRAINEE_INFO_MOBILE_BN
     String TRAINEE_INFO_EMAIL
     Level LEVEL
-    Department DEPARTMENT
+    HrDepartment DEPARTMENT
 
     Date TR_INFO_ENTRY_DATE = new Date()
     Date CREATE_DATE=new Date()

@@ -1,5 +1,3 @@
-
-
 <%@ page import="hrms.HrDepartment" %>
 <!doctype html>
 <html>
