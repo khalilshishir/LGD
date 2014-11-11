@@ -21,12 +21,21 @@ import org.codehaus.groovy.grails.commons.ApplicationHolder
 
 class Util {
     private static String REPORT_DIRECTORY = null;
+    private static String EMPLOYEE_IMAGE_DIRECTORY = null;
+
     public static String getReportDirectory() {
         if (!REPORT_DIRECTORY) {
             File reportFolder = ApplicationHolder.application.parentContext.getResource('/reports').file;
             REPORT_DIRECTORY = reportFolder.absolutePath;
         }
         return REPORT_DIRECTORY;
+    }
+    public static String getEmployeeImageDirectory() {
+        if (!EMPLOYEE_IMAGE_DIRECTORY) {
+            File reportFolder = ApplicationHolder.application.parentContext.getResource('/employeeImage').file;
+            EMPLOYEE_IMAGE_DIRECTORY = reportFolder.absolutePath;
+        }
+        return EMPLOYEE_IMAGE_DIRECTORY;
     }
 
     public static String getOSInfo() {
