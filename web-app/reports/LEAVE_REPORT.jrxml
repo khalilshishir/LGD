@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LEAVE_REPORT" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="562e98b1-329b-4b50-9209-ab72e537e389">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\WarkSpace\\GProject\\workspaceForSVN\\LGD\\web-app\\reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_CARD_NO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_LEAVE_YEAR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT EMPLOYEE_ID,CARD_NO,EMPLOYEE_NAME,LEAVE_TYPE_ID,LEAVE_TYPE,LEAVE_YEAR,MAX_LEAVE_DAY,LEAVE_DAY,BALANCE
+FROM HR_EMP_LEAVE_BALANCE_VW
+WHERE CARD_NO=$P{P_CARD_NO}
+AND LEAVE_YEAR=$P{P_LEAVE_YEAR}
+ORDER BY LEAVE_TYPE ASC]]>
+	</queryString>
+	<field name="EMPLOYEE_ID" class="java.math.BigDecimal"/>
+	<field name="CARD_NO" class="java.lang.String"/>
+	<field name="EMPLOYEE_NAME" class="java.lang.String"/>
+	<field name="LEAVE_TYPE_ID" class="java.math.BigDecimal"/>
+	<field name="LEAVE_TYPE" class="java.lang.String"/>
+	<field name="LEAVE_YEAR" class="java.math.BigDecimal"/>
+	<field name="MAX_LEAVE_DAY" class="java.math.BigDecimal"/>
+	<field name="LEAVE_DAY" class="java.math.BigDecimal"/>
+	<field name="BALANCE" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="41" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="29535d8e-530a-4041-b9b4-862ad291b5ce" x="0" y="0" width="555" height="41"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} +File.separator+ "NEW_COMPANY_DETAILS.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ab9c5d73-3bd1-4a32-8510-08f908d36ae7" x="0" y="21" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Employee ID :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="702feb4b-962f-4aab-8621-c3c4e38104c6" x="100" y="21" width="172" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CARD_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="21cb575b-1928-4b16-ae3a-b9b2ded40d97" x="0" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Employee Name :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2fc4ace2-9d7a-45c3-8f5c-78d1afb34f75" x="100" y="41" width="363" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{EMPLOYEE_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a420bed3-d73c-4d53-9ef7-0eae27ed4aec" x="0" y="61" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Year :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="750e93fc-2b52-443f-abf1-518c8f1d0859" x="100" y="61" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{LEAVE_YEAR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="d/M/yyyy">
+				<reportElement uuid="c91a7fce-ab87-49dc-8825-7f0306f461d9" x="422" y="61" width="133" height="20"/>
+				<box leftPadding="0" rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Date : "+new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a2cb503a-4c9e-440b-98cc-9467ceb4b4a3" x="70" y="0" width="166" height="32"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Leave Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c5c6c702-fa50-47f3-9ff8-d44ed35ae304" x="236" y="0" width="107" height="32"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Maximum Leave Allowed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="203735e2-c3ba-435c-a1d1-e8ad372cbb9a" x="343" y="0" width="100" height="32"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Already Taken]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d4d88211-4368-43ed-b98c-0f6e54b2b2f8" x="443" y="0" width="112" height="32"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Leave Balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a2cb503a-4c9e-440b-98cc-9467ceb4b4a3" x="0" y="0" width="70" height="32"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[SL No.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="edf7d954-558b-4927-97ac-8d911041e133" positionType="Float" stretchType="RelativeToTallestObject" x="70" y="0" width="166" height="20"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{LEAVE_TYPE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="027030d2-8744-4661-b675-11224319f985" positionType="Float" stretchType="RelativeToTallestObject" x="236" y="0" width="107" height="20"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{MAX_LEAVE_DAY}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="d8467f16-bde9-442d-af04-4428c9ef4d7e" positionType="Float" stretchType="RelativeToTallestObject" x="343" y="0" width="100" height="20"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{LEAVE_DAY}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="9416e732-504c-49ab-8166-bc2ce4567bf1" positionType="Float" stretchType="RelativeToTallestObject" x="443" y="0" width="112" height="20"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{BALANCE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="edf7d954-558b-4927-97ac-8d911041e133" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="70" height="20"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="33" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement uuid="3d46320a-7b45-4fea-b93e-c3714e49a0e8" x="296" y="13" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="139b2d7f-89f5-4f60-90b7-526d4dad6fef" x="216" y="13" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

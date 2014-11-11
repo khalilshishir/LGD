@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="NEW_COMPANY_DETAILS" language="groovy" pageWidth="555" pageHeight="45" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a07e9685-b6a2-4ab4-8900-f49a2bb5c584">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select ORG_NAME,ADDRESS from HR_ORGANIZATION WHERE ORGANIZATION_ID=1]]>
+	</queryString>
+	<field name="ORG_NAME" class="java.lang.String"/>
+	<field name="ADDRESS" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement uuid="dfc6005d-9aa4-4944-9e66-b84179d89afa" x="0" y="0" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ORG_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="deb8af46-b8be-47ed-a14f-e5cefd57d024" x="0" y="20" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ADDRESS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>

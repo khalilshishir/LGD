@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EMP_ID_WISE_EMPLOYEE_DETAILS" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2c5c45a9-26e9-42c1-9249-02751bae0f4a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CARD_NO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\WarkSpace\\GProject\\workspaceForSVN\\LGSP\\web-app\\reports"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EMPLOYEE_IMAGE_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\WarkSpace\\GProject\\workspaceForSVN\\LGSP\\web-app\\employeeImage"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+H.EMPLOYEE_ID, H.CARD_NO, H.EMPLOYEE_NAME,
+   GET_DESIGNATION_NAME(H.DESIGNATION_ID) DESIGNATION_NAME,GET_DEPARTMENT_NAME(H.DEPARTMENT_ID) DEPARTMEN_NAME ,
+   GET_LOOKUP_VALUE(H.EMPLOYEE_TYPE_ID) EMPLOYEE_TYPE,
+   H.APPOINTMENT_TYPE_ID, GET_LOOKUP_VALUE(H.PRESENT_STATUS_ID) PRESENT_STATUS, GET_LOOKUP_VALUE(H.RELIGION_NAME_ID) RELIGION_NAME,
+   GET_LOOKUP_VALUE(H.BLOOD_GROUP_ID) BLOOD_GROUP, GET_LOOKUP_VALUE(H.MARITAL_STATUS_ID) MARITAL_STATUS, GET_LOOKUP_VALUE(H.NATIONALITY_ID) NATIONAL_ID,
+   GET_LOOKUP_VALUE(H.GENDER_ID) GENDER, H.PERSONAL_FILE_NO, H.JOINING_DATE,
+   H.PROBATIONARY_PERIOD, H.CONFIRMATION_DATE, H.REGULARATION_DATE,
+   H.SERVICE_END_DATE, H.LAST_INCREMENT_DATE, H.NEXT_INCREMENT_DATE,
+   H.NOTICE_PERIOD, H.TIN, H.TIN_CIRCLE,
+   GET_LOOKUP_VALUE(H.PAYMENT_TYPE_ID) PAYMENT_TYPE, H.BANK_AC_NO,
+   GET_AFM_BANK_NAME(H.BANK_ID) BANK_NAME, GET_AFM_BANK_BRANCH_NAME(H.BRANCH_ID) BRANCH_NAME,
+    H.FATHER_NAME, H.MOTHER_NAME,
+   H.SPOUSE_NAME, H.DATE_OF_BIRTH,
+   H.PASSPORT_NO, H.DRIVING_LICIENCE_NO, H.NO_OF_CHILDREN,
+   H.MALE_CHILDREN, H.FEMALE_CHILDREN, H.BIRTH_PLACE,
+   H.IDENTIFICATION_MARKS, H.PRE_ROAD_NO, H.PRE_HOUSE_NO,
+   H.PRE_BLOCK_NO, H.PRE_POST_CODE, H.PRE_CITY,
+   H.PRE_DISTRICT, H.PRE_THANA, H.PER_ROAD_NO,
+   H.PER_HOUSE_NO, H.PER_BLOCK_NO, H.PER_POST_CODE,
+   H.PER_CITY, H.PER_DISTRICT, H.PER_THANA,
+   H.TNT_NO, H.MOBILE_NO, H.EMAIL_ID,
+   H.FAX_NO, H.PAYMENT_TYPE_ID, GET_DESIGNATION_NAME(H.JOINING_DESIGNATION_ID) JOINING_DESIGNATION,
+   GET_LOOKUP_VALUE(H.SALARY_TYPE_ID) SALARY_TYPE,
+   H.OFFICE_IN_TIME, H.OFFICE_OUT_TIME, H.OT_ALLOW,
+   H.REP_EMPLOYEE_ID, H.RESIGNATION_TYPE, H.IMAGE_PATH,
+   H.IMAGE_NAME,GET_LOOKUP_VALUE(H.ACCOUNTING_INFO_ID) ACCOUNTING_INFO, GET_LOOKUP_VALUE(H.EMPLOYEE_CATEGORY_ID) EMPLOYEE_CATEGORY,
+   H.CONTRACT_EXPIRED_DATE, H.EMP_ROLE
+FROM LGSP.HR_EMPLOYEE H
+WHERE H.CARD_NO=$P{CARD_NO}]]>
+	</queryString>
+	<field name="EMPLOYEE_ID" class="java.math.BigDecimal"/>
+	<field name="CARD_NO" class="java.lang.String"/>
+	<field name="EMPLOYEE_NAME" class="java.lang.String"/>
+	<field name="DESIGNATION_NAME" class="java.lang.String"/>
+	<field name="DEPARTMEN_NAME" class="java.lang.String"/>
+	<field name="EMPLOYEE_TYPE" class="java.lang.String"/>
+	<field name="APPOINTMENT_TYPE_ID" class="java.math.BigDecimal"/>
+	<field name="PRESENT_STATUS" class="java.lang.String"/>
+	<field name="RELIGION_NAME" class="java.lang.String"/>
+	<field name="BLOOD_GROUP" class="java.lang.String"/>
+	<field name="MARITAL_STATUS" class="java.lang.String"/>
+	<field name="NATIONAL_ID" class="java.lang.String"/>
+	<field name="GENDER" class="java.lang.String"/>
+	<field name="PERSONAL_FILE_NO" class="java.lang.String"/>
+	<field name="JOINING_DATE" class="java.sql.Timestamp"/>
+	<field name="PROBATIONARY_PERIOD" class="java.math.BigDecimal"/>
+	<field name="CONFIRMATION_DATE" class="java.sql.Timestamp"/>
+	<field name="REGULARATION_DATE" class="java.sql.Timestamp"/>
+	<field name="SERVICE_END_DATE" class="java.sql.Timestamp"/>
+	<field name="LAST_INCREMENT_DATE" class="java.sql.Timestamp"/>
+	<field name="NEXT_INCREMENT_DATE" class="java.sql.Timestamp"/>
+	<field name="NOTICE_PERIOD" class="java.math.BigDecimal"/>
+	<field name="TIN" class="java.lang.String"/>
+	<field name="TIN_CIRCLE" class="java.lang.String"/>
+	<field name="PAYMENT_TYPE" class="java.lang.String"/>
+	<field name="BANK_AC_NO" class="java.lang.String"/>
+	<field name="BANK_NAME" class="java.lang.String"/>
+	<field name="BRANCH_NAME" class="java.lang.String"/>
+	<field name="FATHER_NAME" class="java.lang.String"/>
+	<field name="MOTHER_NAME" class="java.lang.String"/>
+	<field name="SPOUSE_NAME" class="java.lang.String"/>
+	<field name="DATE_OF_BIRTH" class="java.sql.Timestamp"/>
+	<field name="PASSPORT_NO" class="java.lang.String"/>
+	<field name="DRIVING_LICIENCE_NO" class="java.lang.String"/>
+	<field name="NO_OF_CHILDREN" class="java.math.BigDecimal"/>
+	<field name="MALE_CHILDREN" class="java.math.BigDecimal"/>
+	<field name="FEMALE_CHILDREN" class="java.math.BigDecimal"/>
+	<field name="BIRTH_PLACE" class="java.lang.String"/>
+	<field name="IDENTIFICATION_MARKS" class="java.lang.String"/>
+	<field name="PRE_ROAD_NO" class="java.lang.String"/>
+	<field name="PRE_HOUSE_NO" class="java.lang.String"/>
+	<field name="PRE_BLOCK_NO" class="java.lang.String"/>
+	<field name="PRE_POST_CODE" class="java.lang.String"/>
+	<field name="PRE_CITY" class="java.lang.String"/>
+	<field name="PRE_DISTRICT" class="java.lang.String"/>
+	<field name="PRE_THANA" class="java.lang.String"/>
+	<field name="PER_ROAD_NO" class="java.lang.String"/>
+	<field name="PER_HOUSE_NO" class="java.lang.String"/>
+	<field name="PER_BLOCK_NO" class="java.lang.String"/>
+	<field name="PER_POST_CODE" class="java.lang.String"/>
+	<field name="PER_CITY" class="java.lang.String"/>
+	<field name="PER_DISTRICT" class="java.lang.String"/>
+	<field name="PER_THANA" class="java.lang.String"/>
+	<field name="TNT_NO" class="java.lang.String"/>
+	<field name="MOBILE_NO" class="java.lang.String"/>
+	<field name="EMAIL_ID" class="java.lang.String"/>
+	<field name="FAX_NO" class="java.lang.String"/>
+	<field name="PAYMENT_TYPE_ID" class="java.math.BigDecimal"/>
+	<field name="JOINING_DESIGNATION" class="java.lang.String"/>
+	<field name="SALARY_TYPE" class="java.lang.String"/>
+	<field name="OFFICE_IN_TIME" class="java.lang.String"/>
+	<field name="OFFICE_OUT_TIME" class="java.lang.String"/>
+	<field name="OT_ALLOW" class="java.math.BigDecimal"/>
+	<field name="REP_EMPLOYEE_ID" class="java.math.BigDecimal"/>
+	<field name="RESIGNATION_TYPE" class="java.lang.String"/>
+	<field name="IMAGE_PATH" class="java.lang.String"/>
+	<field name="IMAGE_NAME" class="java.lang.String"/>
+	<field name="ACCOUNTING_INFO" class="java.lang.String"/>
+	<field name="EMPLOYEE_CATEGORY" class="java.lang.String"/>
+	<field name="CONTRACT_EXPIRED_DATE" class="java.sql.Timestamp"/>
+	<field name="EMP_ROLE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="51" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="29535d8e-530a-4041-b9b4-862ad291b5ce" x="0" y="0" width="555" height="41"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} +File.separator+ "NEW_COMPANY_DETAILS.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="399" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement uuid="4ff78e53-a894-4ceb-9777-a7487742d269" x="362" y="12" width="189" height="160"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<imageExpression><![CDATA[$F{IMAGE_NAME}==null?$P{EMPLOYEE_IMAGE_DIR} +File.separator+"no-image.jpg":$P{EMPLOYEE_IMAGE_DIR} +File.separator+$F{IMAGE_NAME}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="cbb27b05-b262-46e0-81e7-b9da086619ef" x="109" y="12" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CARD_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d21e8807-4cc4-4557-97d3-7998c92d6a53" x="3" y="32" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Employee Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d0f1514c-b023-4d7f-9590-eaa10ec8ab96" x="109" y="32" width="217" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{EMPLOYEE_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9b66c249-7da7-4cfa-a8e6-b0f98d83b7fe" x="3" y="52" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Designation]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d2b3a699-12e2-4b41-be84-22187c91f58a" x="109" y="52" width="217" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DESIGNATION_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4fe99126-9b27-4df0-90e1-75141601275b" x="3" y="72" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Department]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ee90f43a-7831-452c-b8e4-532b3559e581" x="109" y="72" width="217" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DEPARTMEN_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d21e8807-4cc4-4557-97d3-7998c92d6a53" x="3" y="12" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Employee ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="979d9bf2-956f-4038-968c-49356648722d" x="3" y="92" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Employee Type]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="6e794b99-63a5-4573-a2fa-b1379c75dc12" x="109" y="92" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{EMPLOYEE_TYPE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f499e3ed-f27e-4dbc-a8b4-bbcf49c16419" x="3" y="112" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Present Status]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="4da512a6-126a-43ce-ac65-cd373348fbeb" x="109" y="112" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PRESENT_STATUS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4f52de24-dad2-4a86-9fb7-66d8454e9d1b" x="345" y="192" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Gender]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="36aed387-2549-4883-97b4-a1871f13a2bc" x="455" y="192" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{GENDER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c588ad46-7a51-4e0f-a859-82a57e304341" x="345" y="212" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Blood Group]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="6b956c7a-d9e4-472e-bbd3-e788013626eb" x="455" y="212" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{BLOOD_GROUP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="30f8c190-2f55-44ad-bc5a-ffcc019148ce" x="3" y="152" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Joining Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b606960e-9fa0-4925-abf0-9c50f486f9c0" x="109" y="152" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{JOINING_DATE})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e5973e6a-6794-4ff1-99f1-13cade3d5677" x="3" y="132" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Personal File No]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="dcbbca73-dc16-4fb9-b9cc-b1f3aaba178d" x="109" y="132" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PERSONAL_FILE_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="04f22414-0a08-448c-a8b2-2c278408ed86" x="3" y="172" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Probationary Period]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8da280cd-4b8b-46a1-942e-c0a25f5405ab" x="109" y="172" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PROBATIONARY_PERIOD}+" Month"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f0016233-6bc6-412f-81fb-7d63011e02e9" x="3" y="192" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Confirmation Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="998a5e6b-77c3-488d-a453-9d2a51f709d5" x="109" y="192" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{CONFIRMATION_DATE})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="987f34c9-f830-4815-a897-71e52c1d26f2" x="3" y="212" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Notice Period]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9cdf7953-45c2-40bc-ad47-6e5acaf52a21" x="109" y="212" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOTICE_PERIOD}+" Month"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a73226de-39d6-430b-b424-fbc226519781" x="226" y="10" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="0ffed345-27f3-486c-a93a-afb0c656c0d8" x="306" y="10" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="d/M/yyyy">
+				<reportElement uuid="c91a7fce-ab87-49dc-8825-7f0306f461d9" x="409" y="10" width="146" height="20"/>
+				<box leftPadding="0" rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Print Date : "+new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
