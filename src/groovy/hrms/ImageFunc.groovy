@@ -20,6 +20,14 @@ class ImageFunc {
         }
         return REPORT_DIRECTORY;
     }
+    private static String FILE_DIRECTORY = null;
+    public static String getDirectoryPath(String fileName) {
+        if (!FILE_DIRECTORY) {
+            File reportFolder = ApplicationHolder.application.parentContext.getResource('/'+fileName).file;
+            FILE_DIRECTORY = reportFolder.absolutePath;
+        }
+        return FILE_DIRECTORY;
+    }
     // -- end from text to date conversion method here -------------------
 
 }
