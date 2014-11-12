@@ -208,7 +208,7 @@
 
             if(salaryMonth != "" && salaryType != 'null') {
 
-                var status = confirm("Do you want to Rollback Continue?");
+                var status = confirm("Do you want to do Rollback ?");
 
                 if (status == true)
                 {
